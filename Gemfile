@@ -46,7 +46,7 @@ gem 'bootstrap-sass'
 gem 'devise'
 gem 'figaro'
 gem 'haml-rails'
-gem 'mysql2'
+
 gem 'simple_form'
 
 group :development do
