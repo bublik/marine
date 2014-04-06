@@ -5,5 +5,10 @@ class CreateEyes < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    ['Amber', 'Blue', 'Brown', 'Gray', 'Green', 'Hazel'].each do |color|
+      Eye.create(name: color)
+    end
+
   end
 end

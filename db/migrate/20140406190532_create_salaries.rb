@@ -5,5 +5,11 @@ class CreateSalaries < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    1.upto(10) do |num|
+      Salary.create(amount: 1000 * num)
+    end
+
+
   end
 end

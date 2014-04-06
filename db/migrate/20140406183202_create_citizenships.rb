@@ -5,5 +5,10 @@ class CreateCitizenships < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    ['Citizen','Alien','Non citizen','Stateless'].each do |name|
+      Citizenship.create(name: name)
+    end
+
   end
 end

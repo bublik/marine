@@ -1,0 +1,19 @@
+%h1 Listing hairs
+
+%table
+  %tr
+    %th Color
+    %th
+    %th
+    %th
+
+  - @hairs.each do |hair|
+    %tr
+      %td= hair.color
+      %td= link_to 'Show', hair
+      %td= link_to 'Edit', edit_hair_path(hair)
+      %td= link_to 'Destroy', hair, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Hair', new_hair_path
