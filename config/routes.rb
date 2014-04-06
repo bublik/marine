@@ -1,4 +1,6 @@
 Marine::Application.routes.draw do
+  resources :citizenships
+
   resources :countries
 
   resources :ranks

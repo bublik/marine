@@ -287,3 +287,6 @@ country_names.each do |name|
   Country.create(name: name)
 end
 
+['Citizen','Alien','Non citizen','Stateless'].each do |name|
+  Citizenship.create(name: name)
+end

@@ -1,0 +1,19 @@
+%h1 Listing citizenships
+
+%table
+  %tr
+    %th Name
+    %th
+    %th
+    %th
+
+  - @citizenships.each do |citizenship|
+    %tr
+      %td= citizenship.name
+      %td= link_to 'Show', citizenship
+      %td= link_to 'Edit', edit_citizenship_path(citizenship)
+      %td= link_to 'Destroy', citizenship, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Citizenship', new_citizenship_path

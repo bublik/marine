@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @citizenship.name
+
+= link_to 'Edit', edit_citizenship_path(@citizenship)
+\|
+= link_to 'Back', citizenships_path
