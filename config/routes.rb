@@ -1,4 +1,6 @@
 Marine::Application.routes.draw do
+  resources :countries
+
   resources :ranks
 
   root :to => "home#index"

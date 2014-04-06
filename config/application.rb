@@ -9,13 +9,13 @@ Bundler.require(*Rails.groups)
 module Marine
   class Application < Rails::Application
 
-    # don't generate RSpec tests for views and helpers
+
     config.generators do |g|
-      
-      g.test_framework :rspec, fixture: true
+      g.test_framework :rspec, views: false, fixture: true
       g.fixture_replacement :factory_girl, dir: 'spec/factories'
-      
-      
+      g.template_engine :haml
+      g.stylesheets false
+      # don't generate RSpec tests for views and helpers
       g.view_specs false
       g.helper_specs false
     end
