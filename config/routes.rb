@@ -1,4 +1,6 @@
 Marine::Application.routes.draw do
+  resources :weights
+
   resources :heights
 
   resources :hairs
