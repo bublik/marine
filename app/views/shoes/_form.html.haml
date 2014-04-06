@@ -1,0 +1,8 @@
+= simple_form_for(@shoe) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :shoes_size
+
+  .form-actions
+    = f.button :submit

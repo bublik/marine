@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Shoes size:
+  = @shoe.shoes_size
+
+= link_to 'Edit', edit_shoe_path(@shoe)
+\|
+= link_to 'Back', shoes_path
