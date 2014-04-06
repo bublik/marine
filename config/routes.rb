@@ -1,4 +1,6 @@
 Marine::Application.routes.draw do
+  resources :eyes
+
   resources :salaries
 
   resources :positions

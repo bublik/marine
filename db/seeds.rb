@@ -298,3 +298,8 @@ end
 1.upto(10) do |num|
   Salary.create(amount: 1000 * num)
 end
+
+['Amber', 'Blue', 'Brown', 'Gray', 'Green', 'Hazel'].each do |color|
+  Eye.create(name: color)
+end
+

@@ -1,0 +1,19 @@
+%h1 Listing eyes
+
+%table
+  %tr
+    %th Name
+    %th
+    %th
+    %th
+
+  - @eyes.each do |eye|
+    %tr
+      %td= eye.name
+      %td= link_to 'Show', eye
+      %td= link_to 'Edit', edit_eye_path(eye)
+      %td= link_to 'Destroy', eye, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Eye', new_eye_path
