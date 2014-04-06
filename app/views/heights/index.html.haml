@@ -1,0 +1,19 @@
+%h1 Listing heights
+
+%table
+  %tr
+    %th Height
+    %th
+    %th
+    %th
+
+  - @heights.each do |height|
+    %tr
+      %td= height.height
+      %td= link_to 'Show', height
+      %td= link_to 'Edit', edit_height_path(height)
+      %td= link_to 'Destroy', height, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Height', new_height_path

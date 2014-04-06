@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Height:
+  = @height.height
+
+= link_to 'Edit', edit_height_path(@height)
+\|
+= link_to 'Back', heights_path
