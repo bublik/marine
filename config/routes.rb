@@ -1,4 +1,8 @@
 Marine::Application.routes.draw do
+  resources :salaries
+
+  resources :positions
+
   resources :maritals
 
   resources :citizenships

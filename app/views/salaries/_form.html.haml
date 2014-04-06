@@ -1,0 +1,8 @@
+= simple_form_for(@salary) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :amount
+
+  .form-actions
+    = f.button :submit

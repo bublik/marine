@@ -294,3 +294,7 @@ end
 ['Single', 'Married', 'Divorced', 'Common Law Partner', 'Widowed', 'Separated', 'Unknown'].each do |name|
   Marital.create(name: name)
 end
+
+1.upto(10) do |num|
+  Salary.create(amount: 1000 * num)
+end

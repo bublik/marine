@@ -57,3 +57,7 @@ Preferences:
 ________________________
 
 License
+
+
+
+rails g scaffold Personal available_from:datetime rank:references surname:string name:string
