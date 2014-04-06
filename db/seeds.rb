@@ -290,3 +290,7 @@ end
 ['Citizen','Alien','Non citizen','Stateless'].each do |name|
   Citizenship.create(name: name)
 end
+
+['Single', 'Married', 'Divorced', 'Common Law Partner', 'Widowed', 'Separated', 'Unknown'].each do |name|
+  Marital.create(name: name)
+end

@@ -1,4 +1,6 @@
 Marine::Application.routes.draw do
+  resources :maritals
+
   resources :citizenships
 
   resources :countries

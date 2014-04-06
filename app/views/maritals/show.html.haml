@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @marital.name
+
+= link_to 'Edit', edit_marital_path(@marital)
+\|
+= link_to 'Back', maritals_path

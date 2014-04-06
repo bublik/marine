@@ -1,4 +1,4 @@
-class Country < ActiveRecord::Base
+class Marital < ActiveRecord::Base
   validates_presence_of :name
 
 end
