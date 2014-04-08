@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140406195148) do
+ActiveRecord::Schema.define(version: 20140408184744) do
 
   create_table "citizenships", force: true do |t|
     t.string   "name"
@@ -54,6 +54,43 @@ ActiveRecord::Schema.define(version: 20140406195148) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "personals", force: true do |t|
+    t.datetime "available_from"
+    t.integer  "salary_id"
+    t.integer  "rank_id"
+    t.string   "surname"
+    t.string   "name"
+    t.string   "middle_name"
+    t.date     "pp_dob"
+    t.string   "pp_pob"
+    t.integer  "country_id"
+    t.integer  "citizenship_id"
+    t.integer  "marital_id"
+    t.string   "sex"
+    t.integer  "eye_id"
+    t.integer  "hair_id"
+    t.integer  "height_id"
+    t.integer  "weight_id"
+    t.integer  "overallsize_id"
+    t.integer  "shoe_id"
+    t.string   "taxation_id_code"
+    t.text     "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "personals", ["citizenship_id"], name: "index_personals_on_citizenship_id", using: :btree
+  add_index "personals", ["country_id"], name: "index_personals_on_country_id", using: :btree
+  add_index "personals", ["eye_id"], name: "index_personals_on_eye_id", using: :btree
+  add_index "personals", ["hair_id"], name: "index_personals_on_hair_id", using: :btree
+  add_index "personals", ["height_id"], name: "index_personals_on_height_id", using: :btree
+  add_index "personals", ["marital_id"], name: "index_personals_on_marital_id", using: :btree
+  add_index "personals", ["overallsize_id"], name: "index_personals_on_overallsize_id", using: :btree
+  add_index "personals", ["rank_id"], name: "index_personals_on_rank_id", using: :btree
+  add_index "personals", ["salary_id"], name: "index_personals_on_salary_id", using: :btree
+  add_index "personals", ["shoe_id"], name: "index_personals_on_shoe_id", using: :btree
+  add_index "personals", ["weight_id"], name: "index_personals_on_weight_id", using: :btree
 
   create_table "positions", force: true do |t|
     t.string   "name"

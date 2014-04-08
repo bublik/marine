@@ -1,4 +1,6 @@
 Marine::Application.routes.draw do
+  resources :personals
+
   resources :shoes
 
   resources :overallsizes

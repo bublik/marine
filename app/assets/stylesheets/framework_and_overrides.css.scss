@@ -79,3 +79,15 @@ section {
   @extend .btn-primary;
   @extend .btn-xs;
 }
+
+.form-group {
+  .control-label {
+    @extend .col-md-3;
+    @extend .text-right;
+  }
+
+  .form-control {
+    @extend .col-md-6;
+  }
+  clear: both;
+}

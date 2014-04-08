@@ -1,0 +1,63 @@
+%p#notice= notice
+
+%p
+  %b Available from:
+  = @personal.available_from
+%p
+  %b Rank:
+  = @personal.rank
+%p
+  %b Surname:
+  = @personal.surname
+%p
+  %b Name:
+  = @personal.name
+%p
+  %b Middle name:
+  = @personal.middle_name
+%p
+  %b Pp dob:
+  = @personal.pp_dob
+%p
+  %b Pp pob:
+  = @personal.pp_pob
+%p
+  %b Country:
+  = @personal.country
+%p
+  %b Citizenship:
+  = @personal.citizenship
+%p
+  %b Marital:
+  = @personal.marital
+%p
+  %b Sex:
+  = @personal.sex
+%p
+  %b Eye:
+  = @personal.eye
+%p
+  %b Hair:
+  = @personal.hair
+%p
+  %b Height:
+  = @personal.height
+%p
+  %b Weight:
+  = @personal.weight
+%p
+  %b Overallsize:
+  = @personal.overallsize
+%p
+  %b Shoe:
+  = @personal.shoe
+%p
+  %b Taxation id code:
+  = @personal.taxation_id_code
+%p
+  %b Note:
+  = @personal.note
+
+= link_to 'Edit', edit_personal_path(@personal)
+\|
+= link_to 'Back', personals_path

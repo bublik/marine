@@ -1,0 +1,55 @@
+%h1 Listing personals
+
+%table
+  %tr
+    %th Available from
+    %th Rank
+    %th Surname
+    %th Name
+    %th Middle name
+    %th Pp dob
+    %th Pp pob
+    %th Country
+    %th Citizenship
+    %th Marital
+    %th Sex
+    %th Eye
+    %th Hair
+    %th Height
+    %th Weight
+    %th Overallsize
+    %th Shoe
+    %th Taxation id code
+    %th Note
+    %th
+    %th
+    %th
+
+  - @personals.each do |personal|
+    %tr
+      %td= personal.available_from
+      %td= personal.rank
+      %td= personal.surname
+      %td= personal.name
+      %td= personal.middle_name
+      %td= personal.pp_dob
+      %td= personal.pp_pob
+      %td= personal.country
+      %td= personal.citizenship
+      %td= personal.marital
+      %td= personal.sex
+      %td= personal.eye
+      %td= personal.hair
+      %td= personal.height
+      %td= personal.weight
+      %td= personal.overallsize
+      %td= personal.shoe
+      %td= personal.taxation_id_code
+      %td= personal.note
+      %td= link_to 'Show', personal
+      %td= link_to 'Edit', edit_personal_path(personal)
+      %td= link_to 'Destroy', personal, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Personal', new_personal_path

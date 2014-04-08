@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: heights
+#
+#  id         :integer          not null, primary key
+#  height     :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 require 'spec_helper'
 
 describe Height do

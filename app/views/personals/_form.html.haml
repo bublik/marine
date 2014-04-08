@@ -1,0 +1,27 @@
+= simple_form_for(@personal, role: 'form', class: 'form-horizontal') do |f|
+  = f.error_notification
+  .row
+    .col-md-8
+      = f.input :available_from, as: :string
+      = f.association :rank
+      = f.association :salary, label_method: :amount
+      = f.input :surname
+      = f.input :name
+      = f.input :middle_name
+      = f.input :pp_dob, as: :string
+      = f.input :pp_pob
+      = f.association :country
+      = f.association :citizenship
+      = f.association :marital
+      = f.input :sex
+      = f.association :eye
+      = f.association :hair, label_method: :color
+      = f.association :height, label_method: :height
+      = f.association :weight, label_method: :weight
+      = f.association :overallsize, label_method: :overall_size
+      = f.association :shoe, label_method: :shoes_size
+      = f.input :taxation_id_code
+      = f.input :note
+
+  .text-right
+    = f.button :submit, class: 'btn btn-primary'

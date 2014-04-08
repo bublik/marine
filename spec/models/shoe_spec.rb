@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: shoes
+#
+#  id         :integer          not null, primary key
+#  shoes_size :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 require 'spec_helper'
 
 describe Shoe do
