@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140408184744) do
+ActiveRecord::Schema.define(version: 20140412114940) do
 
   create_table "citizenships", force: true do |t|
     t.string   "name"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 20140408184744) do
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "photo"
   end
 
   add_index "personals", ["citizenship_id"], name: "index_personals_on_citizenship_id", using: :btree

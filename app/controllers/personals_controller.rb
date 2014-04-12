@@ -25,15 +25,17 @@ class PersonalsController < ApplicationController
   # POST /personals.json
   def create
     @personal = Personal.new(personal_params)
-    @personal.user = current_user
+    #@personal.user = current_user
 
     respond_to do |format|
       if @personal.save
         format.html { redirect_to @personal, notice: 'Personal was successfully created.' }
         format.json { render action: 'show', status: :created, location: @personal }
+        format.js
       else
         format.html { render action: 'new' }
         format.json { render json: @personal.errors, status: :unprocessable_entity }
+        format.js { }
       end
     end
   end
@@ -49,6 +51,7 @@ class PersonalsController < ApplicationController
         format.html { render action: 'edit' }
         format.json { render json: @personal.errors, status: :unprocessable_entity }
       end
+      format.js
     end
   end
 
@@ -70,6 +73,7 @@ class PersonalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def personal_params
-      params.require(:personal).permit(:available_from, :rank_id, :salary_id, :surname, :name, :middle_name, :pp_dob, :pp_pob, :country_id, :citizenship_id, :marital_id, :sex, :eye_id, :hair_id, :height_id, :weight_id, :overallsize_id, :shoe_id, :taxation_id_code, :note)
+      params.require(:personal).permit(:available_from, :rank_id, :salary_id, :photo, :surname, :name, :middle_name,
+                                       :pp_dob, :pp_pob, :country_id, :citizenship_id, :marital_id, :sex, :eye_id, :hair_id, :height_id, :weight_id, :overallsize_id, :shoe_id, :taxation_id_code, :note)
     end
 end

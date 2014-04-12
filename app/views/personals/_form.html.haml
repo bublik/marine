@@ -1,14 +1,15 @@
-= simple_form_for(@personal, remote: true, html:{ role: 'form', class: 'registration'}) do |f|
+= simple_form_for(@personal, remote: true, html: {format: :js, multipart: true, role: 'form',
+class: 'registration '}) do |f|
   = f.error_notification
   .row
     .col-md-8
-      = f.input :available_from, as: :string
+      = f.input :available_from, as: :string, placeholder: 'dd/mm/yyyy', input_html:{class: 'datepicker'}
       = f.association :rank
       = f.association :salary, label_method: :amount
       = f.input :surname
       = f.input :name
       = f.input :middle_name
-      = f.input :pp_dob, as: :string
+      = f.input :pp_dob, as: :string, placeholder: 'dd/mm/yyyy', input_html:{class: 'datepicker'}
       = f.input :pp_pob
       = f.association :country
       = f.association :citizenship
@@ -22,6 +23,11 @@
       = f.association :shoe, label_method: :shoes_size
       = f.input :taxation_id_code
       = f.input :note
+      %hr/
+
+      = image_tag(@personal.photo_url) if @personal.photo?
+      = f.input :photo, as: :file
+      //= f.hidden_field :photo_cache
 
   .text-right
     = f.button :submit, class: 'btn btn-primary'
