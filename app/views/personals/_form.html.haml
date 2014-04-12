@@ -1,4 +1,4 @@
-= simple_form_for(@personal, role: 'form', class: 'form-horizontal') do |f|
+= simple_form_for(@personal, remote: true, html:{ role: 'form', class: 'registration'}) do |f|
   = f.error_notification
   .row
     .col-md-8
@@ -13,7 +13,7 @@
       = f.association :country
       = f.association :citizenship
       = f.association :marital
-      = f.input :sex
+      = f.input :sex, collection: [:m, :f], as: :radio_buttons
       = f.association :eye
       = f.association :hair, label_method: :color
       = f.association :height, label_method: :height

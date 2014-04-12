@@ -1,0 +1,35 @@
+#MyWizard.wizard
+  %ul.steps
+    %li.active{"data-target" => "#step1"}
+      %span.badge.badge-info> 1
+      Personal
+      %span.chevron
+    %li{"data-target" => "#step2"}
+      %span.badge> 2
+      Contacts
+      %span.chevron
+    %li{"data-target" => "#step3"}
+      %span.badge> 3
+      Certificates
+      %span.chevron
+    %li{"data-target" => "#step4"}
+      %span.badge> 4
+      Sea Service
+      %span.chevron
+    %li{"data-target" => "#step5"}
+      %span.badge> 5
+      Language
+      %span.chevron
+  .actions
+    %button.btn.btn-mini.btn-prev{:type => "button"}
+      %i.icon-arrow-left>
+      Prev
+    %button.btn.btn-mini.btn-next{"data-last" => "Finish", :type => "button"}
+      Next
+      %i.icon-arrow-right
+.step-content
+  #step1.step-pane.active This is step 1
+  #step2.step-pane This is step 2
+  #step3.step-pane This is step 3
+  #step4.step-pane This is step 4
+  #step5.step-pane This is step 5
