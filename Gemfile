@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby '2.1.1'
 gem 'mysql2'
 
-gem 'rails', '4.0.4'
+gem 'rails', '4.1'
 gem 'devise'
 gem 'figaro'
 
@@ -34,7 +34,7 @@ end
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
-  gem 'thin'
+  gem 'spring'
 end
 group :test do
   gem 'capybara'
