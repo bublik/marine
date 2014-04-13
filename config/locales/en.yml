@@ -1,4 +1,6 @@
 en:
+  global:
+    edit: Edit
   activerecord:
     models:
       personal:
@@ -25,18 +27,17 @@ en:
         shoe: Shoes
         taxation_id_code: National Insurance Number (Taxation number)
         note: Your comments
-    attributes:
       contact:
-      country_id: Country
-      region: Country/Region
-      city: City
-      street: Street
-      postal_code: Postal Code
-      airport: Nearest Airport
-      phone: Phone
-      mphone: Mobile Phone
-      email: E-mail
-      skype: Skype
+        country_id: Country
+        region: Country/Region
+        city: City
+        street: Street
+        postal_code: Postal Code
+        airport: Nearest Airport
+        phone: Phone
+        mphone: Mobile Phone
+        email: E-mail
+        skype: Skype
 
   helpers:
     submit:

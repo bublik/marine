@@ -15,6 +15,10 @@ class ContactsController < ApplicationController
   # GET /contacts/new
   def new
     @contact = Contact.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /contacts/1/edit
@@ -34,6 +38,7 @@ class ContactsController < ApplicationController
         format.html { render action: 'new' }
         format.json { render json: @contact.errors, status: :unprocessable_entity }
       end
+      format.js
     end
   end
 

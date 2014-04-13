@@ -1,1 +1,5 @@
-$('.contacts').html('#{j render(partial: 'contacts/form') }')
+- if @contact.valid?
+  $('.contacts').html('#{j render(partial: 'contacts/list') }');
+  $('.contact').html('');
+- else
+  $('.contact').html('#{j render(partial: 'contacts/form') }');
