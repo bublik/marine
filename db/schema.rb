@@ -11,13 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140412114940) do
+ActiveRecord::Schema.define(version: 20140413052408) do
 
   create_table "citizenships", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "contacts", force: true do |t|
+    t.integer  "country_id"
+    t.string   "region"
+    t.string   "city"
+    t.string   "street"
+    t.string   "postal_code"
+    t.string   "airport"
+    t.string   "phone"
+    t.string   "mphone"
+    t.string   "email"
+    t.string   "skype"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contacts", ["country_id"], name: "index_contacts_on_country_id", using: :btree
 
   create_table "countries", force: true do |t|
     t.string   "name"

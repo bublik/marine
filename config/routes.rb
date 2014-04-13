@@ -1,4 +1,6 @@
 Marine::Application.routes.draw do
+  resources :contacts
+
   resources :personals
 
   resources :shoes
