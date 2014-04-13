@@ -1,0 +1,21 @@
+%h1 Listing certs
+
+%table
+  %tr
+    %th Name
+    %th Category
+    %th
+    %th
+    %th
+
+  - @certs.each do |cert|
+    %tr
+      %td= cert.name
+      %td= cert.category
+      %td= link_to 'Show', cert
+      %td= link_to 'Edit', edit_cert_path(cert)
+      %td= link_to 'Destroy', cert, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Cert', new_cert_path
