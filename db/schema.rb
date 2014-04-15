@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140415201314) do
+ActiveRecord::Schema.define(version: 20140415202030) do
 
   create_table "certificates", force: true do |t|
     t.integer  "cert_id"
@@ -182,6 +182,12 @@ ActiveRecord::Schema.define(version: 20140415201314) do
 
   create_table "vessel_country_codes", force: true do |t|
     t.string   "code"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "vessel_types", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
