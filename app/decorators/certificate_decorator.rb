@@ -1,7 +1,7 @@
 class CertificateDecorator < Draper::Decorator
   delegate_all
 
-  # object.created_at.strftime("%a %m/%d/%y")
+  # object.created_at.strftime("%m/%d/%y")
 
   def cert
     object.cert.name
@@ -12,11 +12,17 @@ class CertificateDecorator < Draper::Decorator
   end
 
   def from_date
-    object.from_date ? object.from_date.to_s(:db) : ''
+    object.from_date ? object.from_date : ''
   end
 
   def to_date
-    object.is_unlimited ? 'Unlimited' : (object.to_date ? object.to_date.to_s(:db) : '')
+    if object.is_unlimited
+      'Unlimited'
+    else
+      css_class = object.to_date && (object.to_date > Date.today) ? 'text-success' : 'text-danger'
+      object.to_date ? h.content_tag(:span, object.to_date, class: css_class) : ''
+    end
+
   end
 
 end
