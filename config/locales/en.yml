@@ -43,6 +43,10 @@ en:
     submit:
       create: "Save"
       update: "Update"
+  certs:
+    medical: Medical
+    traning: Training
+    documents: Travel documents
   simple_form:
     options:
       rersonal:

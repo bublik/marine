@@ -1,0 +1,6 @@
+$('.new_entry').remove()
+
+- if params[:cert_id]
+  $("#{j render('new_row') }").insertAfter("##{dom_id(@certificate.cert)}")
+- else
+  $('#{j render('new_row') }').insertAfter('tr.#{params[:category]}')

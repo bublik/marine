@@ -94,8 +94,8 @@ class CreateCerts < ActiveRecord::Migration
        'Passport',
        'Dienstboek D',
        'ID CARD'
-     ]}.each do |category, names|
-      names.each do
+     ]}.each_pair do |category, names|
+      names.each do |name|
         Cert.create(category: category, name: name)
       end
     end

@@ -1,0 +1,4 @@
+- if @certificate.valid?
+  $("##{dom_id(@certificate.cert)}").replaceWith("#{j render(partial: 'certificate', locals: {certificate: @certificate.decorate}) }")
+- else
+  $("##{dom_id(@certificate.cert)}").replaceWith("#{j render 'new_row'}")

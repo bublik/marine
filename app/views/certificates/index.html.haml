@@ -1,0 +1,27 @@
+%legend Certificates
+
+%table.table.table-condensed
+  %thead
+    %tr
+      %th
+      %th Documents
+      %th Country
+      %th Issued
+      %th Expires
+      %th Number
+      %th Issuer
+  %tbody
+    - Cert::CATEGORIES.each do |category|
+      %tr.info{class: category}
+        %td{colspan: 2}
+          %label= t("certs.#{category}")
+        %td{colspan: 5, class: 'text-right'}= link_to('New entry', new_certificate_path(category: category),
+          remote: true, class: 'btn btn-success')
+
+      - Cert.by_category(category).limit(5).each do |cert|
+        - if certificate = @certificates.detect{|certigicat|certigicat.cert_id.eql?(cert.id)}
+          = render partial: 'certificate', locals: {certificate: certificate.decorate}
+        - else
+          = content_tag_for(:tr, cert) do
+            %td= link_to('Add', new_certificate_path(cert_id: cert, category: category), remote: true, class: 'btn btn-warning')
+            %td{colspan: 6}= cert.name

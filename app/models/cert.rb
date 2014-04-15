@@ -1,9 +1,12 @@
 class Cert < ActiveRecord::Base
-  validates_presence_of :name
-  validates_inclusion_of :category, in: ['medical', 'traning', 'documents']
+  CATEGORIES = ['documents', 'medical', 'traning']
 
-  scope :medical, -> { where(category: 'medical')}
-  scope :traning, -> { where(category: 'traning')}
-  scope :documents, -> { where(category: 'documents')}
+  validates_presence_of :name
+  validates_inclusion_of :category, in: Cert::CATEGORIES
+
+  scope :medical, -> { where(category: 'medical') }
+  scope :traning, -> { where(category: 'traning') }
+  scope :documents, -> { where(category: 'documents') }
+  scope :by_category, ->(category) { where(category: category) }
 
 end

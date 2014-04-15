@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140413112651) do
+ActiveRecord::Schema.define(version: 20140413120026) do
+
+  create_table "certificates", force: true do |t|
+    t.integer  "cert_id"
+    t.integer  "country_id"
+    t.boolean  "is_flag"
+    t.string   "issuer"
+    t.date     "from_date"
+    t.date     "to_date"
+    t.boolean  "is_unlimited"
+    t.string   "licence_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "certificates", ["cert_id"], name: "index_certificates_on_cert_id", using: :btree
+  add_index "certificates", ["country_id"], name: "index_certificates_on_country_id", using: :btree
 
   create_table "certs", force: true do |t|
     t.string   "name"

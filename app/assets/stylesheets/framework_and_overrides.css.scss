@@ -86,8 +86,8 @@ section {
 }
 
 .registration {
-  .radio_buttons {
-    .radio {
+  .radio_buttons, .boolean {
+    .radio, .checkbox {
       width: 60px;
       border: none;
       float: left;
@@ -115,7 +115,9 @@ section {
       @extend .col-md-3;
       @extend .text-right;
     }
-
+    .help-block {
+      @extend .col-md-3;
+    }
     .form-control {
       @extend .col-md-6;
     }

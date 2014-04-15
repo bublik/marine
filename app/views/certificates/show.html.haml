@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b Cert:
+  = @certificate.cert
+%p
+  %b Country:
+  = @certificate.country
+%p
+  %b Is flag:
+  = @certificate.is_flag
+%p
+  %b Issuer:
+  = @certificate.issuer
+%p
+  %b From date:
+  = @certificate.from_date
+%p
+  %b To date:
+  = @certificate.to_date
+%p
+  %b Is unlimited:
+  = @certificate.is_unlimited
+%p
+  %b Licence number:
+  = @certificate.licence_number
+
+= link_to 'Edit', edit_certificate_path(@certificate)
+\|
+= link_to 'Back', certificates_path

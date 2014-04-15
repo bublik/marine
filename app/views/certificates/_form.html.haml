@@ -1,0 +1,17 @@
+= simple_form_for(@certificate, remote: true, html: {format: :js, role: 'form', class: 'registration '}) do |f|
+  = f.error_notification
+  .row
+    .col-md-8
+      = f.association :cert, collection: @certs, prompt: '-Please select-'
+      = f.association :country, hint: f.check_box(:is_flag) + ' Flag document', prompt: '-Please select-'
+      = f.input :issuer
+      = f.input :from_date, as: :string, placeholder: 'dd/mm/yyyy', input_html:{class: 'datepicker'}
+      = f.input :to_date, as: :string, placeholder: 'dd/mm/yyyy', input_html:{class: 'datepicker'},
+        hint: f.check_box(:is_unlimited) + ' Unlimited'
+      = f.input :licence_number
+
+  .row
+    .col-md-4.col-md-offset-2
+      = f.button :submit, class: 'btn btn-primary'
+      = link_to('Close', "#", class: 'btn btn-default', onclick: "$('.new_entry').remove()")
+

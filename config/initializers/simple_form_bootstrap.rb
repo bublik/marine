@@ -9,7 +9,7 @@ SimpleForm.setup do |config|
 
 
     b.use :error, :wrap_with => {:tag => 'span', :class => 'help-inline'}
-    b.use :hint, :wrap_with => {:tag => 'p', :class => 'help-block pull-right'}
+    b.use :hint, :wrap_with => {:tag => 'p', :class => 'help-block'}
 
   end
 
