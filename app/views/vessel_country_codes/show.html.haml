@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Code:
+  = @vessel_country_code.code
+%p
+  %b Name:
+  = @vessel_country_code.name
+
+= link_to 'Edit', edit_vessel_country_code_path(@vessel_country_code)
+\|
+= link_to 'Back', vessel_country_codes_path

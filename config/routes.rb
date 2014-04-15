@@ -1,5 +1,7 @@
 Marine::Application.routes.draw do
 
+  resources :vessel_country_codes
+
   resources :certificates
 
   root :to => "home#index"
