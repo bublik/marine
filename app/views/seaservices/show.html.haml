@@ -1,0 +1,44 @@
+%p#notice= notice
+
+%p
+  %b Vessel name:
+  = @seaservice.vessel_name
+%p
+  %b Vessel country code:
+  = @seaservice.vessel_country_code
+%p
+  %b Vessel year:
+  = @seaservice.vessel_year
+%p
+  %b Vessel type:
+  = @seaservice.vessel_type
+%p
+  %b Vessel dwt:
+  = @seaservice.vessel_dwt
+%p
+  %b Vessel engine:
+  = @seaservice.vessel_engine
+%p
+  %b Vessel engine model:
+  = @seaservice.vessel_engine_model
+%p
+  %b Vessel engine power:
+  = @seaservice.vessel_engine_power
+%p
+  %b Rank:
+  = @seaservice.rank
+%p
+  %b On date:
+  = @seaservice.on_date
+%p
+  %b Off date:
+  = @seaservice.off_date
+%p
+  %b Owner name:
+  = @seaservice.owner_name
+%p
+  %b Agent name:
+  = @seaservice.agent_name
+
+= link_to 'Edit', edit_seaservice_path(@seaservice)
+

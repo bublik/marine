@@ -2,6 +2,8 @@
 %li= link_to('Personal', new_personal_path)
 %li= link_to('Contact', new_contact_path)
 %li= link_to('Certificates', certificates_path)
+%li= link_to('Sea Service', seaservices_path)
+
 
 - if user_signed_in?
   %li= link_to 'Logout', destroy_user_session_path, :method=>'delete'

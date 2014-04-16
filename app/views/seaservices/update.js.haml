@@ -1,0 +1,4 @@
+- if @seaservice.valid?
+  window.location = '#{seaservices_path}';
+- else
+  $('.new_entry').html('#{j render(partial: 'seaservices/form') }');

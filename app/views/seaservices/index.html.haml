@@ -1,0 +1,44 @@
+.seaservices
+  .h2
+    Record of sea service
+    = link_to 'New entry', new_seaservice_path, remote: true, class: 'btn btn-success'
+    = link_to 'I have no seagoing experience', '#next_step', class: 'btn btn-success'
+
+  - if @seaservice
+    = render 'form'
+  - else
+    %table.table
+      %tr
+        %th
+        %th Position
+        %th Vessel
+        %th Vessel type
+        %th Year Built
+        %th Flag
+        %th On date
+        %th Off date
+        %th Duration
+        %th Company/ Employer
+        -#%th Vessel dwt
+        -#%th Vessel engine
+        -#%th Vessel engine model
+        -#%th Vessel engine power
+
+        -#%th Owner name
+        -#%th Agent name
+
+      - @seaservices.decorate.each do |seaservice|
+        %tr
+          %td= link_to 'Edit', edit_seaservice_path(seaservice), remote: true, class: 'btn btn-default'
+          %td= seaservice.rank
+          %td= seaservice.vessel_name
+          %td= seaservice.vessel_type
+          %td= seaservice.vessel_year
+          %td= seaservice.vessel_country_code
+          %td= seaservice.on_date
+          %td= seaservice.off_date
+          %td= seaservice.duration
+          %td= seaservice.owner_name
+    .new_entry
+  -#= link_to 'Destroy', seaservice, :method => :delete, :data => { :confirm => 'Are you sure?' }
+

@@ -1,0 +1,4 @@
+- if @seaservice.new_record?
+  $('.new_entry').html('#{j render(partial: 'seaservices/form') }')
+- else
+  window.location = '#{seaservices_path}';

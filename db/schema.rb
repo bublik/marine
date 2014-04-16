@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140415202734) do
+ActiveRecord::Schema.define(version: 20140416174750) do
 
   create_table "certificates", force: true do |t|
     t.integer  "cert_id"
@@ -150,6 +150,29 @@ ActiveRecord::Schema.define(version: 20140415202734) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "seaservices", force: true do |t|
+    t.string   "vessel_name"
+    t.integer  "vessel_country_code_id"
+    t.string   "vessel_year"
+    t.integer  "vessel_type_id"
+    t.string   "vessel_dwt"
+    t.integer  "vessel_engine_id"
+    t.string   "vessel_engine_model"
+    t.integer  "vessel_engine_power"
+    t.integer  "rank_id"
+    t.date     "on_date"
+    t.date     "off_date"
+    t.string   "owner_name"
+    t.string   "agent_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "seaservices", ["rank_id"], name: "index_seaservices_on_rank_id", using: :btree
+  add_index "seaservices", ["vessel_country_code_id"], name: "index_seaservices_on_vessel_country_code_id", using: :btree
+  add_index "seaservices", ["vessel_engine_id"], name: "index_seaservices_on_vessel_engine_id", using: :btree
+  add_index "seaservices", ["vessel_type_id"], name: "index_seaservices_on_vessel_type_id", using: :btree
 
   create_table "shoes", force: true do |t|
     t.integer  "shoes_size"

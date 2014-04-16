@@ -1,0 +1,26 @@
+= simple_form_for(@seaservice, remote: true, html: {format: :js, role: 'form', class: 'registration '}) do |f|
+  = f.error_notification
+  .row
+    .col-md-8
+      = f.input :vessel_name
+      = f.association :vessel_country_code
+      = f.input :vessel_year
+      = f.association :vessel_type
+      = f.input :vessel_dwt
+      = f.association :vessel_engine
+      = f.input :vessel_engine_model
+      = f.input :vessel_engine_power, hint: 'kW'
+      = f.association :rank
+      = f.input :on_date, as: :string, placeholder: 'yyyy-mm-dd', input_html:{class: 'datepicker'}
+      = f.input :off_date, as: :string, placeholder: 'yyyy-mm-dd', input_html:{class: 'datepicker'}
+      = f.input :owner_name
+      = f.input :agent_name
+
+    .col-md-10.col-md-offset-2
+      = f.button :submit, class: 'btn btn-primary'
+
+  .text-right
+    = f.button :submit, 'Next', class: 'btn btn-primary btn-lg'
+
+
+
