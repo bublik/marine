@@ -1,5 +1,7 @@
 Marine::Application.routes.draw do
 
+  resources :languages
+
   resources :seaservices
 
   resources :vessel_engines

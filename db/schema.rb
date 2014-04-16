@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140416174750) do
+ActiveRecord::Schema.define(version: 20140416195832) do
 
   create_table "certificates", force: true do |t|
     t.integer  "cert_id"
@@ -79,6 +79,12 @@ ActiveRecord::Schema.define(version: 20140416174750) do
 
   create_table "heights", force: true do |t|
     t.integer  "height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "languages", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
