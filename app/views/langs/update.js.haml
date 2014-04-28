@@ -1,0 +1,4 @@
+- if @lang.valid?
+  window.location = '#{langs_path}';
+- else
+  $('.new_lang').html('#{j render(partial: 'langs/form') }');

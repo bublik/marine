@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Language:
+  = @lang.language
+%p
+  %b Level:
+  = @lang.level
+
+= link_to 'Edit', edit_lang_path(@lang)
+\|
+= link_to 'Back', langs_path

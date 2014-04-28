@@ -1,0 +1,23 @@
+.h2
+  Language
+  = link_to 'New entry', new_lang_path, remote: true, class: 'btn btn-success'
+  -#= link_to 'New entry', '#', onclick: "$('.langs').append($('.lang').last().clone()); return false", class: 'btn btn-success'
+
+- @lang ||= Lang.new
+
+%table.table.langs
+  %thead
+    %tr
+      %th{style: 'width: 33%'} Language
+      %th{style: 'width: 33%'} Level
+      %th{style: 'width: 33%'}
+  %tbody
+    - (@langs + [@lang]).each do |lang|
+      = render partial: 'form', locals: {lang: lang}
+
+.text-right
+  = link_to('back', :back, class: 'btn btn-default btn-lg')
+  = link_to('Next', '#next', class: 'btn btn-primary btn-lg')
+
+
+

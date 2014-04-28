@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140416195832) do
+ActiveRecord::Schema.define(version: 20140416200623) do
 
   create_table "certificates", force: true do |t|
     t.integer  "cert_id"
@@ -82,6 +82,15 @@ ActiveRecord::Schema.define(version: 20140416195832) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "langs", force: true do |t|
+    t.integer  "language_id"
+    t.string   "level"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "langs", ["language_id"], name: "index_langs_on_language_id", using: :btree
 
   create_table "languages", force: true do |t|
     t.string   "name"

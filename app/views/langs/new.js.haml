@@ -1,0 +1,6 @@
+$('#new_lang').remove();
+$('.langs tbody').append('#{j render(partial: 'langs/form', locals: {lang: @lang}) }');
+$('#new_lang').fadeTo(100, 0.1).fadeTo(200, 1.0);
+
+
+

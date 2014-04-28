@@ -1,0 +1,13 @@
+- logger.debug(lang.inspect)
+= content_tag_for(:tr, lang) do
+  %td{colspan: '3'}
+    = simple_form_for(lang, remote: true, html: {format: :js, role: 'form', class: 'registration '}) do |f|
+      .col-md-4= f.association :language, label: false
+      .col-md-4= f.input :level, as: :select, label: false, collection: Lang::LEVELS
+      .col-md-4
+        = f.button :submit, class: 'btn btn-primary'
+        %span.pull-right
+          - if lang.new_record?
+            = button_tag('&times;'.html_safe, onclick: "$(this).parent().parent().parent().remove();", 'aria-hidden' => true, class: 'close')
+          - else
+            = link_to '&times;'.html_safe, lang, :method => :delete, 'aria-hidden' => true, :data => {dismiss: 'alert',  confirm: 'Are you sure?' }, class: 'close'
