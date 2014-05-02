@@ -41,4 +41,6 @@
           %td= seaservice.owner_name
     .new_entry
   -#= link_to 'Destroy', seaservice, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
+.text-right
+  = link_to('back', certificates_path, class: 'btn btn-default btn-lg')
+  = link_to('next', langs_path, class: 'btn btn-primary btn-lg')

@@ -25,3 +25,6 @@
           = content_tag_for(:tr, cert) do
             %td= link_to('Add', new_certificate_path(cert_id: cert, category: category), remote: true, class: 'btn btn-warning')
             %td{colspan: 6}= cert.name
+.text-right
+  = link_to('back', new_contact_path, class: 'btn btn-default btn-lg')
+  = link_to('next', seaservices_path, class: 'btn btn-primary btn-lg')
