@@ -1,0 +1,4 @@
+.send_email
+  .h3 Email access was sent to #{@user.email}
+  %div Click below to receive an access to your personal account.
+  %div #{@user.name} #{button_tag('Send again', onclick: "$('#new_user').submit()", data: {disable_with: 'sending...'}, class: 'btn btn-warning btn-sm')}

@@ -40,8 +40,9 @@ class Personal < ActiveRecord::Base
   belongs_to :overallsize
   belongs_to :shoe
 
-  mount_uploader :avatar, PhotoUploader
+  mount_uploader :photo, PhotoUploader
 
+  validates_presence_of :user_id
   validates_inclusion_of :sex, in: %w( m f )
   validates :available_from, :rank_id, :salary_id, :surname, :name, :pp_dob, :pp_pob, :country_id, :citizenship_id,
             :marital_id, :eye_id, :hair_id, :height_id, :weight_id, :overallsize_id, :shoe_id, presence: true

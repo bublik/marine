@@ -1,5 +1,6 @@
 class LangsController < ApplicationController
   before_action :set_lang, only: [:show, :edit, :update, :destroy]
+  layout 'registration'
 
   # GET /langs
   # GET /langs.json
@@ -25,6 +26,7 @@ class LangsController < ApplicationController
   # POST /langs.json
   def create
     @lang = Lang.new(lang_params)
+    @lang.user = current_user
 
     respond_to do |format|
       if @lang.save

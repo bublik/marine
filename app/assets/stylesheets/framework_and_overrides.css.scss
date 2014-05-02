@@ -64,6 +64,12 @@ section {
   max-width: 400px;
   margin: 0 auto;
 }
+.enter {
+  @extend .well;
+  @extend .well-lg;
+  max-width: 600px;
+  margin: 0 auto;
+}
 
 .authform form {
   @extend .well;
@@ -106,6 +112,10 @@ section {
   margin-bottom: 10px;
 }
 
+.form-horizontal .form-group {
+  margin-left: 0;
+  margin-right: 0;
+}
 
 .registration {
   .radio_buttons, .boolean {

@@ -1,5 +1,6 @@
 class PersonalsController < ApplicationController
   before_action :set_personal, only: [:show, :edit, :update, :destroy]
+  layout 'registration'
 
   # GET /personals
   # GET /personals.json
@@ -14,7 +15,7 @@ class PersonalsController < ApplicationController
 
   # GET /personals/new
   def new
-    @personal = Personal.new
+    @personal = current_user.personal || Personal.new
   end
 
   # GET /personals/1/edit
@@ -25,7 +26,7 @@ class PersonalsController < ApplicationController
   # POST /personals.json
   def create
     @personal = Personal.new(personal_params)
-    #@personal.user = current_user
+    @personal.user = current_user
 
     respond_to do |format|
       if @personal.save

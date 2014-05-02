@@ -19,9 +19,6 @@ $white: #fff;
   overflow: hidden;
   background-color: #F9F9F9;
   border: 1px solid #D4D4D4;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
   -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
@@ -155,9 +152,7 @@ $white: #fff;
 .step-content {
   border: 1px solid #D4D4D4;
   border-top: 0;
-  border-radius: 0 0 4px 4px;
   padding: 10px;
-  margin-bottom: 10px;
 
   .step-pane {
     display: none;

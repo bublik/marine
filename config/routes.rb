@@ -1,25 +1,24 @@
 Marine::Application.routes.draw do
+  root :to => "users#enter"
+  devise_for :users, :controllers => {:registrations => "registrations"}
 
+  resources :users do
+    collection do
+      get :enter
+      post :get_access
+    end
+  end
+
+  resources :personals
+  resources :contacts
+  resources :certificates
+  resources :seaservices
   resources :langs
 
   resources :languages
-
-  resources :seaservices
-
   resources :vessel_engines
-
   resources :vessel_types
-
   resources :vessel_country_codes
-
-  resources :certificates
-
-  root :to => "home#index"
-  devise_for :users, :controllers => {:registrations => "registrations"}
-
-  resources :contacts
-  resources :personals
-
   resources :certs
   resources :shoes
   resources :overallsizes
@@ -33,6 +32,5 @@ Marine::Application.routes.draw do
   resources :citizenships
   resources :countries
   resources :ranks
-  resources :users
 
 end

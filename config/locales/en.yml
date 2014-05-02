@@ -75,4 +75,6 @@ en:
       default: "%Y-%m-%d"
       short: "%b %d"
       long: "%B %d, %Y"
-#dd.mm.yyyy
+  notifications:
+    access_link:
+      subject: Access details to 'Crew BV' selfservice

@@ -1,0 +1,11 @@
+- @user = @user.decorate
+- if @present
+  $('#new_user').hide()
+  $('.send_email').remove()
+  $('.enter').append('#{j render 'users/send_email'}')
+- else
+  - if @user.new_record?
+    $('.container').html('#{j render file: 'users/enter'}')
+  - else
+    $('.enter').html('#{j render partial: 'users/new_application'}')
+$('.container').prepend('#{ j render partial: 'layouts/messages'}')

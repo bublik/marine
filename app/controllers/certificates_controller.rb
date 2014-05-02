@@ -1,6 +1,7 @@
 class CertificatesController < ApplicationController
   before_action :set_certificate, only: [:show, :edit, :update, :destroy]
   respond_to :html, :js, :json
+  layout 'registration'
 
   # GET /certificates
   # GET /certificates.json
@@ -38,6 +39,8 @@ class CertificatesController < ApplicationController
   def create
     @certificate = Certificate.new(certificate_params)
     @certificate.cert ||= Cert.new
+    @certificate.user = current_user
+
     @certs = Cert.all
     respond_to do |format|
       if @certificate.save

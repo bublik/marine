@@ -6,13 +6,13 @@
     %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Marine'}"}
     = stylesheet_link_tag 'application', media: 'all'
     = csrf_meta_tags
-  %body.registration
+    = javascript_include_tag 'application'
+  %body.light
     -#%header
       = render 'layouts/navigation'
     %main{:role => "main"}
       = render 'layouts/messages'
-      .container.container_wizard
-        = render 'layouts/wizard'
+      .container.container-fluid
+        = yield
     %footer
-      = javascript_include_tag 'application'
-      = yield :javascript
+

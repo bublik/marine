@@ -1,0 +1,15 @@
+.light {
+  background: image-url('light-bg.jpg')
+}
+
+.registration {
+  background-color: #515151;
+  .container {
+    background: white image-url('bg-gray.png');
+    padding-left: 0;
+    padding-right: 0;
+    form {
+      background: transparent;
+    }
+  }
+}

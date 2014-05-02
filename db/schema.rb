@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140416200623) do
+ActiveRecord::Schema.define(version: 20140502074712) do
 
   create_table "certificates", force: true do |t|
     t.integer  "cert_id"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20140416200623) do
     t.string   "licence_number"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id",        null: false
   end
 
   add_index "certificates", ["cert_id"], name: "index_certificates_on_cert_id", using: :btree
@@ -55,6 +56,7 @@ ActiveRecord::Schema.define(version: 20140416200623) do
     t.string   "skype"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id",     null: false
   end
 
   add_index "contacts", ["country_id"], name: "index_contacts_on_country_id", using: :btree
@@ -88,6 +90,7 @@ ActiveRecord::Schema.define(version: 20140416200623) do
     t.string   "level"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id",     null: false
   end
 
   add_index "langs", ["language_id"], name: "index_langs_on_language_id", using: :btree
@@ -134,6 +137,7 @@ ActiveRecord::Schema.define(version: 20140416200623) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "photo"
+    t.integer  "user_id",          null: false
   end
 
   add_index "personals", ["citizenship_id"], name: "index_personals_on_citizenship_id", using: :btree
@@ -182,6 +186,7 @@ ActiveRecord::Schema.define(version: 20140416200623) do
     t.string   "agent_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id",                null: false
   end
 
   add_index "seaservices", ["rank_id"], name: "index_seaservices_on_rank_id", using: :btree
@@ -213,6 +218,7 @@ ActiveRecord::Schema.define(version: 20140416200623) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.string   "authentication_token",   default: ""
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

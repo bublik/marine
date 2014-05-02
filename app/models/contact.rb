@@ -1,7 +1,8 @@
 class Contact < ActiveRecord::Base
   belongs_to :country
+  belongs_to :user
 
-  validates :country_id, :city, :street, :mphone, presence: true
+  validates :country_id, :user_id, :city, :street, :mphone, presence: true
   validates :email, presence: true, if: :the_first_contact?
 
   #когда нет записей или эта запись первая

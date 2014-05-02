@@ -1,6 +1,7 @@
 class SeaservicesController < ApplicationController
   before_action :set_seaservice, only: [:show, :edit, :update, :destroy]
   respond_to :html, :js, :json
+  layout 'registration'
 
   # GET /seaservices
   # GET /seaservices.json
@@ -29,6 +30,7 @@ class SeaservicesController < ApplicationController
   # POST /seaservices.json
   def create
     @seaservice = Seaservice.new(seaservice_params)
+    @seaservice.user = current_user
 
     respond_to do |format|
       if @seaservice.save

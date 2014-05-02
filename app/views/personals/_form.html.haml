@@ -1,5 +1,6 @@
 = simple_form_for(@personal, remote: true, html: {format: :js, multipart: true, role: 'form',
 class: 'registration '}) do |f|
+  = token_tag
   = f.error_notification
   .row
     .col-md-8
@@ -30,4 +31,4 @@ class: 'registration '}) do |f|
       //= f.hidden_field :photo_cache
 
   .text-right
-    = f.button :submit, 'Next', class: 'btn btn-primary btn-lg'
+    = f.button :submit, 'Next', class: 'btn btn-primary btn-lg btn-next'

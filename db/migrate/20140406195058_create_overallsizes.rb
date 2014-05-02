@@ -5,5 +5,10 @@ class CreateOverallsizes < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    # simple seed
+    [1, 2, 3].each do |num|
+      Overallsize.create(overall_size: num)
+    end
   end
 end

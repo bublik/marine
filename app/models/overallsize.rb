@@ -10,6 +10,8 @@
 
 class Overallsize < ActiveRecord::Base
   has_many :personals
+
   validates_presence_of :overall_size
+  validates_numericality_of :overall_size
 
 end

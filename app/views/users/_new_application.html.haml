@@ -1,0 +1,8 @@
+%h3 You have submitted: #{params[:user]['email']}
+
+.row
+  .col-md-12
+    Unfortunately there are no records with such e-mail address. Please click 'New Application' button to submit your application.
+  .col-md-12
+    = link_to('Try again', enter_users_path, class: 'btn btn-primary')
+    = link_to('New Application', new_personal_path, class: 'btn btn-success')
