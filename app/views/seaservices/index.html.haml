@@ -2,7 +2,7 @@
   .h2
     Record of sea service
     = link_to 'New entry', new_seaservice_path, remote: true, class: 'btn btn-success'
-    = link_to 'I have no seagoing experience', '#next_step', class: 'btn btn-success'
+    = link_to 'I have no seagoing experience', langs_path, class: 'btn btn-success'
 
   - if @seaservice
     = render 'form'

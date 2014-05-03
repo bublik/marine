@@ -5,7 +5,7 @@ class LangsController < ApplicationController
   # GET /langs
   # GET /langs.json
   def index
-    @langs = Lang.all
+    @langs = current_user.langs
   end
 
   # GET /langs/1
@@ -28,6 +28,7 @@ class LangsController < ApplicationController
     @lang = Lang.new(lang_params)
     @lang.user = current_user
 
+
     respond_to do |format|
       if @lang.save
         format.html { redirect_to @lang, notice: 'Lang was successfully created.' }
@@ -36,7 +37,9 @@ class LangsController < ApplicationController
         format.html { render action: 'new' }
         format.json { render json: @lang.errors, status: :unprocessable_entity }
       end
-      format.js
+      format.js {
+        flash.now[:notice] = 'Language was successfully added.'
+      }
     end
   end
 

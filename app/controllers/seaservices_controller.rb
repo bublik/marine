@@ -6,7 +6,7 @@ class SeaservicesController < ApplicationController
   # GET /seaservices
   # GET /seaservices.json
   def index
-    @seaservices = Seaservice.all
+    @seaservices = current_user.seaservices
     if @seaservices.blank?
       @seaservice =  Seaservice.new
     end

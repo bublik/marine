@@ -6,7 +6,7 @@ class CertificatesController < ApplicationController
   # GET /certificates
   # GET /certificates.json
   def index
-    @certificates = Certificate.all
+    @certificates = current_user.certificates
   end
 
   # GET /certificates/1
