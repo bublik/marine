@@ -11,8 +11,8 @@
       = f.input :vessel_engine_model
       = f.input :vessel_engine_power, hint: 'kW'
       = f.association :rank
-      = f.input :on_date, as: :string, autocomplete: 'off', placeholder: 'yyyy-mm-dd', input_html:{class: 'datepicker'}
-      = f.input :off_date, as: :string, autocomplete: 'off', placeholder: 'yyyy-mm-dd', input_html:{class: 'datepicker'}
+      = f.input :on_date, as: :string, placeholder: 'yyyy-mm-dd', input_html:{ autocomplete: 'off', class: 'datepicker'}
+      = f.input :off_date, as: :string, placeholder: 'yyyy-mm-dd', input_html:{ autocomplete: 'off', class: 'datepicker'}
       = f.input :owner_name
       = f.input :agent_name
 

@@ -1,0 +1,4 @@
+- if @contact.valid?
+  window.location = '#{new_contact_path}'
+- else
+  $('.contact').html('#{j render(partial: 'contacts/form') }')

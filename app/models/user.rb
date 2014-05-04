@@ -30,14 +30,27 @@ class User < ActiveRecord::Base
 
   has_one :personal
   has_many :contacts
+  has_one :contact, -> { order 'created_at' }, class_name: 'Contact'
+  has_one :next_of_kin_contact, -> { order('created_at').offset(1) }, class_name: 'Contact'
+
   has_many :certificates
   has_many :seaservices
   has_many :langs
 
   before_create :generate_token
 
+  validates :accept_subscription, :acceptance => {:accept => true}
+
   def generate_token
     self.authentication_token = Devise.friendly_token.first(12)
+  end
+
+  def medical_certificates
+    certificates.joins(:cert).where(certs: {category: 'medical'}).order(:from_date)
+  end
+
+  def documents
+    certificates.joins(:cert).where(certs: {category: 'documents'}).order(:from_date)
   end
 
   def self.create_by_email(email = '')

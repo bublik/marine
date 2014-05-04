@@ -17,4 +17,9 @@ class SeaserviceDecorator < Draper::Decorator
   def vessel_country_code
     object.vessel_country_code ? object.vessel_country_code.name : '-'
   end
+
+  def citizenship
+    object.citizenship.name
+  end
+
 end

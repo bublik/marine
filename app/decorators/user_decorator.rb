@@ -4,4 +4,9 @@ class UserDecorator < Draper::Decorator
   def name
     object.name || object.email
   end
+
+  def full_name
+    "#{object.personal.surname} #{object.personal.name}"
+  end
+
 end

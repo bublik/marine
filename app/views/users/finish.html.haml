@@ -1,0 +1,13 @@
+.well
+  %h2= @user.full_name
+
+  %h3 Hurray! Welcome to Crew BV.
+
+  %p Thank you for submitting the application form! It has been successfully received and will be reviewed by one of our crew managers shortly.
+
+  %p Please make sure that you have submitted all required information accurately. The more precise information is being provided, the bigger chance for you to get employed.
+
+  %div
+    You may still review or update your personal information.
+    = link_to('Correct', new_personal_path, class: 'btn btn-success')
+    = link_to('Show My CV', cv_user_path(@user), class: 'btn btn-info')

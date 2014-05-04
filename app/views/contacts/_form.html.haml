@@ -3,6 +3,8 @@
   .row
     .col-md-8
       = f.association :country
+      - if current_user.contacts && current_user.contact.id != @contact.id
+        = f.input :next_of_kin, required: true
       = f.input :region
       = f.input :city
       = f.input :street
@@ -10,7 +12,7 @@
       = f.input :airport
       = f.input :phone, as: :tel
       = f.input :mphone, as: :tel, placeholder: '+38093...'
-      = f.input :email
+      = f.input :email, required: current_user.contacts.blank? || current_user.contact.eql?(@contact)
       = f.input :skype
 
     .col-md-10.col-md-offset-2

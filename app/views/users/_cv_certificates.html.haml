@@ -1,0 +1,27 @@
+%h4.text-center CERTIFICATES
+%table.table.table-bordered.table-condensed
+  %thead
+    %tr
+      %th Description
+      %th Number
+
+      %th Issued
+      %th Expired
+
+      %th Issuer, country
+
+  %tbody
+    - certificates.each do |certificate|
+      %tr
+        %td= certificate.cert
+        %td= certificate.licence_number
+
+        %td= certificate.from_date
+        %td= certificate.to_date
+
+        %td
+          = certificate.issuer
+          = certificate.country
+
+
+

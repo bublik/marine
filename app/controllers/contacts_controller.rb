@@ -56,6 +56,7 @@ class ContactsController < ApplicationController
         format.html { render action: 'edit' }
         format.json { render json: @contact.errors, status: :unprocessable_entity }
       end
+      format.js
     end
   end
 
@@ -81,7 +82,7 @@ class ContactsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def contact_params
-    params.require(:contact).permit(:country_id, :region, :city, :street, :postal_code, :airport, :phone, :mphone,
+    params.require(:contact).permit(:country_id, :next_of_kin, :region, :city, :street, :postal_code, :airport, :phone, :mphone,
                                     :email, :skype)
   end
 end

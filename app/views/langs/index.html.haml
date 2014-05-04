@@ -15,9 +15,14 @@
     - (@langs + [@lang]).each do |lang|
       = render partial: 'form', locals: {lang: lang}
 
-.text-right
-  = link_to('back', :back, class: 'btn btn-default btn-lg')
-  = link_to('Submit', '#', class: 'btn btn-primary btn-lg')
+= simple_form_for(current_user, url: complete_users_path) do |f|
+  = f.input :accept_subscription, as: :boolean, label: false, hint: 'Send me news to email address.'
+  %p
+    I declare that the information given on this form is to the best of my knowledge and belief, true and complete and that I have not knowingly withheld information.
+
+  .text-right
+    = link_to('back', :back, class: 'btn btn-default btn-lg')
+    = f.submit 'Send', class: 'btn btn-primary btn-lg'
 
 
 

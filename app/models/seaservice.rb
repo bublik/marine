@@ -9,4 +9,6 @@ class Seaservice < ActiveRecord::Base
   validates :user_id, :vessel_country_code, :vessel_type, :vessel_engine, :rank,
             :vessel_name, :on_date, :off_date, :vessel_dwt, :vessel_year, presence: true
 
+  scope :last_years, ->(number) { where('seaservices.on_date > ?', Time.now - number.years) }
+
 end

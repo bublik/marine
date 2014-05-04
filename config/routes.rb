@@ -1,11 +1,18 @@
 Marine::Application.routes.draw do
   root :to => "users#enter"
+  #root :to => "home#index"
   devise_for :users, :controllers => {:registrations => "registrations"}
 
   resources :users do
+    member do
+      get :cv
+    end
+
     collection do
       get :enter
       post :get_access
+      patch :complete
+      get :finish
     end
   end
 

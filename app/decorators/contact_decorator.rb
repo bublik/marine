@@ -14,6 +14,10 @@ class ContactDecorator < Draper::Decorator
     [object.postal_code, object.street, object.city, object.region, object.country.name].join(', ')
   end
 
+  def cv_address
+    [object.street, object.city, object.country.name].join(', ')
+  end
+
   def mphone
     h.number_to_phone(object.mphone)
   end

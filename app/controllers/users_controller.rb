@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   skip_filter :authenticate_user!, :if => proc { |c| [:enter, :get_access].include?(c.action_name.to_sym) }
+  layout 'light', only: [:enter, :complete, :finish]
 
   def index
     @users = User.all
@@ -11,12 +12,36 @@ class UsersController < ApplicationController
 
   def enter
     if current_user
-      redirect_to(new_personals_path)
+      redirect_to(new_personal_path)
       return
     end
 
     @user = User.new
-    render layout: 'light'
+  end
+
+  def complete
+    @user = current_user
+    if @user.update(user_params)
+      Notifications.thank_email(@user).deliver
+      redirect_to finish_users_path
+    else
+      redirect_to :back, notice: @user.errors.full_messages.join(', ')
+    end
+  end
+
+  def finish
+    @user = current_user.decorate
+  end
+
+  def cv
+    @user = User.find(params[:id])
+    @personal = @user.personal.decorate
+    @documents = @user.documents.decorate
+    @seaservices = @user.seaservices.last_years(5).decorate
+    @certificates = @user.certificates.decorate
+    @last_medical_certificate = @user.medical_certificates.last
+
+    render layout: 'cv'
   end
 
   def get_access
@@ -35,6 +60,6 @@ class UsersController < ApplicationController
   private
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:email)
+    params.require(:user).permit(:email, :accept_subscription)
   end
 end
