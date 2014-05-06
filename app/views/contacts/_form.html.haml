@@ -3,7 +3,7 @@
   .row
     .col-md-8
       = f.association :country
-      - if current_user.contacts && current_user.contact.id != @contact.id
+      - if current_user.contact && current_user.contact.id != @contact.id
         = f.input :next_of_kin, required: true
       = f.input :region
       = f.input :city

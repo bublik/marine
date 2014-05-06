@@ -1,6 +1,6 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
-  before_action :set_contacts, only: [:new, :create]
+  before_action :set_contacts, only: [:new]
 
   layout 'registration'
 
@@ -33,15 +33,17 @@ class ContactsController < ApplicationController
   def create
     @contact = Contact.new(contact_params)
     @contact.user = current_user
+
     respond_to do |format|
-      if @contact.save
-        format.html { redirect_to @contact, notice: 'Contact was successfully created.' }
+      if @contact.save && set_contacts
+        format.html {
+          redirect_to @contact, notice: 'Contact was successfully created.' }
         format.json { render action: 'show', status: :created, location: @contact }
       else
         format.html { render action: 'new' }
         format.json { render json: @contact.errors, status: :unprocessable_entity }
       end
-      format.js
+      format.js {}
     end
   end
 
@@ -72,7 +74,7 @@ class ContactsController < ApplicationController
 
   private
   def set_contacts
-    @contacts = current_user.contacts
+    @contacts = current_user.contacts.all
   end
 
   # Use callbacks to share common setup or constraints between actions.

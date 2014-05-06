@@ -20,6 +20,9 @@
       %span.badge> 5
       = link_to('Language', langs_path)
       %span.chevron
+  .actions
+    - if user_signed_in?
+      = link_to 'Logout', destroy_user_session_path, method: 'delete', class: 'btn btn-warning'
   -#.actions
     %button.btn.btn-mini.btn-prev{:type => "button"}
       %i.icon-arrow-left>

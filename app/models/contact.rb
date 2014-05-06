@@ -12,9 +12,6 @@ class Contact < ActiveRecord::Base
   end
 
   def next_of_kin_contact?
-    logger.debug user.contact.id
-    logger.debug self.id
-
     (user.contacts.count >= 1) && !user.contact.id.eql?(self.id)
   end
 

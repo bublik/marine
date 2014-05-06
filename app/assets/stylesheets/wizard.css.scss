@@ -22,6 +22,9 @@ $white: #fff;
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
   -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+  a{
+    text-decoration: none;
+  }
 
   ul {
     list-style: none outside none;
@@ -61,7 +64,7 @@ $white: #fff;
 
       .chevron {
         border: 24px solid transparent;
-        border-left: 14px solid #eee;
+        border-left: 14px solid #c2c2c2;
         border-right: 0;
         display: block;
         position: absolute;
@@ -82,12 +85,13 @@ $white: #fff;
       }
 
       &.complete {
-        background: #f3f4f5;
+        background: #FAFAFA;
         color: $successText;
 
         &:hover {
           background: #e7eff8;
           cursor: pointer;
+
 
           .chevron:before {
             border-left: 14px solid #e7eff8;
@@ -95,7 +99,7 @@ $white: #fff;
         }
 
         .chevron:before {
-          border-left: 14px solid #f3f4f5;
+          border-left: 14px solid #FAFAFA;
         }
       }
       &.active {
@@ -126,27 +130,33 @@ $white: #fff;
     padding-left: 15px;
     padding-right: 15px;
     vertical-align: middle;
-    background-color: #e5e5e5;
-    border-left: 1px solid #D4D4D4;
+//    background-color: #e5e5e5;
+//    border-left: 1px solid #D4D4D4;
 
-    a {
-      line-height: 45px;
-      font-size: 12px;
-      margin-right: 8px;
-    }
+//    a {
+//      line-height: 45px;
+//      font-size: 12px;
+//      margin-right: 8px;
+//    }
 
-    .btn-prev {
-      i {
-        margin-right: 5px;
-      }
-    }
-
-    .btn-next {
-      i {
-        margin-left: 5px;
-      }
-    }
+//    .btn-prev {
+//      i {
+//        margin-right: 5px;
+//      }
+//    }
+//
+//    .btn-next {
+//      i {
+//        margin-left: 5px;
+//      }
+//    }
   }
+}
+.badge-success {
+  background-color: #5CB85C;
+}
+.badge-info {
+  background-color: #3276B1;
 }
 
 .step-content {
