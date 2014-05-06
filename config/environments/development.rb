@@ -35,6 +35,7 @@ Marine::Application.configure do
     #}
   # ActionMailer Config
   # Send email in development mode?
+  config.action_mailer.preview_path = "#{Rails.root}/app/mailer_previews"
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.delivery_method = :letter_opener
