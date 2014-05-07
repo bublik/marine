@@ -18,6 +18,8 @@ gem 'draper', '~> 1.3'
 gem 'uuid'
 
 gem 'mini_magick'
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
 gem 'carrierwave'
 
 group :development do

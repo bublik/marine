@@ -6,7 +6,7 @@ class NotificationsPreview < ActionMailer::Preview
   end
 
   def thank_email
-    user = Personal.first.user
+    user = User.find(12)
     Notifications.thank_email(user)
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140504193340) do
+ActiveRecord::Schema.define(version: 20140507203731) do
 
   create_table "certificates", force: true do |t|
     t.integer  "cert_id"
@@ -221,6 +221,8 @@ ActiveRecord::Schema.define(version: 20140504193340) do
     t.string   "unconfirmed_email"
     t.string   "authentication_token",   default: ""
     t.boolean  "accept_subscription",    default: true
+    t.string   "uuid",                                  null: false
+    t.datetime "cv_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

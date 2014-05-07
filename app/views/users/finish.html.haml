@@ -10,4 +10,7 @@
   %div
     You may still review or update your personal information.
     = link_to('Correct', new_personal_path, class: 'btn btn-success')
-    = link_to('Show My CV', cv_user_path(@user), class: 'btn btn-info')
+  %div
+    Or open and download
+    = link_to('HTML version', cv_user_path(@user.uuid, format: 'html'), class: 'btn btn-info')
+    = link_to('PDF version', cv_user_path(@user.uuid, format: 'pdf'), class: 'btn btn-info')

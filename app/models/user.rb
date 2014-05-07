@@ -37,9 +37,18 @@ class User < ActiveRecord::Base
   has_many :seaservices
   has_many :langs
 
-  before_create :generate_token
-
   validates :accept_subscription, :acceptance => {:accept => true}
+
+  before_create :generate_token
+  before_save :create_uuid
+
+  def create_uuid
+    self.uuid = UUID.new.generate if self.uuid.blank?
+  end
+
+  def cv_updated!
+    self.update_attribute(:cv_updated_at, Time.now)
+  end
 
   def generate_token
     self.authentication_token = Devise.friendly_token.first(12)

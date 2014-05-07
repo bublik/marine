@@ -8,7 +8,7 @@ Bundler.require(:default, Rails.env)
 
 module Marine
   class Application < Rails::Application
-
+    config.middleware.use WickedPdf::Middleware
 
     config.generators do |g|
       g.test_framework :rspec, views: false, fixture: true

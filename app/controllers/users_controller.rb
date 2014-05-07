@@ -30,18 +30,36 @@ class UsersController < ApplicationController
   end
 
   def finish
+    current_user.cv_updated!
     @user = current_user.decorate
   end
 
   def cv
-    @user = User.find(params[:id])
+    @user = User.find_by_uuid(params[:id])
+    if Rails.env.development? && @user.nil?
+      @user = User.find_by_id(params[:id]).decorate
+    end
     @personal = @user.personal.decorate
     @documents = @user.documents.decorate
     @seaservices = @user.seaservices.last_years(5).decorate
     @certificates = @user.certificates.decorate
     @last_medical_certificate = @user.medical_certificates.last
+    #https://github.com/mileszs/wicked_pdf
+    respond_to do |format|
+      format.html { render layout: 'cv' }
+      format.pdf {
+        render({
+                 pdf: "#{@personal.surname}_#{@personal.name}_#{@personal.rank}_#{@user.uuid}.pdf",
+                 layout: 'layouts/cv.pdf.haml',
+                 save_to_file: Rails.root.join('public', "#{@user.uuid}.pdf"),
+                 margin: {top: 10,
+                          bottom: 0,
+                          left: 10,
+                          right: 0}
+               })
+      }
+    end
 
-    render layout: 'cv'
   end
 
   def get_access

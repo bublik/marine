@@ -5,7 +5,7 @@ Marine::Application.routes.draw do
 
   resources :users do
     member do
-      get :cv
+      get :cv, defaults: { format: 'pdf' }
     end
 
     collection do

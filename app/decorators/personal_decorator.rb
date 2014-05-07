@@ -37,6 +37,10 @@ class PersonalDecorator < Draper::Decorator
     object.overallsize.overall_size
   end
 
+  def photo_path
+    object.photo.path || 'fallback/default.png'
+  end
+
   def photo
     h.image_tag(object.photo, width: '180px')
   end

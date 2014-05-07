@@ -1,11 +1,10 @@
 .text-right= @user.cv_updated_at.strftime("%m/%d/%Y")
-.h2.text-center
+.h3.text-center
   APPLICATION FORM
 .row
-  .col-md-4
-  .col-md-4
-  .col-md-4
-    = @personal.photo
+  .col-xs-4
+  .col-xs-4
+  .col-xs-4= wicked_pdf_image_tag(@personal.photo_path)
 .h4.text-center
   Required salary: #{@personal.required_salary}
 %table.table.table-bordered.table-condensed
@@ -64,8 +63,8 @@
     %td.head Shoes:
     %td= @personal.shoe
 
-= render 'cv_personal_documents', {documents: @documents}
-= render 'cv_certificates', {certificates: @certificates}
-= render 'cv_sea_services', {seaservices: @seaservices}
+= render partial: 'cv_personal_documents.html', locals: {documents: @documents}
+= render partial: 'cv_certificates.html', locals: {certificates: @certificates}
+= render partial: 'cv_sea_services.html', locals: {seaservices: @seaservices}
 
 

@@ -57,7 +57,3 @@ Preferences:
 ________________________
 
 License
-
-
-
-rails g scaffold Personal available_from:datetime rank:references surname:string name:string middle_name:string pp_dob:date pp_pob:string country:references citizenship:references marital:references sex:string eye:references hair:references height:references weight:references overallsize:references shoe:references taxation_id_code:string note:text
