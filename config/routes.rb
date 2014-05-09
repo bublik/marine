@@ -1,11 +1,22 @@
+require 'subdomain'
 Marine::Application.routes.draw do
+
+  constraints(Subdomain) do
+    match '/' => 'admin/dashboard#index', via: :get
+    #/admin/login
+    # User: admin@example.com
+    # Password: password
+    devise_for :admin_users, ActiveAdmin::Devise.config.merge(path: "/")
+    ActiveAdmin.routes(self)
+  end
+
   root :to => "users#enter"
   #root :to => "home#index"
   devise_for :users, :controllers => {:registrations => "registrations"}
 
   resources :users do
     member do
-      get :cv, defaults: { format: 'pdf' }
+      get :cv, defaults: {format: 'pdf'}
     end
 
     collection do

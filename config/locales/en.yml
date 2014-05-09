@@ -8,8 +8,10 @@ en:
         other: "Personal datas"
       contact:
         one: Contact
+        other: Contacts
       seaservice:
          one: Sea service
+         other: Sea services
     attributes:
       personal:
         rank: Rank applied for

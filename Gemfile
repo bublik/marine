@@ -21,6 +21,10 @@ gem 'mini_magick'
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
 gem 'carrierwave'
+gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'polyamorous', github: 'activerecord-hackery/polyamorous'
+gem 'ransack', github: 'activerecord-hackery/ransack', branch: "rails-4.1"
+gem 'formtastic', github: 'justinfrench/formtastic'
 
 group :development do
   gem 'letter_opener'
