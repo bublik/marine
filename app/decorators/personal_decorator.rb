@@ -44,4 +44,8 @@ class PersonalDecorator < Draper::Decorator
   def photo
     h.image_tag(object.photo, width: '180px')
   end
+
+  def pdf_file_name
+    "#{object.surname}_#{object.name}_#{object.rank}_#{object.user.uuid}.pdf"
+  end
 end

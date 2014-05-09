@@ -50,7 +50,7 @@ class UsersController < ApplicationController
       format.html { render layout: 'cv' }
       format.pdf {
         render({
-                 pdf: "#{@personal.surname}_#{@personal.name}_#{@personal.rank}_#{@user.uuid}.pdf",
+                 pdf: "#{@personal.pdf_file_name}.pdf",
                  layout: 'layouts/cv.pdf.haml',
                  disable_javascript: true,
                  #save_to_file: Rails.root.join('public', "#{@user.uuid}.pdf"),

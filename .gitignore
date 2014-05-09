@@ -44,6 +44,7 @@ db/*.sqlite3
 /public/stylesheets/compiled
 /app/assets/stylesheets/scaffold.*
 /public/system/*
+/public/*pdf
 /spec/tmp/*
 /cache
 /capybara*
