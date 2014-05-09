@@ -1,8 +1,8 @@
-.text-right= @user.cv_updated_at.strftime("%m/%d/%Y")
+.text-right Updated at: #{@user.cv_updated_at.strftime("%m/%d/%Y")}
 .h2.text-center
   APPLICATION FORM
 .row
-  .col-md-4
+  .col-md-4.contact= render 'cv_contact', {contact: @contact}
   .col-md-4
   .col-md-4
     = @personal.photo
@@ -67,5 +67,3 @@
 = render 'cv_personal_documents', {documents: @documents}
 = render 'cv_certificates', {certificates: @certificates}
 = render 'cv_sea_services', {seaservices: @seaservices}
-
-

@@ -1,33 +1,14 @@
-%p#notice= notice
-
-%p
-  %b Country:
-  = @contact.country
-%p
-  %b Region:
-  = @contact.region
-%p
-  %b Street:
-  = @contact.street
-%p
-  %b Postal code:
-  = @contact.postal_code
-%p
-  %b Airport:
-  = @contact.airport
-%p
-  %b Phone:
-  = @contact.phone
-%p
-  %b Mphone:
-  = @contact.mphone
-%p
-  %b Email:
-  = @contact.email
-%p
-  %b Skype:
-  = @contact.skype
-
-= link_to 'Edit', edit_contact_path(@contact)
-\|
-= link_to 'Back', contacts_path
+.row
+  .col-xs-12 #{@contact.street}, #{@contact.region}
+.row
+  .col-xs-12 #{@contact.postal_code}, #{@contact.country.name}
+.row
+  .col-xs-12 Airport: #{@contact.airport}
+.row
+  .col-xs-12 Tel: #{@contact.phone}
+.row
+  .col-xs-12 Mob: #{@contact.mphone}
+.row
+  .col-xs-12 E-mail: #{@contact.email}
+.row
+  .col-xs-12 Skype: #{@contact.skype}

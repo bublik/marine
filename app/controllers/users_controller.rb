@@ -39,6 +39,7 @@ class UsersController < ApplicationController
     if Rails.env.development? && @user.nil?
       @user = User.find_by_id(params[:id]).decorate
     end
+    @contact = @user.contact.decorate
     @personal = @user.personal.decorate
     @documents = @user.documents.decorate
     @seaservices = @user.seaservices.last_years(5).decorate
@@ -51,7 +52,8 @@ class UsersController < ApplicationController
         render({
                  pdf: "#{@personal.surname}_#{@personal.name}_#{@personal.rank}_#{@user.uuid}.pdf",
                  layout: 'layouts/cv.pdf.haml',
-                 save_to_file: Rails.root.join('public', "#{@user.uuid}.pdf"),
+                 disable_javascript: true,
+                 #save_to_file: Rails.root.join('public', "#{@user.uuid}.pdf"),
                  margin: {top: 10,
                           bottom: 0,
                           left: 10,

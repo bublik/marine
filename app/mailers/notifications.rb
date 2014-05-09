@@ -9,6 +9,7 @@ class Notifications < ActionMailer::Base
 
   def thank_email(user)
     @user = user.decorate
+    @contact = @user.contact
     @personal = @user.personal.decorate
     @documents = @user.documents.decorate
     @seaservices = @user.seaservices.last_years(5).decorate
