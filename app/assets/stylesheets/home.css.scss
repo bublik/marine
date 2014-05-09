@@ -1,0 +1,93 @@
+body {
+  background: image-url('bg.gif');
+  font-family: Ubuntu, sans-serif;
+  .content {
+    background: #fff;
+  }
+}
+
+header {
+  .navbar-fixed-top {
+    background: #fff;
+  }
+  .img-bg {
+    background: image-url('bg-home.jpg');
+    height: 610px;
+    .abs {
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0px;
+      height: 100%;
+
+      h1 {
+        margin-top: 224px;
+        text-align: center;
+      }
+
+      nav {
+        background: none;
+        font-size: 1em;
+        border: none;
+        margin-top: 100px;
+
+        a, a:hover {
+          color: white;
+          font-size: 1.5em;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 768px){
+    .navbar-nav{
+      margin: 0 auto;
+      display: table;
+      table-layout: fixed;
+      float:none;
+    }
+  }
+}
+#map_canvas {
+  display: block;
+  width: 770px;
+  margin: 0 auto;
+  height: 403px;
+  margin-top: 0px;
+  margin-bottom: 38px;
+}
+
+footer {
+  .container {
+    color: #fff;
+    a {
+      color: #fff;
+    }
+    margin-top: 70px;
+    color: #FFF;
+    font-size: 11px;
+    line-height: 12px;
+    .logo {
+      margin-top: 40px;
+      margin-bottom: 30px;
+    }
+  }
+}
+#toTop {
+  text-decoration: none;
+  position: fixed;
+  cursor: pointer;
+  overflow: hidden;
+  width: 33px;
+  height: 33px;
+  border: none;
+  text-indent: -999px;
+  z-index: 20;
+  background: image-url('ui.totop.png') 0 0 no-repeat;
+  margin-right: -670px !important;
+  right: 50%;
+  bottom: 20px;
+}
+#toTop:hover {
+  background: image-url('ui.totop.png') 0 bottom no-repeat;
+}

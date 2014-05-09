@@ -1,13 +1,10 @@
 -# navigation styled for Bootstrap 3.0
-%nav.navbar.navbar-default.navbar-fixed-top
-  .container
-    .navbar-header
-      %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      = link_to 'Home', root_path, class: 'navbar-brand'
-    .collapse.navbar-collapse
-      %ul.nav.navbar-nav
-        = render 'layouts/navigation_links'
+%nav.navbar.navbar-default
+  %ul.nav.navbar-nav.navbar-collapse
+    %li= link_to 'Home', root_path
+    %li= link_to 'News', '#'
+    %li= link_to 'Seafarer', sailor_users_path
+    %li= link_to 'Crewing', '#'
+    %li= link_to 'Contacts', contacts_path
+    %li= link_to 'Faq', '#'
+    %li= link_to 'Feedback', '#'

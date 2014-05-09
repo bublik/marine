@@ -5,14 +5,47 @@
     %title= content_for?(:title) ? yield(:title) : 'Marine'
     %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Marine'}"}
     = stylesheet_link_tag 'application', media: 'all'
-    = csrf_meta_tags
     = javascript_include_tag 'application'
-  %body
+    = csrf_meta_tags
+  %body#top
     %header
-      = render 'layouts/navigation'
-    %main{:role => "main"}
+      .img-bg
+        .container.abs
+          .row
+            .col-xs-12
+              %h1= link_to(image_tag('logo.png'), root_path)
+          .row
+            .col-xs-12
+              = render 'layouts/navigation'
+    %main.content{:role => "main"}
       = render 'layouts/messages'
       .container.container-fluid
         = yield
     %footer
+      .container
+        .row
+          .col-xs-12
+            %a#toTop.top Go to top
+          .col-xs-6.text-right
+            %a{:href => "#"}
+              9863 - 9867 Mill Road
+              %br/
+              Cambridge, MG09 99HT
+            .clearfix
+            %a{:href => "#"} +1 800 559 6580
+          .col-xs-6
+            .clearfix
+            %a{:href => "#"} mail@demolink.org
+            .clearfix
+            %a{:href => "#"} http://www.demolink.org
+        .row.logo
+          .col-xs-12= link_to(image_tag('logo.png'), root_path)
+        .row
+          .col-xs-12.text-center
+            %p.copyright
+              Marine Transportation &copy;
+              %span#copyright-year
+              •
+              %a.h-underline{:href => "index-5.html"} Privacy Policy
+
 

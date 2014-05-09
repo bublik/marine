@@ -10,8 +10,9 @@ Marine::Application.routes.draw do
     ActiveAdmin.routes(self)
   end
 
-  root :to => "users#enter"
-  #root :to => "home#index"
+  root :to => "home#index"
+  get '/contacts' => 'home#contacts', as: :contacts
+
   devise_for :users, :controllers => {:registrations => "registrations"}
 
   resources :users do
@@ -20,7 +21,7 @@ Marine::Application.routes.draw do
     end
 
     collection do
-      get :enter
+      get :enter, as: :sailor
       post :get_access
       patch :complete
       get :finish
@@ -33,6 +34,7 @@ Marine::Application.routes.draw do
   resources :seaservices
   resources :langs
 
+  # available in admin area
   # resources :languages
   # resources :vessel_engines
   # resources :vessel_types
