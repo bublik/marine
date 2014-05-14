@@ -7,4 +7,4 @@
 %p
   You may access your personal profile to update personal data at any time.
   If you think you missed something or want to do a final polish, you are more than welcome to do so.
-= link_to('UPDATE PERSONAL DATA', enter_users_url(user_email: @user.email, user_token: @user.authentication_token), class: 'btn btn-info')
+= link_to('UPDATE PERSONAL DATA', sailor_users_url(user_email: @user.email, user_token: @user.authentication_token), class: 'btn btn-info')
