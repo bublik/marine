@@ -4,7 +4,7 @@
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
     %title= content_for?(:title) ? yield(:title) : 'Marine'
     %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Marine'}"}
-    = stylesheet_link_tag 'application', media: 'all'
+    = wicked_pdf_stylesheet_link_tag 'application', media: 'all'
     -#= javascript_include_tag 'application'
   %body.cv
     %main{:role => "main"}
