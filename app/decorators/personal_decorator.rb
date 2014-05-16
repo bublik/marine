@@ -46,6 +46,6 @@ class PersonalDecorator < Draper::Decorator
   end
 
   def pdf_file_name
-    "#{object.surname}_#{object.name}_#{object.rank}_#{object.user.uuid}.pdf"
+    "#{object.surname}_#{object.name}_#{object.rank.name}_#{object.user.uuid}.pdf"
   end
 end
