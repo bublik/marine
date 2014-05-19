@@ -74,7 +74,7 @@ class PersonalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def personal_params
-      params.require(:personal).permit(:available_from, :rank_id, :salary, :photo, :surname, :name, :middle_name,
+      params.require(:personal).permit(:available_from, :required_position, :rank_id, :salary, :photo, :surname, :name, :middle_name,
                                        :pp_dob, :pp_pob, :country_id, :citizenship_id, :marital_id, :sex, :eye_id, :hair_id, :height_id, :weight_id, :overallsize_id, :shoe_id, :taxation_id_code, :note)
     end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140519125847) do
+ActiveRecord::Schema.define(version: 20140519130717) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -171,7 +171,8 @@ ActiveRecord::Schema.define(version: 20140519125847) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "photo"
-    t.integer  "user_id",          null: false
+    t.integer  "user_id",           null: false
+    t.string   "required_position"
   end
 
   add_index "personals", ["citizenship_id"], name: "index_personals_on_citizenship_id", using: :btree

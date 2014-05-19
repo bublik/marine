@@ -7,7 +7,7 @@ class AddVesselEngineFieldToSeaservices < ActiveRecord::Migration
 
   def down
     create_table :vessel_engines
-    remove_column :seaservices, :vessel_engine, :string
+    remove_column :seaservices, :vessel_engine
     add_column :seaservices, :vessel_engine_id, :integer
   end
 end
