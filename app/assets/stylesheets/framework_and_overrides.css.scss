@@ -6,6 +6,14 @@ input[type="file"] {
   border: none;
   box-shadow: none;
 }
+.center-abs {
+  width: 90%;
+  height: 50%;
+  overflow: none;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
 
 // make all images responsive by default
 img {

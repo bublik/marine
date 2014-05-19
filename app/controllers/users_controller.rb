@@ -10,6 +10,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  # only manager
+  def search
+
+  end
+
   def enter
     if current_user
       redirect_to(new_personal_path)
@@ -67,7 +72,17 @@ class UsersController < ApplicationController
   def get_access
     @present = false
     @user = User.find_by(email: user_params[:email])
-    @user ||= User.create_by_email(user_params[:email])
+    # Если первый раз пользователь ввел емейл
+    unless @user
+      @user = User.create_by_email(user_params)
+      unless @user.new_record?
+        sign_in @user
+        render text: "window.location = '#{new_personal_path}';"
+      else
+        # нет мыла или подтверждение не совпадает
+      end
+      return
+    end
 
     unless @user.new_record?
       @present = true
@@ -80,6 +95,6 @@ class UsersController < ApplicationController
   private
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:email, :accept_subscription)
+    params.require(:user).permit(:email, :email_confirmation, :accept_subscription)
   end
 end

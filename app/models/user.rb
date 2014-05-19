@@ -28,6 +28,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, # :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  attr_accessor :create_by_email, :email_confirmation
+
   has_one :personal
   has_many :contacts
   has_one :contact, -> { order 'created_at' }, class_name: 'Contact'
@@ -38,6 +40,7 @@ class User < ActiveRecord::Base
   has_many :langs
 
   validates :accept_subscription, :acceptance => {:accept => true}
+  validates_presence_of :email_confirmation, message: 'Please confirm email', if: :create_by_email
 
   before_create :generate_token
   before_save :create_uuid
@@ -62,9 +65,17 @@ class User < ActiveRecord::Base
     certificates.joins(:cert).where(certs: {category: 'documents'}).order(:from_date)
   end
 
-  def self.create_by_email(email = '')
+  def self.create_by_email(param)
+    email = param[:email]
+    email_confirmation = param[:email_confirmation]
+
+    logger.debug("#{email} #{email_confirmation }")
     password = Devise.friendly_token.first(6)
-    user = User.new(email: email, password: password, password_confirmation: password)
+    user = User.new(email: email,
+                    create_by_email: true,
+                    email_confirmation: email_confirmation,
+                    password: password,
+                    password_confirmation: password)
     user.save
     user
   end
