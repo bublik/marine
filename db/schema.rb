@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140519115449) do
+ActiveRecord::Schema.define(version: 20140519125847) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -204,7 +204,6 @@ ActiveRecord::Schema.define(version: 20140519115449) do
     t.string   "vessel_year"
     t.integer  "vessel_type_id"
     t.string   "vessel_dwt"
-    t.integer  "vessel_engine_id"
     t.string   "vessel_engine_model"
     t.integer  "vessel_engine_power"
     t.integer  "rank_id"
@@ -215,11 +214,11 @@ ActiveRecord::Schema.define(version: 20140519115449) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id",                null: false
+    t.string   "vessel_engine"
   end
 
   add_index "seaservices", ["rank_id"], name: "index_seaservices_on_rank_id", using: :btree
   add_index "seaservices", ["vessel_country_code_id"], name: "index_seaservices_on_vessel_country_code_id", using: :btree
-  add_index "seaservices", ["vessel_engine_id"], name: "index_seaservices_on_vessel_engine_id", using: :btree
   add_index "seaservices", ["vessel_type_id"], name: "index_seaservices_on_vessel_type_id", using: :btree
 
   create_table "shoes", force: true do |t|
@@ -257,12 +256,6 @@ ActiveRecord::Schema.define(version: 20140519115449) do
 
   create_table "vessel_country_codes", force: true do |t|
     t.string   "code"
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "vessel_engines", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -77,6 +77,6 @@ class SeaservicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def seaservice_params
-      params.require(:seaservice).permit(:vessel_name, :vessel_country_code_id, :vessel_year, :vessel_type_id, :vessel_dwt, :vessel_engine_id, :vessel_engine_model, :vessel_engine_power, :rank_id, :on_date, :off_date, :owner_name, :agent_name)
+      params.require(:seaservice).permit(:vessel_name, :vessel_country_code_id, :vessel_year, :vessel_type_id, :vessel_dwt, :vessel_engine, :vessel_engine_model, :vessel_engine_power, :rank_id, :on_date, :off_date, :owner_name, :agent_name)
     end
 end
