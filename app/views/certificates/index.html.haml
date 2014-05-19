@@ -12,18 +12,18 @@
       %th Issuer
   %tbody
     - Cert::CATEGORIES.each do |category|
-      %tr.info{class: category}
+      %tr{class: category}
         %td{colspan: 2}
-          %label= t("certs.#{category}")
-        %td{colspan: 5, class: 'text-right'}= link_to('New entry', new_certificate_path(category: category),
-          remote: true, class: 'btn btn-success')
+          %h4= t("certs.#{category}")
+        %td{colspan: 5, class: 'text-right'}= link_to(icon('plus-sign', 'Add') + ' New entry' , new_certificate_path(category: category),
+          remote: true, class: 'btn btn-success btn-xs')
 
-      - Cert.by_category(category).limit(5).each do |cert|
+      - Cert.by_category(category).show_on_wizard.each do |cert|
         - if certificate = @certificates.detect{|certigicat|certigicat.cert_id.eql?(cert.id)}
           = render partial: 'certificate', locals: {certificate: certificate.decorate}
         - else
           = content_tag_for(:tr, cert) do
-            %td= link_to('Add', new_certificate_path(cert_id: cert, category: category), remote: true, class: 'btn btn-warning')
+            %td= link_to(icon('list-alt', 'Add'), new_certificate_path(cert_id: cert, category: category), remote: true, class: 'btn btn-info btn-xs')
             %td{colspan: 6}= cert.name
 .text-right
   = link_to('back', new_contact_path, class: 'btn btn-default btn-lg')

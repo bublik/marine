@@ -8,5 +8,6 @@ class Cert < ActiveRecord::Base
   scope :traning, -> { where(category: 'traning') }
   scope :documents, -> { where(category: 'documents') }
   scope :by_category, ->(category) { where(category: category) }
+  scope :show_on_wizard, -> { where(show_on_wizard: true) }
 
 end

@@ -5,9 +5,10 @@ ActiveAdmin.register Cert do
     id_column
     column :name
     column :category
+    column :show_on_wizard
     actions
   end
 
-  permit_params :name, :category
+  permit_params :name, :category, :show_on_wizard
 
 end

@@ -1,5 +1,5 @@
 = content_tag_for(:tr, certificate.object.cert) do
-  %td= link_to('Edit', edit_certificate_path(certificate), remote: true, class: 'btn btn-default')
+  %td= link_to(icon('pencil', 'Edit'), edit_certificate_path(certificate), remote: true, class: 'btn btn-default btn-xs')
   %td= certificate.cert
   %td= certificate.country
   %td= certificate.from_date

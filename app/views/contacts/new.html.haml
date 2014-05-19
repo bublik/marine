@@ -1,7 +1,7 @@
 %legend
   Contacts
 %div
-  = link_to('Add New Address', new_contact_path, remote: true, class: 'btn btn-success btn-sm')
+  = link_to(icon('home', 'Add') + ' New Address', new_contact_path, remote: true, class: 'btn btn-success btn-sm')
 .contacts
   = render 'list'
 .contact

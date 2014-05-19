@@ -9,4 +9,4 @@
     %tr
       %td= contact.short_address
       %td= contact.mphone
-      %td= link_to(t('global.edit'), edit_contact_path(contact), class: 'btn btn-default')
+      %td= link_to(icon('pencil', t('global.edit')), edit_contact_path(contact), class: 'btn btn-default btn-xs')

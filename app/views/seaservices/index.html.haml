@@ -1,8 +1,8 @@
 .seaservices
   .h2
     Record of sea service
-    = link_to 'New entry', new_seaservice_path, remote: true, class: 'btn btn-success'
-    = link_to 'I have no seagoing experience', langs_path, class: 'btn btn-success'
+    = link_to icon('plus-sign', 'Add') +' New entry', new_seaservice_path, remote: true, class: 'btn btn-success'
+    = link_to ('I have no seagoing experience ' + icon('arrow-right', 'Skip')).html_safe, langs_path, class: 'btn btn-info', title: 'Skip this step'
 
   - if @seaservice
     = render 'form'
@@ -29,7 +29,7 @@
 
       - @seaservices.decorate.each do |seaservice|
         %tr
-          %td= link_to 'Edit', edit_seaservice_path(seaservice), remote: true, class: 'btn btn-default'
+          %td= link_to  icon('pencil', 'Edit'), edit_seaservice_path(seaservice), remote: true, class: 'btn btn-default btn-xs'
           %td= seaservice.rank
           %td= seaservice.vessel_name
           %td= seaservice.vessel_type
