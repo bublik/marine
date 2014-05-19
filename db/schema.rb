@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140509090546) do
+ActiveRecord::Schema.define(version: 20140519115449) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -149,7 +149,7 @@ ActiveRecord::Schema.define(version: 20140509090546) do
 
   create_table "personals", force: true do |t|
     t.datetime "available_from"
-    t.integer  "salary_id"
+    t.integer  "salary"
     t.integer  "rank_id"
     t.string   "surname"
     t.string   "name"
@@ -182,7 +182,7 @@ ActiveRecord::Schema.define(version: 20140509090546) do
   add_index "personals", ["marital_id"], name: "index_personals_on_marital_id", using: :btree
   add_index "personals", ["overallsize_id"], name: "index_personals_on_overallsize_id", using: :btree
   add_index "personals", ["rank_id"], name: "index_personals_on_rank_id", using: :btree
-  add_index "personals", ["salary_id"], name: "index_personals_on_salary_id", using: :btree
+  add_index "personals", ["salary"], name: "index_personals_on_salary", using: :btree
   add_index "personals", ["shoe_id"], name: "index_personals_on_shoe_id", using: :btree
   add_index "personals", ["weight_id"], name: "index_personals_on_weight_id", using: :btree
 
@@ -194,12 +194,6 @@ ActiveRecord::Schema.define(version: 20140509090546) do
 
   create_table "ranks", force: true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "salaries", force: true do |t|
-    t.integer  "amount"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

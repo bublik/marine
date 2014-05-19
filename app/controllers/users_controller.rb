@@ -44,6 +44,7 @@ class UsersController < ApplicationController
     if Rails.env.development? && @user.nil?
       @user = User.find_by_id(params[:id]).decorate
     end
+    logger.debug("DEBUG #{params[:debug].present?}")
     @contact = @user.contact.decorate
     @personal = @user.personal.decorate
     @documents = @user.documents.decorate
@@ -58,6 +59,7 @@ class UsersController < ApplicationController
                  pdf: "#{@personal.pdf_file_name}.pdf",
                  layout: 'layouts/cv.pdf.haml',
                  disable_javascript: true,
+                 show_as_html: params[:debug].present?,
                  #save_to_file: Rails.root.join('public', "#{@user.uuid}.pdf"),
                  margin: {top: 10,
                           bottom: 0,

@@ -29,7 +29,6 @@
 class Personal < ActiveRecord::Base
   belongs_to :user
   belongs_to :rank
-  belongs_to :salary
   belongs_to :country
   belongs_to :citizenship
   belongs_to :marital
@@ -44,7 +43,7 @@ class Personal < ActiveRecord::Base
 
   validates_presence_of :user_id
   validates_inclusion_of :sex, in: %w( m f )
-  validates :available_from, :rank_id, :salary_id, :surname, :name, :pp_dob, :pp_pob, :country_id, :citizenship_id,
+  validates :available_from, :rank_id, :salary, :surname, :name, :pp_dob, :pp_pob, :country_id, :citizenship_id,
             :marital_id, :eye_id, :hair_id, :height_id, :weight_id, :overallsize_id, :shoe_id, presence: true
 
 end

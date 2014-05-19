@@ -4,7 +4,7 @@
 .row
   .col-xs-4.contact= render 'cv_contact.html', {contact: @contact}
   .col-xs-4
-  .col-xs-4= wicked_pdf_image_tag(@personal.photo_path)
+  .col-xs-4= wicked_pdf_image_tag(@personal.photo_path, style: 'width: 180px')
 .h4.text-center
   Required salary: #{@personal.required_salary}
 %table.table.table-bordered.table-condensed

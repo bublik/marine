@@ -6,7 +6,7 @@ class PersonalDecorator < Draper::Decorator
   end
 
   def required_salary
-    object.salary.amount
+    h.number_to_currency(object.salary)
   end
 
   def marital
@@ -46,6 +46,6 @@ class PersonalDecorator < Draper::Decorator
   end
 
   def pdf_file_name
-    "#{object.surname}_#{object.name}_#{object.rank.name}_#{object.user.uuid}.pdf"
+    "#{object.surname}_#{object.name}_#{object.rank.name}_#{object.user.uuid}"
   end
 end
