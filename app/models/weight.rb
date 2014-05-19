@@ -10,6 +10,5 @@
 
 class Weight < ActiveRecord::Base
   has_many :personals
-  validates_presence_of :created_at
 
 end
