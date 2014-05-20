@@ -164,3 +164,14 @@ section {
   }
 }
 
+.has-error {
+  .help-inline {
+    clear: left;
+    @extend .text-right;
+    @extend .text-danger;
+  }
+}
+
+.alert {
+  margin-top: 30px;
+}

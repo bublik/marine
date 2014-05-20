@@ -18,8 +18,8 @@
             .col-xs-12
               = render 'layouts/navigation'
     %main.content{:role => "main"}
-      = render 'layouts/messages'
       .container.container-fluid
+        = render 'layouts/messages'
         = yield
     %footer
       .container

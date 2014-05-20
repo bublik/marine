@@ -30,6 +30,8 @@ class User < ActiveRecord::Base
 
   attr_accessor :create_by_email, :email_confirmation
 
+  belongs_to :country
+
   has_one :personal
   has_many :contacts
   has_one :contact, -> { order 'created_at' }, class_name: 'Contact'
@@ -41,9 +43,12 @@ class User < ActiveRecord::Base
 
   validates :accept_subscription, :acceptance => {:accept => true}
   validates_presence_of :email_confirmation, message: 'Please confirm email', if: :create_by_email
+  validates :email, presence: true
+  validates :phone, :name, :company_name, :country_id, presence: true, if: :crewing?
 
   before_create :generate_token
   before_save :create_uuid
+  after_create :send_notification
 
   def create_uuid
     self.uuid = UUID.new.generate if self.uuid.blank?
@@ -78,6 +83,26 @@ class User < ActiveRecord::Base
                     password_confirmation: password)
     user.save
     user
+  end
+
+  def self.create_crewing(param)
+    password = Devise.friendly_token.first(6)
+    user = User.new(param.merge(password: password,
+                                password_confirmation: password))
+    user.role = 'crewing'
+    user.save
+    user
+  end
+
+  def crewing?
+    role.eql?('crewing')
+  end
+
+  def send_notification
+    if crewing?
+      #TODO send admin notification to verify crewing
+      logger.info("New Crewing #{id} #{email}")
+    end
   end
 
 end

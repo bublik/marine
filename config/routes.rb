@@ -26,6 +26,9 @@ Marine::Application.routes.draw do
       post :get_access
       patch :complete
       get :finish
+
+      get :crewing, as: :crewing
+      post :create_crewing
     end
   end
 

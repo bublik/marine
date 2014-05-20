@@ -1,13 +1,29 @@
 class UsersController < ApplicationController
-  skip_filter :authenticate_user!, :if => proc { |c| [:enter, :get_access].include?(c.action_name.to_sym) }
+  skip_filter :authenticate_user!, :if => proc { |c| [:crewing, :create_crewing, :enter, :get_access].include?(c.action_name.to_sym) }
   layout 'light', only: [:enter, :complete, :finish]
 
   def index
-    @users = User.all
+    @users = [] #User.all
   end
 
   def show
     @user = User.find(params[:id])
+  end
+
+  def crewing
+    @user = User.new
+    @user.role = 'crewing'
+  end
+
+  def create_crewing
+    @user = User.create_crewing(user_params)
+    logger.info("ERROR create crewing #{@user.errors.full_messages.join("\n")}")
+
+    if @user.present?
+      flash[:notice] = 'Crewing Agency has been created. Please check your email with credentials, and wait administration phone call!'
+    end
+
+    render 'crewing'
   end
 
   # only manager
@@ -97,6 +113,6 @@ class UsersController < ApplicationController
   private
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:email, :email_confirmation, :accept_subscription)
+    params.require(:user).permit(:name, :email, :email_confirmation, :phone, :company_name, :country_id, :accept_subscription)
   end
 end

@@ -1,0 +1,17 @@
+%h1 Intelligent Crew Management System
+
+%h3 Crew Data Management
+%p Crew Data Management allows maintaining seafarer database information up to date, all most important information on a seafarer, including basic personal information as well as sea going service, certificates, banking data, next of kin and most importantly copies of certificate files.
+
+%h3 Integrated Online Application form
+%p New applications arrive along with notification message to your e-mail, so you don’t miss any candidate applying for a job.
+
+%h3 Advanced Search
+%p Advanced search will enable you finding the most appropriate candidate for replacing existing crew onboard or filling in new vacancies.
+
+%hr/
+
+- if @user.new_record?
+  .well
+    %h4 Create own agency account now!
+    = render 'crew_form'
