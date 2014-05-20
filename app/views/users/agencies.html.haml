@@ -1,0 +1,22 @@
+%h1 Agencies
+%table.table.table-hover
+  %thead
+    %tr
+      %th Company Name
+      %th Contact Person
+      %th Phone
+      %th Registred At
+      %th Last Logged in
+      %th State
+  %tbody
+    - @agencies.decorate.each do |user|
+      = content_tag_for(:tr, user) do
+        %td
+          %strong= user.company_name
+        %td= user.name
+        %td= user.phone
+        %td= user.created_at
+        %td= user.last_sign_in_at
+        %td.state= user.link_to_state
+
+= paginate @agencies

@@ -1,13 +1,34 @@
 class UsersController < ApplicationController
   skip_filter :authenticate_user!, :if => proc { |c| [:crewing, :create_crewing, :enter, :get_access].include?(c.action_name.to_sym) }
   layout 'light', only: [:enter, :complete, :finish]
+  before_filter :check_access, only: [:index]
 
   def index
-    @users = [] #User.all
+    flash[:warning] = 'TODO ADD users permission scope!!!'
+    @users = User.all.decorate
   end
 
   def show
     @user = User.find(params[:id])
+  end
+
+  def agencies
+    @agencies = User.agencies.newer.page(params[:page]).per(2)
+  end
+
+  def activate_agency
+    @agency = User.agencies.find(params[:id])
+
+    @agency.verified? ? @agency.deverify! : @agency.verify!
+
+    respond_to do |format|
+      format.html { return :back }
+      format.js { @agency = @agency.decorate }
+    end
+  end
+
+  def managers
+    # current_user.managers
   end
 
   def crewing
@@ -17,7 +38,7 @@ class UsersController < ApplicationController
 
   def create_crewing
     @user = User.create_crewing(user_params)
-    logger.info("ERROR create crewing #{@user.errors.full_messages.join("\n")}")
+    logger.info("Create crewing #{@user.errors.full_messages.join("\n")}")
 
     if @user.present?
       flash[:notice] = 'Crewing Agency has been created. Please check your email with credentials, and wait administration phone call!'
@@ -114,5 +135,13 @@ class UsersController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
     params.require(:user).permit(:name, :email, :email_confirmation, :phone, :company_name, :country_id, :accept_subscription)
+  end
+
+  def check_access
+    unless user_signed_in?
+      flash[:error] = 'You dont have access to this page.'
+      return false
+    end
+    true
   end
 end

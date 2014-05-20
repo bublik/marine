@@ -15,6 +15,10 @@ Marine::Application.routes.draw do
 
   devise_for :users, :controllers => {:registrations => "registrations"}
 
+  get '/agencies' => 'users#agencies', as: 'agencies'
+  get '/managers' => 'users#managers', as: 'managers'
+  post '/activate_agency/:id' => 'users#activate_agency', as: 'activation'
+
   resources :users do
     member do
       get :cv, defaults: {format: 'pdf'}
@@ -37,24 +41,5 @@ Marine::Application.routes.draw do
   resources :certificates
   resources :seaservices
   resources :langs
-
-  # available in admin area
-  # resources :languages
-  # resources :vessel_engines
-  # resources :vessel_types
-  # resources :vessel_country_codes
-  # resources :certs
-  # resources :shoes
-  # resources :overallsizes
-  # resources :weights
-  # resources :heights
-  # resources :hairs
-  # resources :eyes
-  # resources :salaries
-  # resources :positions
-  # resources :maritals
-  # resources :citizenships
-  # resources :countries
-  # resources :ranks
 
 end

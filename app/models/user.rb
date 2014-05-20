@@ -46,9 +46,17 @@ class User < ActiveRecord::Base
   validates :email, presence: true
   validates :phone, :name, :company_name, :country_id, presence: true, if: :crewing?
 
+  scope :admins, -> { where(role: 'admin') }
+  scope :agencies, -> { where(role: 'crewing') }
+  scope :newer, -> { order('id desc') }
+  # scope :managers, -> { where(: 'manager')}
+  scope :users, -> { where(role: 'user') }
+
   before_create :generate_token
   before_save :create_uuid
   after_create :send_notification
+
+  after_update :send_verification_notification
 
   def create_uuid
     self.uuid = UUID.new.generate if self.uuid.blank?
@@ -98,10 +106,43 @@ class User < ActiveRecord::Base
     role.eql?('crewing')
   end
 
+  def admin?
+    role.eql?('admin')
+  end
+
+  def manager?
+    role.eql?('manager')
+  end
+
+  def verified?
+    verify_at.present?
+  end
+
+  def verify!
+    self.verify_at = Time.now
+    save
+  end
+
+  def deverify!
+    self.verify_at = nil
+    save
+  end
+
   def send_notification
     if crewing?
-      #TODO send admin notification to verify crewing
+      Notifications.crewing_credentials(self).deliver
       logger.info("New Crewing #{id} #{email}")
+
+      User.admins.each do |admin|
+        Notifications.new_crewing_created(admin, self).deliver
+      end
+    end
+  end
+
+  def send_verification_notification
+    if crewing? && self.verify_at_changed?
+      Notifications.account_verified(self).deliver if verified?
+      logger.info("Account activation changed #{self.verify_at}!")
     end
   end
 

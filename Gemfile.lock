@@ -375,6 +375,7 @@ DEPENDENCIES
   html2haml
   jbuilder (~> 2.0)
   jquery-rails
+  kaminari
   letter_opener
   mini_magick
   mysql2

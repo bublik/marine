@@ -6,13 +6,22 @@ input[type="file"] {
   border: none;
   box-shadow: none;
 }
+input[type=checkbox] {
+  width: 20px;
+  float: left;
+  box-shadow: none;
+}
+
 .center-abs {
   width: 90%;
   height: 50%;
   overflow: none;
   margin: auto;
   position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 
 // make all images responsive by default
@@ -115,6 +124,13 @@ section {
 .form-control {
   height: 30px;
 }
+
+.checkbox {
+  .bolean {
+    width: 20px;
+  }
+}
+
 .form-group {
   margin-bottom: 10px;
 }

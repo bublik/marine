@@ -27,4 +27,21 @@ class Notifications < ActionMailer::Base
 
     mail(to: @user.email)
   end
+
+  def crewing_credentials(user)
+    @password = user.password
+    @user = user.decorate
+
+    mail(to: user.email)
+  end
+
+  def account_verified(user)
+    @user = user.decorate
+    mail(to: user.email)
+  end
+
+  def new_crewing_created(user, agency)
+    @agency = agency
+    mail(to: user.email)
+  end
 end

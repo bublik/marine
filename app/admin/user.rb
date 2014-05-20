@@ -13,6 +13,7 @@ ActiveAdmin.register User do
     id_column
     column :email
     column :name
+    column :role
     column :cv_updated_at
     column :accept_subscription
     end

@@ -4,6 +4,18 @@ module ApplicationHelper
     content_tag(:span, '', class: "glyphicon glyphicon-#{type}", title: title)
   end
 
+  def menu_style
+    return '' unless user_signed_in?
+    case current_user.role
+      when /admin/
+        'bg-danger'
+      when /crewing/
+        'bg-info'
+      when /manager/
+        'bg-primary'
+    end
+  end
+
   def display_base_errors resource
     return '' if (resource.errors.empty?) or (resource.errors[:base].empty?)
     messages = resource.errors[:base].map { |msg| content_tag(:p, msg) }.join

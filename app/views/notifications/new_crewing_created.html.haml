@@ -1,0 +1,12 @@
+%h2 New Crewing Agency has been registered
+%p
+  Company:
+  %strong= @agency.company_name
+  %div
+    Contact Person:
+    = @agency.name
+  %div
+    Phone:
+    = @agency.phone
+%div
+  Pleace call to #{@agency.phone} #{@agency.name} and #{link_to('Activate', agencies_url)}.

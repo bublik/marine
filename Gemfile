@@ -16,6 +16,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'bootstrap-sass'
 gem 'haml-rails'
 gem 'simple_form'
+gem 'kaminari'
 gem 'draper', '~> 1.3'
 gem 'uuid'
 
