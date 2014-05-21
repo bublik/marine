@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   end
 
   def agencies
-    @agencies = User.agencies.newer.page(params[:page]).per(2)
+    @agencies = User.agencies.newer.page(params[:page]).per(10)
   end
 
   def activate_agency
