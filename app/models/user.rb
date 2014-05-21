@@ -35,6 +35,8 @@ class User < ActiveRecord::Base
   has_one :personal
   has_many :contacts
   has_one :contact, -> { order 'created_at' }, class_name: 'Contact'
+  accepts_nested_attributes_for :contact
+
   has_one :next_of_kin_contact, -> { order('created_at').offset(1) }, class_name: 'Contact'
 
   has_many :certificates
