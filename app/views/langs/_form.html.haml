@@ -8,6 +8,6 @@
         = f.button :submit, class: 'btn btn-primary btn-sm'
         %span.pull-right
           - if lang.new_record?
-            = button_tag('&times;'.html_safe, onclick: "$(this).parent().parent().parent().remove();", 'aria-hidden' => true, class: 'close')
+            = button_tag('&times;'.html_safe, onclick: "$(this).parent().parent().parent().remove(); return false;", 'aria-hidden' => true, class: 'close')
           - else
             = link_to '&times;'.html_safe, lang, :method => :delete, 'aria-hidden' => true, :data => {dismiss: 'alert',  confirm: 'Are you sure?' }, class: 'close'

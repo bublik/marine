@@ -3,8 +3,11 @@
     .col-md-6.col-md-offset-3
       %h3.text-center Crew BV
       .enter
-        = simple_form_for(@user, :url => get_access_users_path, :html => {:class => '' }, remote: true) do |f|
-          = f.input :email, :autofocus => true, label: 'Enter your e-mail address to proceed further', placeholder: 'Email'
+        = simple_form_for(@user, :url => get_access_users_path, remote: true) do |f|
+          %label Enter your e-mail address to proceed further
+          = f.input :email, :autofocus => true, label: 'Email', placeholder: 'Email'
           - if request.xhr?
             = f.input :email_confirmation, :autofocus => true, label: 'Email confirmation'
-          = f.button :submit, 'Submit', :class => 'btn-primary'
+          .row
+            .col-sm-4.col-sm-offset-3
+              = f.button :submit, 'Submit', :class => 'btn-primary'

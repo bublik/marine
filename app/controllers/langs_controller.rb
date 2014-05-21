@@ -1,6 +1,7 @@
 class LangsController < ApplicationController
   before_action :set_lang, only: [:show, :edit, :update, :destroy]
   layout 'registration'
+  skip_before_filter :verify_authenticity_token
 
   # GET /langs
   # GET /langs.json
@@ -25,21 +26,20 @@ class LangsController < ApplicationController
   # POST /langs
   # POST /langs.json
   def create
+    @langs = current_user.langs
     @lang = Lang.new(lang_params)
     @lang.user = current_user
-
 
     respond_to do |format|
       if @lang.save
         format.html { redirect_to @lang, notice: 'Lang was successfully created.' }
         format.json { render action: 'show', status: :created, location: @lang }
+        format.js { flash.now[:notice] = 'Language was successfully added.' }
       else
-        format.html { render action: 'new' }
+        format.html { render action: 'index' }
         format.json { render json: @lang.errors, status: :unprocessable_entity }
+        format.js {}
       end
-      format.js {
-        flash.now[:notice] = 'Language was successfully added.'
-      }
     end
   end
 
@@ -63,19 +63,19 @@ class LangsController < ApplicationController
   def destroy
     @lang.destroy
     respond_to do |format|
-      format.html { redirect_to langs_url, notice: 'Lang was successfully removed.'  }
+      format.html { redirect_to langs_url, notice: 'Lang was successfully removed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_lang
-      @lang = Lang.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_lang
+    @lang = Lang.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def lang_params
-      params.require(:lang).permit(:language_id, :level)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def lang_params
+    params.require(:lang).permit(:language_id, :level)
+  end
 end

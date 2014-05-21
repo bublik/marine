@@ -5,7 +5,8 @@
     = link_to ('I have no seagoing experience ' + icon('arrow-right', 'Skip')).html_safe, langs_path, class: 'btn btn-info', title: 'Skip this step'
 
   - if @seaservice
-    = render 'form'
+    .new_entry
+      = render 'form'
   - else
     %table.table
       %tr
