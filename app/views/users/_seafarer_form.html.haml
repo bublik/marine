@@ -1,0 +1,5 @@
+= simple_form_for User.new, url: create_seafarer_users_path do |f|
+  .col-md-5
+    = f.input :email
+  .col-md-2
+    = f.button :submit, 'Create Seafarer', class: 'btn btn-success'

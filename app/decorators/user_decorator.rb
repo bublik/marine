@@ -6,7 +6,7 @@ class UserDecorator < Draper::Decorator
   end
 
   def full_name
-    "#{object.personal.surname} #{object.personal.name}"
+    object.personal ? "#{object.personal.surname} #{object.personal.name}" : name
   end
 
   def phone
@@ -26,6 +26,39 @@ class UserDecorator < Draper::Decorator
     object.verified? ?
       h.icon('ok text-success') + ' ' + h.l(object.verify_at, format: :long) :
       h.icon('bell text-danger') + ' Waited'
+  end
+
+  def cv_updated_at
+    object.cv_updated_at ? object.cv_updated_at.strftime("%m/%d/%Y") : 'incomplete'
+  end
+
+  def required_position
+    object.personal ? object.personal.required_position : '-'
+  end
+
+  def year_old
+    object.personal ? h.distance_of_time_in_words(object.personal.pp_dob, Time.now) : '-'
+  end
+
+  def vessel_types
+    type_ids = seaservices.pluck(:vessel_type_id)
+    type_ids.blank? ? '-' : VesselType.where(id: type_ids).pluck(:name).join(', ')
+  end
+
+  def salary
+    object.personal ? object.personal.salary : '-'
+  end
+
+  def languages
+    object.languages.map(&:name).join(',')
+  end
+
+  def required_position
+    object.personal ? object.personal.required_position : '-'
+  end
+
+  def dwts
+    object.seaservices ? object.seaservices.pluck(:vessel_dwt).join(', ') : '-'
   end
 
   def link_to_state

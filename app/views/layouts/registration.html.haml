@@ -12,6 +12,11 @@
     %main{:role => "main"}
       = render 'layouts/messages'
       .container.container_wizard
+        - if session[:original_account_id].present?
+          .row
+            .col-md-3.col-md-offset-9
+              = link_to('Back to Management', management_path, class: 'pull-right btn btn-success btn-xs')
+
         = render 'layouts/wizard'
     %footer
       = javascript_include_tag 'application'

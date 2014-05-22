@@ -1,4 +1,4 @@
-.text-right Updated at: #{@user.cv_updated_at.strftime("%m/%d/%Y")}
+.text-right Updated at: #{@user.cv_updated_at}
 .h3.text-center
   APPLICATION FORM
 .row
@@ -17,7 +17,7 @@
     %td.head First Name:
     %td{colspan: 3}= @personal.name
     %td.head Position required:
-    %td TODO
+    %td= @personal.required_position
   %tr
     %td.head Date of birth
     %td.head{colspan: 2} Place of birth

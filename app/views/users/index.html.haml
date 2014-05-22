@@ -1,6 +1,41 @@
-%h3 Users
-%ul.users
+%hr/
+.row
+  = render 'search_form'
+  .new_seafarer{style: 'display: none'}
+    = render 'seafarer_form'
+  .col-md-2.pull-right
+    = link_to('Add Seafarer', '#', onclick: "$('.search').hide(); $('.new_seafarer').fadeIn()", class: 'btn btn-success')
+
+%br/
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th Name
+      %th Year old
+      %th Lang
+      %th Position
+      %th Salary
+      %th CV date
+      %th Type
+      %th DWT
+      %th Actions
   - @users.each do |user|
-    %li
-      = link_to user.name, user
-      signed up #{user.created_at.to_date}
+    %tr
+      %td
+        = user.id
+        = user.full_name
+      %td= user.year_old
+      %td= user.languages
+      %td= user.required_position
+      %td= user.salary
+      %td= user.cv_updated_at
+      %td= user.vessel_types
+      %td= user.dwts
+      %td
+        %div
+          = link_to 'HTML orig', cv_user_path(user.uuid, format: 'html'), target: 'blank'
+          = link_to 'HTML affil', cv_user_path(user.uuid, format: 'html'), target: 'blank'
+        %div
+          = link_to 'PDF orig', cv_user_path(user.uuid, format: 'pdf'), target: 'blank'
+          = link_to 'PDF affil', cv_user_path(user.uuid, format: 'pdf'), target: 'blank'

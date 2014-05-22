@@ -2,7 +2,7 @@
 .row
   .col-md-9.col-md-offset-1
     .new_manager{style: 'display: none'}
-      = render 'manager_form', locals: {user: @user}
+      = render 'manager_form', {user: @user}
 
   .col-md-2.pull-right
     = link_to('Add Manager', '#', onclick: "$('.new_manager').fadeIn()", class: 'btn btn-success')

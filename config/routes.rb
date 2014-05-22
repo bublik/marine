@@ -17,6 +17,7 @@ Marine::Application.routes.draw do
 
   get '/agencies' => 'users#agencies', as: 'agencies'
   get '/managers' => 'users#managers', as: 'managers'
+  get '/back' => 'users#back', as: 'management'
   post '/activate_agency/:id' => 'users#activate_agency', as: 'activation'
 
   resources :users do
@@ -33,6 +34,7 @@ Marine::Application.routes.draw do
       get :finish
 
       post :create_manager
+      post :create_seafarer
 
       get :crewing, as: :crewing
       post :create_crewing

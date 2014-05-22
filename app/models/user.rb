@@ -31,8 +31,11 @@ class User < ActiveRecord::Base
   attr_accessor :create_by_email, :email_confirmation
 
   belongs_to :country
+  belongs_to :agency, foreign_key: :crew_id
+  belongs_to :creator, foreign_key: :parent_id
 
   has_one :personal
+  accepts_nested_attributes_for :personal
   has_many :contacts
   has_one :contact, -> { order 'created_at' }, class_name: 'Contact'
   accepts_nested_attributes_for :contact
@@ -42,6 +45,7 @@ class User < ActiveRecord::Base
   has_many :certificates
   has_many :seaservices
   has_many :langs
+  has_many :languages, through: :langs
 
   has_many :managers, -> { where(role: 'manager') }, foreign_key: :parent_id, class_name: 'User'
 
@@ -98,20 +102,26 @@ class User < ActiveRecord::Base
   end
 
   def self.create_crewing(param)
-    password = Devise.friendly_token.first(6)
-    user = User.new(param.merge(password: password,
-                                password_confirmation: password))
-    user.role = 'crewing'
-    user.save
-    user
+    create_user(param, nil, 'crewing')
   end
 
   def self.create_manager(param, creator)
-    password = Devise.friendly_token.first(6)
+    create_user(param, creator, 'manager')
+  end
+
+  def self.create_seafarer(param, creator)
+    create_user(param, creator)
+  end
+
+  def self.create_user(param, creator, role = 'user')
+    password = Devise.friendly_token.first(8)
     user = User.new(param.merge(password: password,
                                 password_confirmation: password))
-    user.parent_id = creator.id
-    user.role = 'manager'
+
+    user.parent_id = creator.id if creator
+    user.crew_id = creator.parent_id if creator.manager?
+    user.crew_id = creator.id if creator.admin? || creator.crewing?
+    user.role = role
     user.save
     user
   end
@@ -130,6 +140,10 @@ class User < ActiveRecord::Base
 
   def verified?
     verify_at.present?
+  end
+
+  def user?
+    !['admin', 'crewing', 'manager'].include?(self.role)
   end
 
   def verify!

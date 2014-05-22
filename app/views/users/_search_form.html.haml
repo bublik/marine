@@ -1,0 +1,19 @@
+.search
+  = simple_form_for User.new, url: search_users_path do |f|
+    .col-md-2
+      = select_tag(:rank_id, options_from_collection_for_select(Rank.all, 'id', 'name'), prompt: 'Rank', class: 'form-control')
+    .col-md-2
+      = select_tag(:country_id, options_from_collection_for_select(Country.all, 'id', 'name'),  prompt: 'Country', class: ' form-control')
+    .col-md-1
+      = select_tag(:salary, options_for_select((1500..20000).step(500).to_a),  prompt: 'Salary/max', class: 'form-control')
+    .col-md-1
+      = select_tag(:salary, options_for_select((18..60).step(1).to_a),  prompt: 'Years ±3', class: 'form-control')
+
+    .col-md-1
+      = select_tag(:language_id,  options_from_collection_for_select(Language.all, 'id', 'name'), prompt: 'Language', class: 'form-control')
+    .col-md-1
+      = select_tag(:vessel_type_id,  options_from_collection_for_select(VesselType.all, 'id', 'name'), prompt: 'Type', class: 'form-control')
+    .col-md-1
+      = select_tag(:vessel_dwt,  options_for_select(vessel_dwt), prompt: 'WDT/min', class: 'form-control')
+    .col-md-1
+      = f.submit :search, class: 'btn btn-primary'

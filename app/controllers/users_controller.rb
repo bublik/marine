@@ -1,16 +1,22 @@
 class UsersController < ApplicationController
   skip_filter :authenticate_user!, :if => proc { |c| [:crewing, :create_crewing, :enter, :get_access].include?(c.action_name.to_sym) }
   layout 'light', only: [:enter, :complete, :finish]
-  before_filter :check_access, only: [:index]
+  before_filter :check_access, only: [:index, :create_seafarer]
 
   def index
-    flash[:warning] = 'TODO ADD users permission scope!!!'
-    @users = User.all.decorate
+    #flash[:warning] = 'TODO ADD users permission scope!!!'
+                                           #where('cv_updated_at IS NOT NULL AND personals.id IS NOT NULL').
+    @users = User.joins(:personal).includes(:langs).all.decorate
   end
 
-  def show
-    @user = User.find(params[:id])
+  def search
+    @users = User.all.decorate
+    render 'index'
   end
+
+  # def show
+  #   @user = User.find(params[:id])
+  # end
 
   def agencies
     @agencies = User.agencies.newer.page(params[:page]).per(10)
@@ -45,10 +51,28 @@ class UsersController < ApplicationController
         format.html { redirect_to managers_path, notice: 'Manager has been created!' }
         format.js { render text: "window.location = '#{managers_path}'" }
       else
-        format.html { redirect_to managers_path, error: @user.errors.full_messages.join("\n") }
+        format.html { redirect_to managers_path, warning: @user.errors.full_messages.join("\n") }
         format.js { render text: "$('.new_manager').html('#{j render 'manager_form', locals: {user: @user}}')" }
       end
     end
+  end
+
+  def create_seafarer
+    original_account_id = current_user.id
+    @user = User.create_seafarer(user_params, current_user)
+    if @user.valid?
+      sign_in @user
+      session[:original_account_id] = original_account_id
+      redirect_to new_personal_path, notice: "You logged as #{@user.email}, please fill the form!"
+    else
+      redirect_to :back, warning: @user.errors.full_messages.join(", ")
+    end
+  end
+
+  def back
+    sign_in(User.find(session[:original_account_id])) ?
+      redirect_to(root_path, notice: 'Wellcome back!') :
+      redirect_to(root_path, error: 'Bad session!')
   end
 
   def lock
@@ -77,11 +101,6 @@ class UsersController < ApplicationController
     end
 
     render 'crewing'
-  end
-
-  # only manager
-  def search
-
   end
 
   def enter
@@ -120,6 +139,7 @@ class UsersController < ApplicationController
     @seaservices = @user.seaservices.last_years(5).decorate
     @certificates = @user.certificates.decorate
     @last_medical_certificate = @user.medical_certificates.last
+    @user = @user.decorate
     #https://github.com/mileszs/wicked_pdf
     respond_to do |format|
       format.html { render layout: 'cv' }
@@ -170,10 +190,14 @@ class UsersController < ApplicationController
   end
 
   def check_access
-    unless user_signed_in?
+    if user_signed_in?
+      return true if current_user.admin?
+      return true if current_user.crewing? && current_user.verified?
+      return true if current_user.manager?
+    else
       flash[:error] = 'You dont have access to this page.'
       return false
     end
-    true
+
   end
 end

@@ -6,22 +6,23 @@
         - if user_signed_in?
           - if current_user.admin?
             %li= link_to('Agencies', agencies_path)
-            %li= link_to('Users', users_path)
+            %li= link_to('System Admin', root_url(subdomain: 'admin'))
 
           - if current_user.crewing?
             %li= link_to('Managers', managers_path)
-            %li= link_to('Users', users_path)
 
           - if current_user.manager?
-            %li= link_to('Users', users_path)
+            -#%li= link_to('Users', users_path)
 
-        %li= link_to('Admin interface', root_url(subdomain: 'admin'))
+          - unless current_user.user?
+            %li= link_to(icon('search') + ' Seafarers', users_path)
+
 
       /right
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
-          %li= link_to 'Edit account', edit_user_registration_path
-          %li= link_to 'Logout', destroy_user_session_path, :method=>'delete'
+          %li= link_to icon('user') + ' Profile', edit_user_registration_path, title: current_user.role
+          %li= link_to icon('off') + ' Logout', destroy_user_session_path, :method=>'delete'
         - else
           %li= link_to 'Login', new_user_session_path
           %li= link_to 'Sign up', new_user_registration_path
