@@ -22,6 +22,7 @@ Marine::Application.routes.draw do
   resources :users do
     member do
       get :cv, defaults: {format: 'pdf'}
+      post :lock
     end
 
     collection do
@@ -30,6 +31,8 @@ Marine::Application.routes.draw do
       post :get_access
       patch :complete
       get :finish
+
+      post :create_manager
 
       get :crewing, as: :crewing
       post :create_crewing

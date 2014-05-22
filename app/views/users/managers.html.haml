@@ -1,1 +1,29 @@
-TODO #{__FILE__}
+%h1 Managers
+.row
+  .col-md-9.col-md-offset-1
+    .new_manager{style: 'display: none'}
+      = render 'manager_form', locals: {user: @user}
+
+  .col-md-2.pull-right
+    = link_to('Add Manager', '#', onclick: "$('.new_manager').fadeIn()", class: 'btn btn-success')
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th Name
+      %th Phone
+      %th Email
+      %th Registred At
+      %th Last Logged in
+      %th State
+  %tbody
+    - @managers.decorate.each do |user|
+      = content_tag_for(:tr, user) do
+        %td= user.name
+        %td= user.phone
+        %td= user.email
+        %td= user.created_at
+        %td= user.last_sign_in_at
+        %td.state= user.link_to_lock
+
+= paginate @managers

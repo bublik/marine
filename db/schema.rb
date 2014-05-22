@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140520204713) do
+ActiveRecord::Schema.define(version: 20140521211702) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -257,9 +257,13 @@ ActiveRecord::Schema.define(version: 20140520204713) do
     t.integer  "country_id"
     t.string   "role",                   default: "user"
     t.datetime "verify_at"
+    t.integer  "parent_id"
+    t.datetime "locked_at"
+    t.string   "unlock_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["parent_id"], name: "index_users_on_parent_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "vessel_country_codes", force: true do |t|

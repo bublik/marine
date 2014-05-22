@@ -31,4 +31,14 @@ class UserDecorator < Draper::Decorator
   def link_to_state
     h.link_to(active, h.activation_path(object), class: 'btn btn-default', title: (object.verified? ? 'Deactivate' : 'Activate'), remote: true, method: :post)
   end
+
+  def locked
+    object.access_locked? ?
+      h.icon('lock text-danger') + ' ' + h.l(object.locked_at, format: :long) :
+      h.icon('ok text-success') + ' Active'
+  end
+
+  def link_to_lock
+    h.link_to(locked, h.lock_user_path(object), class: 'btn btn-default', title: (object.access_locked? ? 'Unlock' : 'Lock'), remote: true, method: :post)
+  end
 end

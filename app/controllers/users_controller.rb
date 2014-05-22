@@ -22,13 +22,45 @@ class UsersController < ApplicationController
     @agency.verified? ? @agency.deverify! : @agency.verify!
 
     respond_to do |format|
-      format.html { return :back }
+      format.html { redirect_to :back }
       format.js { @agency = @agency.decorate }
     end
   end
 
   def managers
-    # current_user.managers
+    unless current_user.verified?
+      flash[:notice] = 'You have to be verified for create new Managers.'
+    end
+    @user = User.new
+    @managers = current_user.managers.newer.page(params[:page]).per(10)
+  end
+
+  def create_manager
+    @user = User.create_manager(user_params, current_user)
+    logger.info("Create crewing #{@user.errors.full_messages.join("\n")}")
+
+
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to managers_path, notice: 'Manager has been created!' }
+        format.js { render text: "window.location = '#{managers_path}'" }
+      else
+        format.html { redirect_to managers_path, error: @user.errors.full_messages.join("\n") }
+        format.js { render text: "$('.new_manager').html('#{j render 'manager_form', locals: {user: @user}}')" }
+      end
+    end
+  end
+
+  def lock
+    if @user = current_user.managers.find(params[:id])
+      @user.access_locked? ? @user.unlock_access! : @user.lock_access!
+      @user = @user.decorate
+    end
+
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js { @user = @user.decorate }
+    end
   end
 
   def crewing

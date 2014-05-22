@@ -10,9 +10,9 @@ module ApplicationHelper
       when /admin/
         'bg-danger'
       when /crewing/
-        'bg-info'
+        'bg-crewing'
       when /manager/
-        'bg-primary'
+        'bg-manager'
     end
   end
 

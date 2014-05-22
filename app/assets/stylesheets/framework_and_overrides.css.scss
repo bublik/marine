@@ -6,6 +6,7 @@ input[type="file"] {
   border: none;
   box-shadow: none;
 }
+
 input[type=checkbox] {
   width: 20px;
   float: left;
@@ -162,4 +163,12 @@ section {
 
 .alert {
   margin-top: 30px;
+}
+
+.bg-crewing {
+  border: 1px solid #428BCA;
+}
+
+.bg-manager {
+  border: 1px solid #5CB85C;
 }

@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, # :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :lockable
 
   attr_accessor :create_by_email, :email_confirmation
 
@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   has_one :personal
   has_many :contacts
   has_one :contact, -> { order 'created_at' }, class_name: 'Contact'
-    accepts_nested_attributes_for :contact
+  accepts_nested_attributes_for :contact
 
   has_one :next_of_kin_contact, -> { order('created_at').offset(1) }, class_name: 'Contact'
 
@@ -43,15 +43,17 @@ class User < ActiveRecord::Base
   has_many :seaservices
   has_many :langs
 
+  has_many :managers, -> { where(role: 'manager') }, foreign_key: :parent_id, class_name: 'User'
+
   validates :accept_subscription, :acceptance => {:accept => true}
   validates_presence_of :email_confirmation, message: 'Please confirm email', if: :create_by_email
   validates :email, presence: true
   validates :phone, :name, :company_name, :country_id, presence: true, if: :crewing?
+  validates :parent_id, presence: true, if: :manager?
 
   scope :admins, -> { where(role: 'admin') }
   scope :agencies, -> { where(role: 'crewing') }
   scope :newer, -> { order('id desc') }
-  # scope :managers, -> { where(: 'manager')}
   scope :users, -> { where(role: 'user') }
 
   before_create :generate_token
@@ -104,6 +106,16 @@ class User < ActiveRecord::Base
     user
   end
 
+  def self.create_manager(param, creator)
+    password = Devise.friendly_token.first(6)
+    user = User.new(param.merge(password: password,
+                                password_confirmation: password))
+    user.parent_id = creator.id
+    user.role = 'manager'
+    user.save
+    user
+  end
+
   def crewing?
     role.eql?('crewing')
   end
@@ -131,10 +143,12 @@ class User < ActiveRecord::Base
   end
 
   def send_notification
-    if crewing?
+    if crewing? || manager?
       Notifications.crewing_credentials(self).deliver
       logger.info("New Crewing #{id} #{email}")
+    end
 
+    if crewing?
       User.admins.each do |admin|
         Notifications.new_crewing_created(admin, self).deliver
       end
