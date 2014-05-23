@@ -141,6 +141,8 @@ class UsersController < ApplicationController
     @seaservices = @user.seaservices.last_years(5).decorate
     @certificates = @user.certificates.decorate
     @last_medical_certificate = @user.medical_certificates.last
+    @langs = @user.langs.includes(:language)
+
     @user = @user.decorate
     #https://github.com/mileszs/wicked_pdf
     respond_to do |format|

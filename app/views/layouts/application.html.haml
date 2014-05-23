@@ -10,14 +10,15 @@
   %body#top
     %header
       = render 'layouts/top_menu'
-      .img-bg
-        .container.abs
-          .row
-            .col-xs-12
-              %h1= link_to(image_tag('logo.png'), root_path)
-          .row
-            .col-xs-12
-              = render 'layouts/navigation'
+      - unless user_signed_in?
+        .img-bg
+          .container.abs
+            .row
+              .col-xs-12
+                %h1= link_to(image_tag('logo.png'), root_path)
+            .row
+              .col-xs-12
+                = render 'layouts/navigation'
 
     %main.content{:role => "main"}
       .container.container-fluid

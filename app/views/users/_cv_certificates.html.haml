@@ -4,24 +4,23 @@
     %tr
       %th Description
       %th Number
-
       %th Issued
       %th Expired
-
       %th Issuer, country
-
   %tbody
     - certificates.each do |certificate|
       %tr
         %td= certificate.cert
         %td= certificate.licence_number
-
         %td= certificate.from_date
         %td= certificate.to_date
-
-        %td
+        %td>
           = certificate.issuer
           = certificate.country
-
-
-
+    - langs.each do |lang|
+      %tr
+        %td
+          .row
+            .col-xs-8 Level of language
+            .col-xs-4= lang.language.name.upcase
+        %td{colspan: 4}= lang.level

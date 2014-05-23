@@ -11,6 +11,11 @@
 
 .registration {
   background: #515151 image-url('bg-gray.png');
+  main {
+    margin-top: 30px;
+    margin-bottom: 60px;
+    padding: 0;
+  }
   .container {
     background: white image-url('bg-gray.png');
     padding-left: 0;

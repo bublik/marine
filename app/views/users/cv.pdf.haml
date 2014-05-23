@@ -50,9 +50,9 @@
       = @personal.weight
   %tr
     %td.head Place:
-    %td= @last_medical_certificate.decorate.country
+    %td= @last_medical_certificate ? @last_medical_certificate.decorate.country : '-'
     %td.head Date:
-    %td= @last_medical_certificate.decorate.from_date
+    %td= @last_medical_certificate ? @last_medical_certificate.decorate.from_date : '-'
     %td.head Overall size:
     %td= @personal.overallsize
   %tr
@@ -64,7 +64,8 @@
     %td= @personal.shoe
 
 = render partial: 'cv_personal_documents.html', locals: {documents: @documents}
-= render partial: 'cv_certificates.html', locals: {certificates: @certificates}
+= render partial: 'cv_certificates.html', locals: {certificates: @certificates, langs: @langs}
+
 = render partial: 'cv_sea_services.html', locals: {seaservices: @seaservices}
 
 

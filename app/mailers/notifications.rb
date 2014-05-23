@@ -14,7 +14,8 @@ class Notifications < ActionMailer::Base
     @documents = @user.documents.decorate
     @seaservices = @user.seaservices.last_years(5).decorate
     @certificates = @user.certificates.decorate
-    @last_medical_certificate = @user.medical_certificates.last
+    @medical_certificate = @user.medical_certificates.last
+    @langs = @user.langs.includes(:language)
 
     #https://github.com/mileszs/wicked_pdf
     attachments[@personal.pdf_file_name] = WickedPdf.new.pdf_from_string(
