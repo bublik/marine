@@ -20,6 +20,19 @@
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
 #  unconfirmed_email      :string(255)
+#  authentication_token   :string(255)      default("")
+#  accept_subscription    :boolean          default(TRUE)
+#  uuid                   :string(255)      not null
+#  cv_updated_at          :datetime
+#  phone                  :string(255)
+#  company_name           :string(255)
+#  country_id             :integer
+#  role                   :string(255)      default("user")
+#  verify_at              :datetime
+#  parent_id              :integer
+#  locked_at              :datetime
+#  unlock_token           :string(255)
+#  crew_id                :integer
 #
 
 require 'spec_helper'

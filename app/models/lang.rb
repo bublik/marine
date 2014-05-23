@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: langs
+#
+#  id          :integer          not null, primary key
+#  language_id :integer
+#  level       :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
+#  user_id     :integer          not null
+#
+
 class Lang < ActiveRecord::Base
   belongs_to :language
   belongs_to :user

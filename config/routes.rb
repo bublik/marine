@@ -27,7 +27,6 @@ Marine::Application.routes.draw do
     end
 
     collection do
-      post :search
       get :enter, as: :sailor
       post :get_access
       patch :complete

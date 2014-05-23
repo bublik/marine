@@ -1,4 +1,4 @@
-= simple_form_for(@personal, remote: true, html: {format: :js, multipart: true, role: 'form',
+= simple_form_for(@personal, html: {remote: true, format: :js, multipart: true, role: 'form',
 class: 'registration '}) do |f|
   = token_tag
   = f.error_notification

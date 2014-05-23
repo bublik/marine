@@ -7,8 +7,17 @@ body {
 }
 
 header {
-  .navbar-fixed-top {
+  //  .navbar-fixed-top {
+  //
+  //  }
+  .navbar-static-top {
     background: #fff;
+    margin: 0;
+    min-height: 30px;
+    .navbar-nav > li > a {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
   }
   .img-bg {
     background: image-url('bg-home.jpg') 100%;
@@ -39,15 +48,16 @@ header {
     }
   }
 
-  @media (min-width: 768px){
-    .navbar-nav{
+  @media (min-width: 768px) {
+    .navbar-nav {
       margin: 0 auto;
       display: table;
       table-layout: fixed;
-      float:none;
+      float: none;
     }
   }
 }
+
 #map_canvas {
   display: block;
   width: 770px;
@@ -73,6 +83,7 @@ footer {
     }
   }
 }
+
 #toTop {
   text-decoration: none;
   position: fixed;
@@ -88,6 +99,7 @@ footer {
   right: 50%;
   bottom: 20px;
 }
+
 #toTop:hover {
   background: image-url('ui.totop.png') 0 bottom no-repeat;
 }

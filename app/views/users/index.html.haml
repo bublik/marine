@@ -20,7 +20,7 @@
       %th Type
       %th DWT
       %th Actions
-  - @users.each do |user|
+  - @users.decorate.each do |user|
     %tr
       %td
         = user.id
@@ -29,13 +29,19 @@
       %td= user.languages
       %td= user.required_position
       %td= user.salary
-      %td= user.cv_updated_at
+      %td
+        = user.cv_updated_at
+        - if current_user.can_edit?(user)
+          = link_to(icon('pencil'), sailor_users_url(user_email: user.email, user_token: user.authentication_token), title: 'Edit')
       %td= user.vessel_types
       %td= user.dwts
       %td
-        %div
-          = link_to 'HTML orig', cv_user_path(user.uuid, format: 'html'), target: 'blank'
-          = link_to 'HTML affil', cv_user_path(user.uuid, format: 'html'), target: 'blank'
-        %div
-          = link_to 'PDF orig', cv_user_path(user.uuid, format: 'pdf'), target: 'blank'
-          = link_to 'PDF affil', cv_user_path(user.uuid, format: 'pdf'), target: 'blank'
+        - if user.cv_updated_at.blank?
+          %div
+            = link_to 'HTML orig', cv_user_path(user.uuid, format: 'html'), target: 'blank'
+            = link_to 'HTML affil', cv_user_path(user.uuid, format: 'html'), target: 'blank'
+          %div
+            = link_to 'PDF orig', cv_user_path(user.uuid, format: 'pdf'), target: 'blank'
+            = link_to 'PDF affil', cv_user_path(user.uuid, format: 'pdf'), target: 'blank'
+
+= paginate @users

@@ -4,19 +4,21 @@ class UsersController < ApplicationController
   before_filter :check_access, only: [:index, :create_seafarer]
 
   def index
-    #flash[:warning] = 'TODO ADD users permission scope!!!'
-                                           #where('cv_updated_at IS NOT NULL AND personals.id IS NOT NULL').
-    @users = User.joins(:personal).includes(:langs).all.decorate
-  end
+    if params[:scope].eql?('all')
+      @users = User.users
+      unless current_user.admin?
+        @users = @users.where(crew_id: current_user.crew_id)
+      end
 
-  def search
-    @users = User.all.decorate
-    render 'index'
-  end
+    else
+      @users = User.users.joins(:personal)
+      scope_personals
+      scope_langs
+      scope_seaservices
+    end
 
-  # def show
-  #   @user = User.find(params[:id])
-  # end
+    @users = @users.page(params[:page]).per(10)
+  end
 
   def agencies
     @agencies = User.agencies.newer.page(params[:page]).per(10)
@@ -198,6 +200,32 @@ class UsersController < ApplicationController
       flash[:error] = 'You dont have access to this page.'
       return false
     end
-
   end
+
+  def scope_langs
+    if params[:language_id].present?
+      langs_scope = []
+      langs_scope << "langs.language_id =  #{params[:language_id]}"
+      langs_condition = "SELECT user_id FROM langs WHERE #{langs_scope.join('AND')}"
+      @users = @users.where("users.id IN (#{langs_condition})")
+    end
+  end
+
+  def scope_seaservices
+    if params[:vessel_type_id].present? || params[:vessel_dwt].present?
+      seaservices_scope = []
+      seaservices_scope << "seaservices.vessel_type_id = #{params[:vessel_type_id]}" if params[:vessel_type_id].present?
+      seaservices_scope << "seaservices.vessel_dwt > #{params[:vessel_dwt]}" if params[:vessel_dwt].present?
+      seaservices_scope = "SELECT user_id FROM seaservices WHERE #{seaservices_scope.join(' AND ')}"
+      @users = @users.where("users.id IN (#{seaservices_scope})")
+    end
+  end
+
+  def scope_personals
+    @users = @users.where('personals.rank_id = ?', params[:rank_id]) if params[:rank_id].present?
+    @users = @users.where('personals.country_id = ?', params[:country_id]) if params[:country_id].present?
+    @users = @users.where('personals.salary < ?', params[:salary]) if params[:salary].present?
+    @users = @users.where('YEAR(CURRENT_DATE) - YEAR(personals.pp_dob) < ?', params[:years]) if params[:years].present?
+  end
+
 end
