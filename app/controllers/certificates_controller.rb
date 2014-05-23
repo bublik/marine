@@ -6,6 +6,7 @@ class CertificatesController < ApplicationController
   # GET /certificates
   # GET /certificates.json
   def index
+    @user_cert_ids = current_user.certificates.pluck(:cert_id).uniq
     @certificates = current_user.certificates
   end
 
@@ -80,14 +81,14 @@ class CertificatesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_certificate
-      @certificate = Certificate.find(params[:id])
-      @certs = Cert.by_category(@certificate.cert.category)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_certificate
+    @certificate = Certificate.find(params[:id])
+    @certs = Cert.by_category(@certificate.cert.category)
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def certificate_params
-      params.require(:certificate).permit(:cert_id, :country_id, :is_flag, :issuer, :from_date, :to_date, :is_unlimited, :licence_number)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def certificate_params
+    params.require(:certificate).permit(:cert_id, :country_id, :is_flag, :issuer, :from_date, :to_date, :is_unlimited, :licence_number)
+  end
 end

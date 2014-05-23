@@ -1,5 +1,12 @@
 .light {
-  background: image-url('light-bg.jpg')
+  background: image-url('light-bg.jpg');
+  main {
+    .container {
+      .well {
+        margin-top: 10%;
+      }
+    }
+  }
 }
 
 .registration {
