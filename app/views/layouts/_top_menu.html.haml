@@ -4,10 +4,6 @@
       /left
       %ul.nav.navbar-nav.navbar-left
         - if user_signed_in?
-          - if current_user.admin?
-            %li= link_to('Agencies', agencies_path)
-            %li= link_to('System Admin', root_url(subdomain: 'admin'))
-
           - if current_user.crewing?
             %li= link_to(icon('bookmark') + ' Managers', managers_path)
 
@@ -19,6 +15,10 @@
           - else
             %li= link_to(icon('search') + ' Seafarers', users_path)
             %li= link_to(icon('th-list') + ' All', users_path(scope: 'all'))
+
+          - if current_user.admin?
+            %li= link_to(icon('flag') + ' Agencies', agencies_path)
+            %li= link_to(icon('cog') + ' System Admin', root_url(subdomain: 'admin'))
 
 
       /right

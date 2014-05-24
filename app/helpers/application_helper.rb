@@ -6,14 +6,7 @@ module ApplicationHelper
 
   def menu_style
     return '' unless user_signed_in?
-    case current_user.role
-      when /admin/
-        'bg-danger'
-      when /crewing/
-        'bg-crewing'
-      when /manager/
-        'bg-manager'
-    end
+    "bg-#{current_user.role}"
   end
 
   def display_base_errors resource
