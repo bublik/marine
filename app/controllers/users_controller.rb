@@ -134,8 +134,41 @@ class UsersController < ApplicationController
     if Rails.env.development? && @user.nil?
       @user = User.find_by_id(params[:id]).decorate
     end
-    logger.debug("DEBUG #{params[:debug].present?}")
-    @contact = @user.contact.decorate
+
+    @contact = @user.contact
+    @user_contact = @contact.decorate
+    if user_signed_in?
+      logger.info("CURRENT_USER #{current_user.role} #{current_user.name} #{current_user.id}")
+      #Admin
+      if current_user.admin?
+        logger.info('ADMIN ->>')
+        @contact = current_user.contact if params[:original].blank?
+        #Agency
+      elsif (current_user.manager? || current_user.crewing?)
+        logger.info('CREW ->>')
+        # анкета принадлежит агенству и не надо оригинальные контакты
+        # Подставляем контакты агенства
+        # анкета принадлежит агенству и менеджер  или пользователь является агенством которое приписсаломоряка
+        if (@user.agency.eql?(current_user.agency) || @user.crew_id.eql?(current_user.id))
+          logger.info('CREW OWN->>')
+          @contact = @user.agency.contact if params[:original].blank?
+        else # не принадлежит агенству
+          @contact = @user.head_contact
+        end
+      elsif current_user.user?
+        @contact = @user.head_contact if !@user.id.eql?(current_user.id)
+      end
+
+    else
+      logger.info('Guest')
+      #Guest
+      @contact = @user.head_contact
+    end
+
+    @hide_details = !@contact.id.eql?(@user.contact.id)
+
+    @contact = @contact.decorate
+
     @personal = @user.personal.decorate
     @documents = @user.documents.decorate
     @seaservices = @user.seaservices.last_years(5).decorate

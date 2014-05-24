@@ -4,8 +4,7 @@
 .row
   .col-md-4.contact= render 'cv_contact', {contact: @contact}
   .col-md-4
-  .col-md-4
-    = @personal.photo
+  .col-md-4= @personal.photo(@hide_details)
 .h4.text-center
   Required salary: #{@personal.required_salary}
 %table.table.table-bordered.table-condensed
@@ -30,19 +29,19 @@
     %td{colspan: 2}= @personal.pp_pob
     %td= @personal.country.name
     %td.head Next of kin:
-    %td= @user.next_of_kin_contact.next_of_kin
+    %td= @hide_details ? '-' :  @user.next_of_kin_contact.next_of_kin
   %tr
     %td.head Address
-    %td{colspan: 3}= @user.contact.decorate.cv_address
+    %td{colspan: 3}= @user_contact.cv_address(@hide_details)
     %td.head Address
-    %td= @user.next_of_kin_contact.decorate.cv_address
+    %td= @user.next_of_kin_contact.decorate.cv_address(@hide_details)
   %tr
     %td.head Cell:
-    %td= @user.contact.mphone
+    %td= @user_contact.mphone(@hide_details)
     %td.head Tel:
-    %td= @user.contact.phone
+    %td= @user_contact.phone(@hide_details)
     %td.head Tel:
-    %td= @user.next_of_kin_contact.phone
+    %td= @user.next_of_kin_contact.decorate.phone(@hide_details)
   %tr
     %td.head.text-center{colspan: 4} Last medical certificate:
     %td.head Height/ Weight:

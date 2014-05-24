@@ -1,16 +1,15 @@
-%hr/
+%h1 Seafarers
 .row
   = render 'search_form'
   .new_seafarer{style: 'display: none'}
     = render 'seafarer_form'
   .col-md-2.pull-right
     = link_to('Add Seafarer', '#', onclick: "$('.search').hide(); $('.new_seafarer').fadeIn()", class: 'btn btn-success')
-
 %br/
 
 %table.table.table-hover
   %thead
-    %tr
+    %tr>
       %th Name
       %th Year old
       %th Lang
@@ -19,29 +18,30 @@
       %th CV date
       %th Type
       %th DWT
-      %th Actions
+      %th HTML
+      %th PDF
   - @users.decorate.each do |user|
     %tr
-      %td
+      %td>
         = user.id
         = user.full_name
       %td= user.year_old
       %td= user.languages
       %td= user.required_position
       %td= user.salary
-      %td
+      %td>
         = user.cv_updated_at
         - if current_user.can_edit?(user)
           = link_to(icon('pencil'), sailor_users_url(user_email: user.email, user_token: user.authentication_token), title: 'Edit')
       %td= user.vessel_types
       %td= user.dwts
-      %td
-        - if user.cv_updated_at.blank?
-          %div
-            = link_to 'HTML orig', cv_user_path(user.uuid, format: 'html'), target: 'blank'
-            = link_to 'HTML affil', cv_user_path(user.uuid, format: 'html'), target: 'blank'
-          %div
-            = link_to 'PDF orig', cv_user_path(user.uuid, format: 'pdf'), target: 'blank'
-            = link_to 'PDF affil', cv_user_path(user.uuid, format: 'pdf'), target: 'blank'
+      %td>
+        - if user.completed?
+          = link_to icon('floppy-saved'), cv_user_path(user.uuid, original: true, format: 'html'), title: 'original contacts', target: 'blank', class: 'btn btn-success btn-xs'
+          = link_to icon('floppy-disk'), cv_user_path(user.uuid, format: 'html'), title: 'Crew contacts', target: 'blank', class: 'btn btn-info btn-xs'
+      %td>
+        - if user.completed?
+          = link_to icon('floppy-saved'), cv_user_path(user.uuid, original: true, format: 'pdf'), title: 'original contacts', target: 'blank', class: 'btn btn-success btn-xs'
+          = link_to icon('floppy-disk'), cv_user_path(user.uuid, format: 'pdf'), title: 'Crew contacts', target: 'blank', class: 'btn btn-info btn-xs'
 
 = paginate @users

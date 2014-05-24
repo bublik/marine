@@ -2,10 +2,10 @@ class PersonalsController < ApplicationController
   before_action :set_personal, only: [:show, :edit, :update, :destroy]
   layout 'registration'
 
-  # GET /personals
-  # GET /personals.json
+  # # GET /personals
+  # # GET /personals.json
   def index
-    @personals = Personal.all
+    redirect_to new_personal_path
   end
 
   # GET /personals/1

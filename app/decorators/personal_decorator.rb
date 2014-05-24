@@ -41,8 +41,8 @@ class PersonalDecorator < Draper::Decorator
     object.photo.path || 'fallback/default.png'
   end
 
-  def photo
-    h.image_tag(object.photo, width: '180px')
+  def photo(hide = false)
+    h.image_tag(hide ? object.photo.default_url : object.photo_url, width: '180px')
   end
 
   def pdf_file_name

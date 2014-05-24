@@ -18,6 +18,14 @@ GIT
       polyamorous (~> 1.0.0)
 
 GIT
+  remote: git://github.com/amatsuda/kaminari.git
+  revision: 7b049067b143212a172d5bb472184eac23121f34
+  specs:
+    kaminari (0.15.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
+
+GIT
   remote: git://github.com/gregbell/active_admin.git
   revision: cf3b1f70ab0eafc90e8ba4e9f7afdf0a8d094efb
   specs:
@@ -196,9 +204,6 @@ GEM
     jquery-ui-rails (4.2.1)
       railties (>= 3.2.16)
     json (1.8.1)
-    kaminari (0.15.1)
-      actionpack (>= 3.0.0)
-      activesupport (>= 3.0.0)
     launchy (2.4.2)
       addressable (~> 2.3)
     letter_opener (1.2.0)
@@ -363,7 +368,7 @@ DEPENDENCIES
   html2haml
   jbuilder (~> 2.0)
   jquery-rails
-  kaminari
+  kaminari!
   letter_opener
   mini_magick
   mysql2

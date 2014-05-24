@@ -10,20 +10,26 @@ class ContactDecorator < Draper::Decorator
   #     end
   #   end
 
-  def short_address
-    [object.postal_code, object.street, object.city, object.region, object.country.name].join(', ')
+  def short_address(short = false)
+    short ?
+      [object.city, object.region, object.country.name].join(', ') :
+      [object.postal_code, object.street, object.city, object.region, object.country.name].join(', ')
   end
 
-  def cv_address
-    [object.street, object.city, object.country.name].join(', ')
+  def cv_address(short = false)
+    short ?
+      [object.city, object.country.name].join(', ') :
+      [object.street, object.city, object.country.name].join(', ')
   end
 
-  def mphone
-    h.number_to_phone(object.mphone)
+  def mphone(short = false)
+    short ? '-' :
+      h.number_to_phone(object.mphone)
   end
 
-  def phone
-    h.number_to_phone(object.phone)
+  def phone(short = false)
+    short ? '-' :
+      h.number_to_phone(object.phone)
   end
 
 end

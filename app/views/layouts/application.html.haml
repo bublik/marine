@@ -24,16 +24,17 @@
       .container.container-fluid
         = render 'layouts/messages'
         = yield
-        .row
-          .col-md3
-            admin@gg.com
-            ,fhfrelf
-          .col-md3
-            crew1@gg.com
-            Sc7dD9
-          .col-md3
-            manager2@gg.com
-            sjqETb
+        - if Rails.env.development?
+          .row
+            .col-md-3
+              admin@gg.com
+              ,fhfrelf
+            .col-md-3
+              crew1@gg.com
+              Sc7dD9
+            .col-md-3
+              manager2@gg.com
+              sjqETb
 
     %footer
       .container
@@ -61,4 +62,4 @@
                 Marine Transportation &copy;
                 %span#copyright-year
                 •
-                %a.h-underline{:href => "index-5.html"} Privacy Policy
+                %a.h-underline{:href => "#"} Privacy Policy

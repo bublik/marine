@@ -44,13 +44,13 @@ class User < ActiveRecord::Base
   attr_accessor :create_by_email, :email_confirmation
 
   belongs_to :country
-  belongs_to :agency, foreign_key: :crew_id
-  belongs_to :creator, foreign_key: :parent_id
+  belongs_to :agency, foreign_key: :crew_id, class_name: 'User'
+  belongs_to :creator, foreign_key: :parent_id, class_name: 'User'
 
   has_one :personal
   accepts_nested_attributes_for :personal
   has_many :contacts
-  has_one :contact, -> { order 'created_at' }, class_name: 'Contact'
+  has_one :contact, -> { order 'created_at' }, inverse_of: :user, class_name: 'Contact'
   accepts_nested_attributes_for :contact
 
   has_one :next_of_kin_contact, -> { order('created_at').offset(1) }, class_name: 'Contact'
@@ -99,6 +99,15 @@ class User < ActiveRecord::Base
     certificates.joins(:cert).where(certs: {category: 'documents'}).order(:from_date)
   end
 
+  def head_contact
+    if self.crew_id.blank?
+      # контакт первого админа если пользоватеть сам зарегался
+      User.admins.first.contact
+    else
+      # Контакт агенства если пользователь зарегался из под агенства
+      self.agency.contact
+    end
+  end
   def self.create_by_email(param)
     email = param[:email]
     email_confirmation = param[:email_confirmation]

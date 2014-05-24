@@ -7,7 +7,7 @@ class RegistrationsController < Devise::RegistrationsController
     }
     devise_parameter_sanitizer.for(:account_update) {|u|
       u.permit(:name, :email, :phone, :company_name, :password, :password_confirmation, :current_password,
-               contact_attributes: [:country_id, :region, :city, :street, :postal_code, :phone, :mphone, :email, :skype])
+               contact_attributes: [:id, :country_id, :region, :city, :street, :postal_code, :phone, :mphone, :email, :skype])
     }
   end
 
