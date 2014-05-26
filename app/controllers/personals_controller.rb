@@ -46,13 +46,14 @@ class PersonalsController < ApplicationController
   def update
     respond_to do |format|
       if @personal.update(personal_params)
-        format.html { redirect_to @personal, notice: 'Personal was successfully updated.' }
+        format.html { redirect_to new_contact_path, notice: 'Personal was successfully updated.' }
         format.json { head :no_content }
+        format.js
       else
         format.html { render action: 'edit' }
         format.json { render json: @personal.errors, status: :unprocessable_entity }
+        format.js
       end
-      format.js
     end
   end
 
