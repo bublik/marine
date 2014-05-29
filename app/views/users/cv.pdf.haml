@@ -2,7 +2,7 @@
 .h3.text-center
   APPLICATION FORM
 .row
-  .col-xs-4.contact= render 'cv_contact.html', {contact: @contact}
+  .col-xs-4.contact= render 'users/cv_contact.html', {contact: @contact}
   .col-xs-4
   .col-xs-4= @hide_details ? '' : wicked_pdf_image_tag(@personal.photo_url, style: 'width: 120px')
 .h4.text-center
@@ -63,9 +63,8 @@
     %td.head Shoes:
     %td= @personal.shoe
 
-= render partial: 'cv_personal_documents.html', locals: {documents: @documents}
-= render partial: 'cv_certificates.html', locals: {certificates: @certificates, langs: @langs}
-
-= render partial: 'cv_sea_services.html', locals: {seaservices: @seaservices}
+= render partial: 'users/cv_personal_documents.html', locals: {documents: @documents}
+= render partial: 'users/cv_certificates.html',  locals: {certificates: @certificates, langs: @langs}
+= render partial: 'users/cv_sea_services.html',  locals: {seaservices: @seaservices}
 
 
