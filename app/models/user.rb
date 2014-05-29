@@ -175,7 +175,7 @@ class User < ActiveRecord::Base
   def can_edit?(user)
     return true if self.admin?
     logger.info("user.crew_id #{user.crew_id} == self.crew_id #{self.crew_id}")
-    user.crew_id.eql?(self.crew_id) && (self.crewing? || self.manager?)
+    user.crew_id && user.crew_id.eql?(self.crew_id) && (self.crewing? || self.manager?)
   end
 
   def verify!
