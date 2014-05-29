@@ -20,7 +20,7 @@ class Notifications < ActionMailer::Base
     @hide_details = false
 
     #https://github.com/mileszs/wicked_pdf
-    attachments[@personal.pdf_file_name] = WickedPdf.new.pdf_from_string(
+    attachments[@personal.pdf_file_name+'.pdf'] = WickedPdf.new.pdf_from_string(
       render_to_string(
         pdf: 'users/cv.pdf.haml', layout: 'layouts/cv.pdf.haml'),
       {margin: {top: 10, bottom: 0, left: 10, right: 0}}
