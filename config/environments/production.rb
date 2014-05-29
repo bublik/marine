@@ -80,7 +80,7 @@ Marine::Application.configure do
       :password  => ENV["MANDRILL_APIKEY"]
     }
   # ActionMailer Config
-  config.action_mailer.default_url_options = { :host => '188.226.245.139' }
+  config.action_mailer.default_url_options = { :host => 'icrewing.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
