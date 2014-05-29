@@ -108,6 +108,7 @@ class User < ActiveRecord::Base
       self.agency.contact
     end
   end
+
   def self.create_by_email(param)
     email = param[:email]
     email_confirmation = param[:email_confirmation]
@@ -140,9 +141,12 @@ class User < ActiveRecord::Base
     user = User.new(param.merge(password: password,
                                 password_confirmation: password))
 
-    user.parent_id = creator.id if creator
-    user.crew_id = creator.parent_id if creator.manager?
-    user.crew_id = creator.id if creator.admin? || creator.crewing?
+    if creator
+      user.parent_id = creator.id
+      user.crew_id = creator.parent_id if creator.manager?
+      user.crew_id = creator.id if creator.admin? || creator.crewing?
+    end
+
     user.role = role
     user.save
     user
