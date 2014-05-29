@@ -12,7 +12,6 @@ set :application, 'marine'
 set :branch, 'master'
 set :deploy_to, "/home/deployer/sites/#{fetch(:application)}"
 
-#
 # And/or per server (overrides global)
 # ------------------------------------
 server '188.226.245.139',
