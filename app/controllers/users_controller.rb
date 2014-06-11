@@ -259,8 +259,8 @@ class UsersController < ApplicationController
   def scope_personals
     @users = @users.where('personals.rank_id = ?', params[:rank_id]) if params[:rank_id].present?
     @users = @users.where('personals.country_id = ?', params[:country_id]) if params[:country_id].present?
-    @users = @users.where('personals.salary < ?', params[:salary]) if params[:salary].present?
-    @users = @users.where('YEAR(CURRENT_DATE) - YEAR(personals.pp_dob) < ?', params[:years]) if params[:years].present?
+    @users = @users.where('personals.salary <= ?', params[:salary]) if params[:salary].present?
+    @users = @users.where('YEAR(CURRENT_DATE) - YEAR(personals.pp_dob) <= ?', params[:years]) if params[:years].present?
   end
 
 end

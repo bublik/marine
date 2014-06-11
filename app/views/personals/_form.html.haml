@@ -27,7 +27,7 @@ class: 'registration '}) do |f|
       = f.input :note
       %hr/
 
-      = image_tag(@personal.photo_url) if @personal.photo?
+      = image_tag(@personal.photo_url) if @personal.errors.blank? && @personal.photo?
       = f.input :photo, as: :file
       //= f.hidden_field :photo_cache
 

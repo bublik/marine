@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, # :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable
 
-  attr_accessor :create_by_email, :email_confirmation
+  attr_accessor :create_by_email, :email_confirmation, :failed_attempts
 
   belongs_to :country
   belongs_to :agency, foreign_key: :crew_id, class_name: 'User'

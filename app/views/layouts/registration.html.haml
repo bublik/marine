@@ -12,6 +12,7 @@
     %main{:role => "main"}
       = render 'layouts/messages'
       .container.container_wizard
+        = debug session.keys
         - if session[:original_account_id].present?
           .row
             .col-md-3.col-md-offset-9
