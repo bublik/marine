@@ -1,5 +1,5 @@
 $ ->
   $('#myWizard').wizard()
   $('body').on 'click', 'input.datepicker', ()->
-    $(this).datepicker({ format: 'yyyy-mm-dd', autoclose: true}).focus()
+    $(this).datepicker({ format: 'dd-mm-yyyy', autoclose: true}).focus()
 

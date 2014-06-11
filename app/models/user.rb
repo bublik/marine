@@ -1,6 +1,4 @@
-# == Schema Information
-#
-# Table name: users
+# == Schema Information # # Table name: users
 #
 #  id                     :integer          not null, primary key
 #  email                  :string(255)      default(""), not null
@@ -36,6 +34,7 @@
 #
 
 class User < ActiveRecord::Base
+  ROLES = ['user', 'manager', 'crewing', 'admin']
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, # :confirmable,
@@ -68,10 +67,12 @@ class User < ActiveRecord::Base
   validates :phone, :name, :company_name, :country_id, presence: true, if: :crewing?
   validates :parent_id, presence: true, if: :manager?
 
-  scope :admins, -> { where(role: 'admin') }
-  scope :agencies, -> { where(role: 'crewing') }
   scope :newer, -> { order('id desc') }
-  scope :users, -> { where(role: 'user') }
+
+  ROLES.each do |role|
+    scope role.pluralize, -> { where(role: role) }
+    define_method("#{role}?") { self.role.eql?(role) }
+  end
 
   before_create :generate_token
   before_save :create_uuid
@@ -152,24 +153,8 @@ class User < ActiveRecord::Base
     user
   end
 
-  def crewing?
-    role.eql?('crewing')
-  end
-
-  def admin?
-    role.eql?('admin')
-  end
-
-  def manager?
-    role.eql?('manager')
-  end
-
   def verified?
     verify_at.present?
-  end
-
-  def user?
-    !['admin', 'crewing', 'manager'].include?(self.role)
   end
 
   def can_edit?(user)

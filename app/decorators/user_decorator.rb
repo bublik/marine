@@ -29,7 +29,7 @@ class UserDecorator < Draper::Decorator
   end
 
   def cv_updated_at
-    object.cv_updated_at ? object.cv_updated_at.strftime("%m/%d/%Y") : 'incomplete'
+    object.cv_updated_at ? object.cv_updated_at.strftime("%d/%m/%Y") : 'incomplete'
   end
 
   def completed?

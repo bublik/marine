@@ -4,14 +4,14 @@ class: 'registration '}) do |f|
   = f.error_notification
   .row
     .col-md-8
-      = f.input :available_from, as: :string, placeholder: 'yyyy-mm-dd', input_html:{autocomplete: 'off', class: 'datepicker'}
+      = f.input :available_from, as: :string, placeholder: 'dd-mm-yyyy', input_html:{autocomplete: 'off', class: 'datepicker'}
       = f.association :rank
       = f.input :required_position
       = f.input :salary, label_method: :amount
       = f.input :surname
       = f.input :name
       = f.input :middle_name
-      = f.input :pp_dob, as: :string, placeholder: 'yyyy-mm-dd', input_html:{autocomplete: 'off', class: 'datepicker'}
+      = f.input :pp_dob, as: :string, placeholder: 'dd-mm-yyyy', input_html:{autocomplete: 'off', class: 'datepicker'}
       = f.input :pp_pob
       = f.association :country
       = f.association :citizenship

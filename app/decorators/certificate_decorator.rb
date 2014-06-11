@@ -1,8 +1,6 @@
 class CertificateDecorator < Draper::Decorator
   delegate_all
 
-  # object.created_at.strftime("%m/%d/%y")
-
   def cert
     object.cert.name
   end
