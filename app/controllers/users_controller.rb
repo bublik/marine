@@ -136,7 +136,7 @@ class UsersController < ApplicationController
     end
 
     @contact = @user.contact
-    @user_contact = @contact.decorate
+    @user_contact = @user.contact.decorate
     if user_signed_in?
       logger.info("CURRENT_USER #{current_user.role} #{current_user.name} #{current_user.id}")
       #Admin
@@ -148,11 +148,13 @@ class UsersController < ApplicationController
         logger.info('CREW ->>')
         # анкета принадлежит агенству и не надо оригинальные контакты
         # Подставляем контакты агенства
-        # анкета принадлежит агенству и менеджер  или пользователь является агенством которое приписсаломоряка
+        # анкета принадлежит агенству и менеджер  или пользователь является агенством которое приписсало моряка
         if (@user.agency.eql?(current_user.agency) || @user.crew_id.eql?(current_user.id))
           logger.info('CREW OWN->>')
-          @contact = @user.agency.contact if params[:original].blank?
+          agency = current_user.crewing? ? current_user : current_user.agency
+          @contact = agency.contact if params[:original].blank?
         else # не принадлежит агенству
+          logger.info('Admin owner->>')
           @contact = @user.head_contact
         end
       elsif current_user.user?

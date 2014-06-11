@@ -73,6 +73,7 @@ class User < ActiveRecord::Base
     scope role.pluralize, -> { where(role: role) }
     define_method("#{role}?") { self.role.eql?(role) }
   end
+  scope :agencies, -> { where(role: 'crewing') }
 
   before_create :generate_token
   before_save :create_uuid

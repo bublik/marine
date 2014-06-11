@@ -21,18 +21,10 @@
       = link_to('Language', langs_path)
       %span.chevron
   .actions
+    - if session[:original_account_id].present?
+      = link_to('Back to Management', management_path, class: 'btn btn-success')
     - if user_signed_in?
       = link_to 'Logout', destroy_user_session_path, method: 'delete', class: 'btn btn-warning'
-  -#.actions
-    %button.btn.btn-mini.btn-prev{:type => "button"}
-      %i.icon-arrow-left>
-      Prev
-    %button.btn.btn-mini.btn-next{"data-last" => "Finish", :type => "button"}
-      Next
-      %i.icon-arrow-right
-.step-content= yield
--##step1.step-pane.active
--##step2.step-pane This is step 2
--##step3.step-pane This is step 3
--##step4.step-pane This is step 4
--##step5.step-pane This is step 5
+.step-content
+  = render 'layouts/messages'
+  = yield
