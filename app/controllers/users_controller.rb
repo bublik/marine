@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     if params[:scope].eql?('all')
       @users = User.users
       unless current_user.admin?
-        @users = @users.where(crew_id: current_user.crew_id)
+        @users = @users.where(crew_id: current_user.crew_id).where('crew_id IS NOT NULL')
       end
 
     else
@@ -135,26 +135,27 @@ class UsersController < ApplicationController
       @user = User.find_by_id(params[:id]).decorate
     end
 
-    @contact = @user.contact
-    @user_contact = @user.contact.decorate
+    @contact = @user.head_contact
+    @user_contact = (@user.contact || @user.build_contact).decorate
     if user_signed_in?
       logger.info("CURRENT_USER #{current_user.role} #{current_user.name} #{current_user.id}")
       #Admin
       if current_user.admin?
         logger.info('ADMIN ->>')
-        @contact = current_user.contact if params[:original].blank?
+        @contact = current_user.contact #if params[:original].blank?
         #Agency
       elsif (current_user.manager? || current_user.crewing?)
         logger.info('CREW ->>')
         # анкета принадлежит агенству и не надо оригинальные контакты
         # Подставляем контакты агенства
         # анкета принадлежит агенству и менеджер  или пользователь является агенством которое приписсало моряка
-        if (@user.agency.eql?(current_user.agency) || @user.crew_id.eql?(current_user.id))
+        if @user.agency.present? && (@user.agency.eql?(current_user.agency) || @user.crew_id.eql?(current_user.id))
           logger.info('CREW OWN->>')
           agency = current_user.crewing? ? current_user : current_user.agency
-          @contact = agency.contact if params[:original].blank?
+          @contact = agency.contact || agency.build_contact if params[:original].blank?
         else # не принадлежит агенству
           logger.info('Admin owner->>')
+          @hide_details = true
           @contact = @user.head_contact
         end
       elsif current_user.user?
@@ -167,21 +168,31 @@ class UsersController < ApplicationController
       @contact = @user.head_contact
     end
 
-    @hide_details = !@contact.id.eql?(@user.contact.id)
+    @hide_details = true if params[:original].blank?
 
     @contact = @contact.decorate
+    begin
+      @personal = @user.personal.decorate
+      @documents = @user.documents.decorate
+      @seaservices = @user.seaservices.last_years(5).decorate
+      @certificates = @user.certificates.decorate
+      @last_medical_certificate = @user.medical_certificates.last
+      @langs = @user.langs.includes(:language)
 
-    @personal = @user.personal.decorate
-    @documents = @user.documents.decorate
-    @seaservices = @user.seaservices.last_years(5).decorate
-    @certificates = @user.certificates.decorate
-    @last_medical_certificate = @user.medical_certificates.last
-    @langs = @user.langs.includes(:language)
-
-    @user = @user.decorate
+      @user = @user.decorate
+    rescue
+      render text: "User information incomplete, and can't be shown!"
+      return
+    end
     #https://github.com/mileszs/wicked_pdf
     respond_to do |format|
-      format.html { render layout: 'cv' }
+      format.html {
+        if params[:contacts_only].present?
+          render partial: 'cv_user_contacts', locals: {contact: @contact}
+        else
+          render layout: 'cv'
+        end
+      }
       format.pdf {
         render({
                  pdf: "#{@personal.pdf_file_name}.pdf",

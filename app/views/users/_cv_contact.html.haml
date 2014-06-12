@@ -9,17 +9,3 @@
   .col-xs-12 Mob: #{contact.mphone}
 .row
   .col-xs-12 E-mail: #{contact.email}
--# if Rails.env.development?
-  current_user.id #{current_user.id}
-  user.id #{@user.id}
-  @hide_details #{@hide_details}
-  = contact.id
-  = @user.contact.id
-  - if @user.agency
-    = debug @user.agency.contacts
-  - else
-    %div No Agency
-  - if @user.creator
-    = debug @user.creator.contacts
-  - else
-    %div No creator

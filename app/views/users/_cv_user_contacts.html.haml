@@ -1,0 +1,55 @@
+%table.table.table-bordered.table-condensed
+  %tr
+    %td.head Last Name:
+    %td{colspan: 3}= @personal.surname
+    %td.head Rank:
+    %td= @personal.rank
+  %tr
+    %td.head First Name:
+    %td{colspan: 3}= @personal.name
+    %td.head Position required:
+    %td= @personal.required_position
+  %tr
+    %td.head Date of birth
+    %td.head{colspan: 2} Place of birth
+    %td.head Citizenship
+    %td.head Marital status:
+    %td= @personal.marital
+  %tr
+    %td= @personal.pp_dob
+    %td{colspan: 2}= @personal.pp_pob
+    %td= @personal.country.name
+    %td.head Next of kin:
+    %td= @hide_details ? '-' :  @user.next_of_kin_contact.next_of_kin
+  %tr
+    %td.head Address
+    %td{colspan: 3}= @user_contact.cv_address(@hide_details)
+    %td.head Address
+    %td= @user.next_of_kin_contact.decorate.cv_address(@hide_details)
+  %tr
+    %td.head Cell:
+    %td= @user_contact.mphone(@hide_details)
+    %td.head Tel:
+    %td= @user_contact.phone(@hide_details)
+    %td.head Tel:
+    %td= @user.next_of_kin_contact.decorate.phone(@hide_details)
+  %tr
+    %td.head.text-center{colspan: 4} Last medical certificate:
+    %td.head Height/ Weight:
+    %td
+      = @personal.height
+      = @personal.weight
+  %tr
+    %td.head Place:
+    %td= @last_medical_certificate ? @last_medical_certificate.decorate.country : '-'
+    %td.head Date:
+    %td= @last_medical_certificate ? @last_medical_certificate.decorate.from_date : '-'
+    %td.head Overall size:
+    %td= @personal.overallsize
+  %tr
+    %td.head Eyes:
+    %td= @personal.eye
+    %td.head Hair:
+    %td= @personal.hair
+    %td.head Shoes:
+    %td= @personal.shoe

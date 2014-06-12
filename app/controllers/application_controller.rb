@@ -10,15 +10,17 @@ class ApplicationController < ActionController::Base
   private
 
   def check_steps
-    logger.info controller_name
-    check_contacts if controller_name.eql?('certificates')
-    check_personal if controller_name.eql?('contacts')
-    check_certificates if controller_name.eql?('seaservices')
+    # for authorized users
+    if user_signed_in? && current_user.user?
+      check_contacts if controller_name.eql?('certificates')
+      check_personal if controller_name.eql?('contacts')
+      check_certificates if controller_name.eql?('seaservices')
 
-    if controller_name.eql?('langs')
-      check_contacts
-      check_personal
-      check_certificates
+      if controller_name.eql?('langs')
+        check_contacts
+        check_personal
+        check_certificates
+      end
     end
   end
 

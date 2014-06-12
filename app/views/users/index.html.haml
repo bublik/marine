@@ -22,9 +22,9 @@
       %th PDF
   - @users.decorate.each do |user|
     %tr
-      %td>
-        = user.id
-        = user.full_name
+      %td{id: dom_id(user)}
+        %span.label.label-default{title: user.id}= user.crew_id ? 'C' : 'A'
+        = link_to(user.full_name, cv_user_path(user.uuid, original: true, contacts_only: true, format: 'html'),  data:{toggle: 'modal', target: '#modal'})
       %td= user.year_old
       %td= user.languages
       %td= user.required_position
@@ -38,10 +38,22 @@
       %td>
         - if user.completed?
           = link_to icon('floppy-saved'), cv_user_path(user.uuid, original: true, format: 'html'), title: 'original contacts', target: 'blank', class: 'btn btn-success btn-xs'
-          = link_to icon('floppy-disk'), cv_user_path(user.uuid, format: 'html'), title: 'Crew contacts', target: 'blank', class: 'btn btn-info btn-xs'
+          = link_to icon('floppy-disk'), cv_user_path(user.uuid, format: 'html'), title: 'Hidden contacts', target: 'blank', class: 'btn btn-warning btn-xs'
       %td>
         - if user.completed?
           = link_to icon('floppy-saved'), cv_user_path(user.uuid, original: true, format: 'pdf'), title: 'original contacts', target: 'blank', class: 'btn btn-success btn-xs'
-          = link_to icon('floppy-disk'), cv_user_path(user.uuid, format: 'pdf'), title: 'Crew contacts', target: 'blank', class: 'btn btn-info btn-xs'
+          = link_to icon('floppy-disk'), cv_user_path(user.uuid, format: 'pdf'), title: 'Hidden contacts', target: 'blank', class: 'btn btn-warning btn-xs'
 
 = paginate @users
+
+
+#modal.modal.fade{tabindex: "-1", role: "dialog", aria: {hidden:"true"}}
+  %div{class: 'modal-dialog modal-lg'}
+    %div{class: 'modal-content p10 well'}
+      .modal-header
+      .modal-body
+
+:javascript
+  $(document).on('hidden.bs.modal', function (e) {
+    $(e.target).removeData('bs.modal');
+  });
