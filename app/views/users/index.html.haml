@@ -23,7 +23,7 @@
   - @users.decorate.each do |user|
     %tr
       %td{id: dom_id(user)}
-        %span.label.label-default{title: user.id}= user.crew_id ? 'C' : 'A'
+        %span.label.label-default{title: "u:#{user.id} c:#{user.crew_id}"}= user.crew_id ? 'C' : 'A'
         = link_to(user.full_name, cv_user_path(user.uuid, original: true, contacts_only: true, format: 'html'),  data:{toggle: 'modal', target: '#modal'})
       %td= user.year_old
       %td= user.languages
