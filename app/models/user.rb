@@ -48,6 +48,7 @@ class User < ActiveRecord::Base
 
   has_one :personal
   accepts_nested_attributes_for :personal
+
   has_many :contacts
   has_one :contact, -> { order 'created_at' }, inverse_of: :user, class_name: 'Contact'
   accepts_nested_attributes_for :contact

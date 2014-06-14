@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140522181619) do
+ActiveRecord::Schema.define(version: 20140614185433) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 20140522181619) do
     t.integer  "user_id",     null: false
     t.string   "next_of_kin"
     t.string   "name"
+    t.string   "logo"
   end
 
   add_index "contacts", ["country_id"], name: "index_contacts_on_country_id", using: :btree

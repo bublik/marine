@@ -1,5 +1,5 @@
 .row
-  .col-xs-12 ##{contact.id}
+  .col-xs-12 #{request.format.html? ? image_tag(contact.logo_url, style: 'height: 90px') : wicked_pdf_image_tag(contact.logo_url, style: 'height: 90px')}
   .col-xs-12 #{contact.street}, #{contact.region}
 .row
   .col-xs-12 #{contact.postal_code}, #{contact.country.name}

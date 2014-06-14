@@ -51,7 +51,7 @@ class ApplicationController < ActionController::Base
 
     if user && Devise.secure_compare(user.authentication_token, params[:user_token])
       # store user sesstion
-      session[:original_account_id] = current_user.id
+      session[:original_account_id] = current_user && current_user.id
 
       sign_in user #, store: false
       redirect_to new_personal_path
