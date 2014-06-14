@@ -188,7 +188,8 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html {
         if params[:contacts_only].present?
-          render partial: 'cv_user_contacts', locals: {contact: @contact}
+          @seaservices = @user.seaservices.last_years(5).where(vessel_type_id: params[:vessel_type_id]).decorate
+          render 'contacts_only', layout: false
         else
           render layout: 'cv'
         end
