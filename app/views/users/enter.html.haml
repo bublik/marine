@@ -6,6 +6,7 @@
         = simple_form_for(@user, :url => get_access_users_path, remote: true) do |f|
           %label Enter your e-mail address to proceed further
           = f.input :email, :autofocus => true, label: 'Email', placeholder: 'Email'
+          = f.input :crew_id, as: :hidden
           - if request.xhr?
             = f.input :email_confirmation, :autofocus => true, label: 'Email confirmation'
           .row

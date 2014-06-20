@@ -1,5 +1,12 @@
-%h4 Edit Account
+%h3 Edit Account
 
+.row
+  .col-xs-2
+    %label Your Invitation URL
+  .col-xs-8
+    = text_field_tag :url, sailor_users_url(token: resource.intivation_token), class: 'form-control', disabled: true
+
+%hr/
 - resource.build_contact unless resource.contact
 = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
   .row

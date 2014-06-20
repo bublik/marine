@@ -112,6 +112,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  def intivation_token
+    if self.crew_id.blank?
+      # контакт первого админа если пользоватеть сам зарегался
+      User.admins.first.uuid
+    else
+      # Контакт агенства если пользователь зарегался из под агенства
+      self.agency.uuid
+    end
+  end
+
   def self.create_by_email(param)
     email = param[:email]
     email_confirmation = param[:email_confirmation]
@@ -121,6 +131,7 @@ class User < ActiveRecord::Base
     user = User.new(email: email,
                     create_by_email: true,
                     email_confirmation: email_confirmation,
+                    crew_id: param[:crew_id],
                     password: password,
                     password_confirmation: password)
     user.save

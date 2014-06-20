@@ -112,6 +112,7 @@ class UsersController < ApplicationController
     end
 
     @user = User.new
+    @user.crew_id =  User.find_by_uuid(params[:token]).id if params[:token].present?
   end
 
   def complete
@@ -224,6 +225,7 @@ class UsersController < ApplicationController
         sign_in @user
         render text: "window.location = '#{new_personal_path}';"
       else
+        logger.info(@user.errors.inspect)
         # нет мыла или подтверждение не совпадает
       end
       return
@@ -240,7 +242,7 @@ class UsersController < ApplicationController
   private
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:name, :email, :email_confirmation, :phone, :company_name, :country_id, :accept_subscription)
+    params.require(:user).permit(:name, :email, :email_confirmation, :phone, :company_name, :crew_id, :country_id, :accept_subscription)
   end
 
   def check_access
