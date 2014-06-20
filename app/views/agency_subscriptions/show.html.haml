@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Email:
+  = @agency_subscription.email
+%p
+  %b Name:
+  = @agency_subscription.name
+%p
+  %b Is active:
+  = @agency_subscription.is_active
+
+= link_to 'Edit', edit_agency_subscription_path(@agency_subscription)
+\|
+= link_to 'Back', agency_subscriptions_path

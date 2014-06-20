@@ -10,6 +10,7 @@ module Marine
   class Application < Rails::Application
     config.middleware.use WickedPdf::Middleware
 
+    config.app_generators.scaffold_controller = :scaffold_controller
     config.generators do |g|
       g.test_framework :rspec, views: false, fixture: true
       g.fixture_replacement :factory_girl, dir: 'spec/factories'

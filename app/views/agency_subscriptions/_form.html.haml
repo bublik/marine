@@ -1,0 +1,14 @@
+.row
+  .col-xs-8.col-xs-offset-2
+    = simple_form_for(@agency_subscription) do |f|
+      = f.error_notification
+
+      .form-inputs
+        = f.input :email
+        = f.input :name
+        = f.input :is_active
+
+      .row
+        .col-sm-5.col-sm-offset-3
+          = f.button :submit, class: 'btn-primary'
+          = link_to 'Back', agency_subscriptions_path, class: 'btn btn-default'

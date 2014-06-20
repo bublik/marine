@@ -1,6 +1,8 @@
 require 'subdomain'
 Marine::Application.routes.draw do
 
+  resources :agency_subscriptions
+
   constraints(Subdomain) do
     match '/' => 'admin/dashboard#index', via: :get
     #/admin/login

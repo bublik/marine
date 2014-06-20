@@ -9,6 +9,15 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def check_admin
+    if current_user && current_user.admin?
+      return true
+    else
+      redirect_to(root_path, alert: 'You dont have permissions to this area!')
+      return false
+    end
+  end
+
   def check_steps
     # for authorized users
     if user_signed_in? && current_user.user?

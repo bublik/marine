@@ -1,0 +1,26 @@
+%h1 Subscribers #{link_to('New Subscriber', new_agency_subscription_path, class: 'btn btn-success')}
+
+%br
+.row
+  .col-xs-8
+    %table.table.table-hover
+      %thead
+        %tr
+          %th Name
+          %th Email
+          %th Is active
+          %th
+
+      %tbody
+        - @agency_subscriptions.decorate.each do |agency_subscription|
+          %tr
+            %td= agency_subscription.name
+            %td= agency_subscription.email
+            %td= agency_subscription.is_active
+            %td
+              .btn-group.btn-group-xs
+                -#= link_to 'Show', agency_subscription, class: 'btn btn-info'
+                = link_to 'Edit', edit_agency_subscription_path(agency_subscription), class: 'btn btn-warning'
+                = link_to 'Destroy', agency_subscription, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger'
+
+= paginate @agency_subscriptions
