@@ -48,7 +48,7 @@ class AgencySubscriptionsController < ApplicationController
   def update
     respond_to do |format|
       if @agency_subscription.update(agency_subscription_params)
-        format.html { redirect_to @agency_subscription, notice: 'Agency subscription was successfully updated.' }
+        format.html { redirect_to agency_subscriptions_path, notice: 'Agency subscription was successfully updated.' }
         format.json { render :show, status: :ok, location: @agency_subscription }
       else
         format.html { render :edit }

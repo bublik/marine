@@ -6,7 +6,8 @@ class OrderDecorator < Draper::Decorator
   end
 
   def payment_status
-    object.payment_status.split('_').last
+    status = object.payment_status.split('_').last
+    status.eql?('completed') ? icon('ok text-success', 'Completed') : icon('minus-sign text-muted', 'Pending')
   end
 
   def send_status
