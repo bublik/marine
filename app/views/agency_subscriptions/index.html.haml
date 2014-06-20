@@ -1,4 +1,8 @@
-%h1 Subscribers #{link_to('New Subscriber', new_agency_subscription_path, class: 'btn btn-success')}
+%h1
+  Subscribers
+  #{link_to(icon('plus') + ' New Subscriber', new_agency_subscription_path, class: 'btn btn-success')}
+  #{link_to(icon('filter') + ' Migrate contacts from Agencies', migrate_data_agency_subscriptions_path, class: 'btn btn-info', method: :post)}
+
 
 %br
 .row

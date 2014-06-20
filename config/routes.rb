@@ -1,8 +1,6 @@
 require 'subdomain'
 Marine::Application.routes.draw do
 
-  resources :agency_subscriptions
-
   constraints(Subdomain) do
     match '/' => 'admin/dashboard#index', via: :get
     #/admin/login
@@ -21,6 +19,12 @@ Marine::Application.routes.draw do
   get '/managers' => 'users#managers', as: 'managers'
   get '/back' => 'users#back', as: 'management'
   post '/activate_agency/:id' => 'users#activate_agency', as: 'activation'
+
+  resources :agency_subscriptions do
+    collection do
+      post :migrate_data
+    end
+  end
 
   resources :users do
     member do

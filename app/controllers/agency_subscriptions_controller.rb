@@ -8,10 +8,10 @@ class AgencySubscriptionsController < ApplicationController
     @agency_subscriptions = AgencySubscription.all.page(params[:page]).per(10)
   end
 
-  # GET /agency_subscriptions/1
-  # GET /agency_subscriptions/1.json
-  def show
-  end
+  # # GET /agency_subscriptions/1
+  # # GET /agency_subscriptions/1.json
+  # def show
+  # end
 
   # GET /agency_subscriptions/new
   def new
@@ -20,6 +20,11 @@ class AgencySubscriptionsController < ApplicationController
 
   # GET /agency_subscriptions/1/edit
   def edit
+  end
+
+  def migrate_data
+    AgencySubscription.migrate_from_crewing
+    redirect_to agency_subscriptions_path, notice: 'Contacts has been migrated!'
   end
 
   # POST /agency_subscriptions
