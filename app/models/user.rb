@@ -113,6 +113,8 @@ class User < ActiveRecord::Base
   end
 
   def intivation_token
+    return self.uuid if crewing? || admin?
+
     if self.crew_id.blank?
       # контакт первого админа если пользоватеть сам зарегался
       User.admins.first.uuid
