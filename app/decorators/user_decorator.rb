@@ -54,7 +54,7 @@ class UserDecorator < Draper::Decorator
   end
 
   def languages
-    object.languages.map(&:name).join(',')
+    object.languages.map(&:name).join(', ')
   end
 
   def required_position
