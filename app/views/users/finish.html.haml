@@ -14,3 +14,26 @@
     Or open and download
     = link_to('HTML version', cv_user_path(@user.uuid, format: 'html'), class: 'btn btn-info')
     = link_to('PDF version', cv_user_path(@user.uuid, format: 'pdf'), class: 'btn btn-info')
+
+  .text-center.alert.alert-info
+    %h4
+      Do you want to send CV to
+      %span.h3 #{AgencySubscription.active.count}
+      agencies?
+    %div
+      - order_uid = "#{current_user.id}_#{Time.now.to_i}_send_cv"
+      <form method="POST" accept-charset="utf-8" action="https://www.liqpay.com/api/pay" target="_blank">
+      <input type="hidden" name="public_key" value="#{Rails.application.secrets.liqpay_public_key}" />
+      <input type="hidden" name="amount" value="#{Rails.application.secrets.cv_price}" />
+      <input type="hidden" name="currency" value="UAH" />
+      <input type="hidden" name="description" value="Send my CV" />
+      <input type="hidden" name="type" value="buy" />
+      - unless Rails.env.production?
+        <input type="hidden" name="sandbox" value="1" />
+      <input type="hidden" name="pay_way" value="card" />
+      <input type="hidden" name="server_url" value="http://icrewing.com/orders/confirm" />
+      <input type="hidden" name="return_url" value="http://icrewing.com/orders/status/#{order_uid}" />
+      <input type="hidden" name="order_id" value="#{order_uid}" />
+      <input type="hidden" name="language" value="ru" />
+      <input type="submit" class="btn btn-success btn-lg" value="Pay for delivery"/>
+      </form>
