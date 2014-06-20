@@ -6,12 +6,11 @@ class OrderDecorator < Draper::Decorator
   end
 
   def payment_status
-    status = object.payment_status.split('_').last
-    status.eql?('completed') ? h.icon('ok text-success', 'Completed') : h.icon('minus-sign text-muted', 'Pending')
+    decorate_status(object.payment_status)
   end
 
   def send_status
-    object.send_status.split('_').last
+    decorate_status(object.send_status)
   end
 
   def payment_type
@@ -29,5 +28,10 @@ class OrderDecorator < Draper::Decorator
 
   def updated_at
     object.updated_at.to_s(:short)
+  end
+
+  private
+  def decorate_status(status = '')
+    status.split('_').last.eql?('completed') ? h.icon('ok text-success', 'Completed') : h.icon('minus-sign text-muted', 'Pending')
   end
 end
