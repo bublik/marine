@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140620082438) do
+ActiveRecord::Schema.define(version: 20140620114509) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -151,6 +151,18 @@ ActiveRecord::Schema.define(version: 20140620082438) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "orders", force: true do |t|
+    t.integer  "user_id"
+    t.string   "payment_type"
+    t.integer  "uid"
+    t.integer  "send_status",    default: 0
+    t.integer  "payment_status", default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "overallsizes", force: true do |t|
     t.integer  "overall_size"

@@ -21,7 +21,7 @@
       %span.h3 #{AgencySubscription.active.count}
       agencies?
     %div
-      - order_uid = "#{current_user.id}_#{Time.now.to_i}_send_cv"
+      - order_uid = "#{current_user.id}-#{Time.now.to_i}-send_cv"
       <form method="POST" accept-charset="utf-8" action="https://www.liqpay.com/api/pay" target="_blank">
       <input type="hidden" name="public_key" value="#{Rails.application.secrets.liqpay_public_key}" />
       <input type="hidden" name="amount" value="#{Rails.application.secrets.cv_price}" />

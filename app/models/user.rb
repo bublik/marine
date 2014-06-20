@@ -61,6 +61,7 @@ class User < ActiveRecord::Base
   has_many :languages, through: :langs
 
   has_many :managers, -> { where(role: 'manager') }, foreign_key: :parent_id, class_name: 'User'
+  has_many :orders
 
   validates :accept_subscription, :acceptance => {:accept => true}
   validates_presence_of :email_confirmation, message: 'Please confirm email', if: :create_by_email

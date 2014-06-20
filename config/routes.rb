@@ -1,6 +1,10 @@
 require 'subdomain'
 Marine::Application.routes.draw do
 
+  get '/orders/status/:order_id' => 'orders#status'
+  match '/orders/confirm' => 'orders#status', via: [:get, :post]
+  resources :orders
+
   constraints(Subdomain) do
     match '/' => 'admin/dashboard#index', via: :get
     #/admin/login

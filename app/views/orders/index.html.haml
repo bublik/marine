@@ -1,0 +1,25 @@
+%h1 Orders list
+-# if current_user.admin?
+  = link_to 'New Order', new_order_path, class: 'btn btn-success'
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th User
+      %th Order type
+      %th Payment status
+      %th Send status
+      %th Updated
+  %tbody
+    - @orders.decorate.each do |order|
+      %tr
+        %td= order.user
+        %td= order.payment_type
+        %td= order.payment_status
+        %td= order.send_status
+        %td= order.updated_at
+        -#%td= link_to 'Edit', edit_order_path(order), class: 'btn btn-warning'
+
+-#= link_to 'Destroy', order, :method => :delete, :data => { :confirm => 'Are you sure?' }
+= paginate @orders
+

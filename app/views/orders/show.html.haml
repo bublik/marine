@@ -1,0 +1,19 @@
+.row
+  .col-xs-6.col-xs-offset-3
+    .well.alert.alert-info
+      %h3.text-center Order ##{@order.uid}
+      %dl.dl-horizontal
+        %dt Payer:
+        %dd #{@order.user}
+
+        %dt Order type:
+        %dd #{@order.payment_type}
+
+        %dt Payment status:
+        %dd #{@order.payment_status}
+
+        %dt Created at:
+        %dd #{@order.created_at}
+        - if @order.created_at != @order.updated_at
+          %dt Updated at:
+          %dd #{@order.updated_at}
