@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   skip_before_filter :authenticate_user!, only: [:status]
+  skip_before_filter :verify_authenticity_token, only: [:status]
 
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   before_action :check_admin, only: [:create, :edit, :new, :destroy, :update]
@@ -39,6 +40,10 @@ class OrdersController < ApplicationController
         )
         logger.debug(@order.errors.inspect)
       end
+    end
+    # {"signature"=>"CZYriH51nkgmWjaZcaGbJ5nAuqc=", "sender_phone"=>"380935070663", "transaction_id"=>"40951027", "status"=>"sandbox", "order_id"=>"1-1403276869-send_cv", "type"=>"buy", "description"=>"Send my CV", "currency"=>"UAH", "amount"=>"300", "public_key"=>"i74346430130"}
+    if request.post? && params[:status].eql?('success')
+      @order.payment_completed!
     end
 
     @order ||= Order.new(user: current_user)
