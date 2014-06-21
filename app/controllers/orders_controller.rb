@@ -44,6 +44,7 @@ class OrdersController < ApplicationController
     # {"signature"=>"CZYriH51nkgmWjaZcaGbJ5nAuqc=", "sender_phone"=>"380935070663", "transaction_id"=>"40951027", "status"=>"sandbox", "order_id"=>"1-1403276869-send_cv", "type"=>"buy", "description"=>"Send my CV", "currency"=>"UAH", "amount"=>"300", "public_key"=>"i74346430130"}
     if request.post? && ['success', 'sandbox'].include?(params[:status])
       @order.payment_completed!
+      @order.send_cv
     end
 
     @order ||= Order.new(user: current_user)

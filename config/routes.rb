@@ -1,4 +1,6 @@
 require 'subdomain'
+require 'sidekiq/web'
+
 Marine::Application.routes.draw do
 
   get '/orders/status/:order_id' => 'orders#status'
@@ -15,6 +17,8 @@ Marine::Application.routes.draw do
   end
 
   root :to => "home#index"
+  mount Sidekiq::Web, at: '/sidekiq'
+
   get '/contacts' => 'home#contacts', as: :contacts
 
   devise_for :users, :controllers => {:registrations => "registrations"}

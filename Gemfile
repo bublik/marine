@@ -29,6 +29,9 @@ gem 'polyamorous', github: 'activerecord-hackery/polyamorous'
 gem 'ransack', github: 'activerecord-hackery/ransack', branch: "rails-4.1"
 gem 'formtastic', github: 'justinfrench/formtastic'
 
+gem 'sidekiq'
+gem 'sinatra'
+
 group :development do
   gem 'letter_opener'
   gem 'better_errors'
@@ -48,6 +51,7 @@ group :development do
   gem 'capistrano-ext'
   gem 'capistrano-bundler', '~> 1.1.2'
   gem 'capistrano-rails', '~> 1.1'
+  gem 'capistrano-sidekiq'
 end
 group :development, :test do
   gem 'faker'

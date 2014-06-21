@@ -48,4 +48,12 @@ class PersonalDecorator < Draper::Decorator
   def pdf_file_name
     "#{object.surname}_#{object.name}_#{object.rank.name}_#{object.user.uuid}"
   end
+
+  def pdf_file_name_with_extension
+    pdf_file_name + '.pdf'
+  end
+
+  def pdf_file_name_full_path
+    Rails.root.join('public/uploads/pdfs', pdf_file_name_with_extension)
+  end
 end
