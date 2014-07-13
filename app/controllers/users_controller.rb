@@ -231,6 +231,11 @@ class UsersController < ApplicationController
       return
     end
 
+    unless @user.user?
+      redirect_to root_path, notice: 'This area only for Seafarers! Please check your email.'
+      return
+    end
+
     unless @user.new_record?
       @present = true
       Notifications.access_link(@user).deliver
@@ -250,12 +255,14 @@ class UsersController < ApplicationController
       return true if current_user.admin?
       return true if current_user.crewing? && current_user.verified?
       return true if current_user.manager?
+      false
     else
       flash[:error] = 'You dont have access to this page.'
       return false
     end
   end
 
+  # TODO move scopes to User model
   def scope_langs
     if params[:language_id].present?
       langs_scope = []

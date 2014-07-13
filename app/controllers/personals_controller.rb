@@ -32,12 +32,11 @@ class PersonalsController < ApplicationController
       if @personal.save
         format.html { redirect_to new_contact_path, notice: 'Personal was successfully created.' }
         format.json { render action: 'show', status: :created, location: @personal }
-        format.js
       else
         format.html { render action: 'new' }
         format.json { render json: @personal.errors, status: :unprocessable_entity }
-        format.js { }
       end
+      format.js {}
     end
   end
 
@@ -48,12 +47,11 @@ class PersonalsController < ApplicationController
       if @personal.update(personal_params)
         format.html { redirect_to new_contact_path, notice: 'Personal was successfully updated.' }
         format.json { head :no_content }
-        format.js
       else
         format.html { render action: 'edit' }
         format.json { render json: @personal.errors, status: :unprocessable_entity }
-        format.js
       end
+      format.js
     end
   end
 

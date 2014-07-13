@@ -1,11 +1,16 @@
 %legend
   Contacts
-%div
-  = link_to(icon('home', 'Add') + ' New Address', new_contact_path, remote: true, class: 'btn btn-success btn-sm')
+- if current_user.contacts.count < 2
+  %div
+    = link_to(icon('home', 'Add') + ' New Address', new_contact_path, remote: true, class: 'btn btn-success btn-sm')
 .contacts
   = render 'list'
 .contact
-  = render 'form'
+  - unless current_user.contact
+    = render 'form'
+    %br
+    = render 'form', {next_of_kin: true }
+
 .text-right
   = link_to('back', new_personal_path, class: 'btn btn-default btn-lg')
   = link_to('next', certificates_path, class: 'btn btn-primary btn-lg')

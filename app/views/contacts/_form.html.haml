@@ -1,9 +1,18 @@
-= simple_form_for(@contact, remote: true, html: {format: :js, role: 'form',class: 'registration '}) do |f|
+- next_of_kin_class = (defined?(next_of_kin) || (current_user.contact && current_user.contact.id != @contact.id)) ? 'next_of_kin' : ''
+
+= simple_form_for(@contact, remote: true, html: {format: :js, role: 'form', class: "registration #{next_of_kin_class}"}) do |f|
+  - unless next_of_kin_class.present?
+    %legend
+      Your contact Address
+  - else
+    %legend
+      Next of Kin contact Address
+
   = f.error_notification
   .row
     .col-md-8
       = f.association :country
-      - if current_user.contact && current_user.contact.id != @contact.id
+      - unless next_of_kin_class.blank?
         = f.input :next_of_kin, required: true
         = f.input :name
       = f.input :region
