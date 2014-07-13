@@ -14,7 +14,7 @@ class Notifications < ActionMailer::Base
     @personal = @user.personal.decorate
     @documents = @user.documents.decorate
     @seaservices = @user.seaservices.last_years(5).decorate
-    @certificates = @user.certificates.decorate
+    @certificates = @user.certificates.joins(:cert).where("certs.category != 'documents'").decorate
     @medical_certificate = @user.medical_certificates.last
     @langs = @user.langs.includes(:language)
     @hide_details = false
