@@ -13,6 +13,8 @@ en:
          one: Sea service
          other: Sea services
     attributes:
+      user:
+        phone: User phone
       personal:
         rank: Rank applied for
         salary: Salary
