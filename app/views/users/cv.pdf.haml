@@ -43,6 +43,16 @@
     %td.head Tel:
     %td= @user.next_of_kin_contact.decorate.phone(@hide_details)
   %tr
+    %td.head Skype:
+    %td= @user_contact.skype(@hide_details)
+    %td.head Email:
+    %td= @user_contact.email(@hide_details)
+
+    %td.head Skype:
+    %td=  @user.next_of_kin_contact.decorate.skype(@hide_details)
+    %td.head Email:
+    %td=  @user.next_of_kin_contact.decorate.email(@hide_details)
+  %tr
     %td.head.text-center{colspan: 4} Last medical certificate:
     %td.head Height/ Weight:
     %td

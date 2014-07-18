@@ -18,6 +18,14 @@ class ContactDecorator < Draper::Decorator
       h.number_to_phone(object.mphone)
   end
 
+  def skype(short = false)
+    short ? '-' : object.skype
+  end
+
+  def email(short = false)
+    short ? '-' : object.email
+  end
+
   def phone(short = false)
     short ? '-' :
       h.number_to_phone(object.phone)
