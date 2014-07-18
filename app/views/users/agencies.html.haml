@@ -4,6 +4,7 @@
     %tr
       %th Company Name
       %th Contact Person
+      %th Email
       %th Phone
       %th Registred At
       %th Last Logged in
@@ -14,6 +15,7 @@
         %td
           %strong= user.company_name
         %td= user.name
+        %td= user.email
         %td= user.phone
         %td= user.created_at
         %td= user.last_sign_in_at
