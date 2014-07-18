@@ -112,7 +112,7 @@ class UsersController < ApplicationController
     end
 
     @user = User.new
-    @user.crew_id =  User.find_by_uuid(params[:token]).id if params[:token].present?
+    @user.crew_id = User.find_by_uuid(params[:token]).id if params[:token].present?
   end
 
   def complete
@@ -255,9 +255,15 @@ class UsersController < ApplicationController
       return true if current_user.admin?
       return true if current_user.crewing? && current_user.verified?
       return true if current_user.manager?
+      if current_user.user?
+        flash[:error] = 'You dont have access to this page.'
+        redirect_to '/'
+        return false
+      end
       false
     else
       flash[:error] = 'You dont have access to this page.'
+      redirect_to '/'
       return false
     end
   end
