@@ -48,10 +48,10 @@
     %td.head Email:
     %td= @user_contact.email(@hide_details)
 
-    %td.head Skype:
-    %td=  @user.next_of_kin_contact.decorate.skype(@hide_details)
-    %td.head Email:
-    %td=  @user.next_of_kin_contact.decorate.email(@hide_details)
+    %td.head Skype/Email
+    %td
+      =  @user.next_of_kin_contact.decorate.skype(@hide_details)
+      =  @user.next_of_kin_contact.decorate.email(@hide_details)
   %tr
     %td.head.text-center{colspan: 4} Last medical certificate:
     %td.head Height/ Weight:
