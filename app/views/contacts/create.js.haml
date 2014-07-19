@@ -1,5 +1,9 @@
 - if @contact.valid?
   $('.contacts').html('#{j render(partial: 'contacts/list') }');
   $('.contact form').first().remove()
+  - unless current_user.next_of_kin_contact
+    - @next_of_kin = true
+    - @contact = Contact.new
+    $('.contact').html('#{j render(partial: 'contacts/form') }');
 - else
   $('.contact').html('#{j render(partial: 'contacts/form') }');

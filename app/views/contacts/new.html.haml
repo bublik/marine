@@ -8,8 +8,6 @@
 .contact
   - unless current_user.contact
     = render 'form'
-    %br
-    = render 'form', {next_of_kin: true }
 
 .text-right
   = link_to('back', new_personal_path, class: 'btn btn-default btn-lg')
