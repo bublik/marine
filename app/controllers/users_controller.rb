@@ -9,7 +9,6 @@ class UsersController < ApplicationController
       unless current_user.admin?
         @users = @users.where(crew_id: current_user.crew_id).where('crew_id IS NOT NULL')
       end
-
     else
       @users = User.users.joins(:personal)
       scope_personals
@@ -17,7 +16,7 @@ class UsersController < ApplicationController
       scope_seaservices
     end
 
-    @users = @users.page(params[:page]).per(10)
+    @users = @users.page(params[:page]).per(20)
   end
 
   def agencies
