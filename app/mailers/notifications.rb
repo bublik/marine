@@ -1,5 +1,5 @@
 class Notifications < ActionMailer::Base
-  default from: "noreplay@example.com"
+  default from: "noreply@icrewing.com"
   layout 'email'
 
   def access_link(user)
