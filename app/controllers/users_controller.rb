@@ -4,16 +4,21 @@ class UsersController < ApplicationController
   before_filter :check_access, only: [:index, :create_seafarer]
 
   def index
-    if params[:scope].eql?('all')
+    logger.debug("current_user.crew_id #{current_user.crew_id}; User.admin.id #{User.admin.id}")
+    if params[:scope].eql?('all')# all this crew
       @users = User.users
       unless current_user.admin?
-        @users = @users.where(crew_id: current_user.crew_id).where('crew_id IS NOT NULL')
+        @users = @users.where(crew_id: current_user.parent_id || current_user.id).where('crew_id IS NOT NULL')
       end
     else
       @users = User.users.joins(:personal)
       scope_personals
       scope_langs
       scope_seaservices
+
+      unless current_user.admin?
+        @users = @users.where(crew_id: [(current_user.parent_id || current_user.id), User.admin.id, nil]).completed
+      end
     end
 
     @users = @users.page(params[:page]).per(20)

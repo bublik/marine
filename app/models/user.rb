@@ -70,6 +70,7 @@ class User < ActiveRecord::Base
   validates :parent_id, presence: true, if: :manager?
 
   scope :newer, -> { order('id desc') }
+  scope :completed, -> { where('cv_updated_at IS NOT NULL') }
 
   ROLES.each do |role|
     scope role.pluralize, -> { where(role: role) }
@@ -106,7 +107,7 @@ class User < ActiveRecord::Base
   def head_contact
     if self.crew_id.blank?
       # контакт первого админа если пользоватеть сам зарегался
-      User.admins.first.contact
+      User.admin.contact
     else
       # Контакт агенства если пользователь зарегался из под агенства
       self.agency.contact
@@ -123,6 +124,14 @@ class User < ActiveRecord::Base
       # Контакт агенства если пользователь зарегался из под агенства
       self.agency.uuid
     end
+  end
+
+  def completed?
+    !self.cv_updated_at
+  end
+
+  def self.admin
+    Rails.cache.fetch('users_admin', expires_in: 5.minutes) { User.admins.first }
   end
 
   def self.create_by_email(param)
