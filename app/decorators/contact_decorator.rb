@@ -3,14 +3,14 @@ class ContactDecorator < Draper::Decorator
 
   def short_address(short = false)
     short ?
-      [object.city, object.region, object.country.name].join(', ') :
-      [object.postal_code, object.street, object.city, object.region, object.country.name].join(', ')
+      [object.city, object.region, object.country.try(:name)].join(', ') :
+      [object.postal_code, object.street, object.city, object.region, object.country.try(:name)].compact.join(', ')
   end
 
   def cv_address(short = false)
     short ?
-      [object.city, object.country.name].join(', ') :
-      [object.street, object.city, object.country.name].join(', ')
+      [object.city, object.country.try(:name)].join(', ') :
+      [object.street, object.city, object.country.try(:name)].compact.join(', ')
   end
 
   def mphone(short = false)

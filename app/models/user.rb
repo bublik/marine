@@ -127,7 +127,7 @@ class User < ActiveRecord::Base
   end
 
   def completed?
-    !self.cv_updated_at
+    self.cv_updated_at.present?
   end
 
   def self.admin
