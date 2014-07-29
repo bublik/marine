@@ -34,7 +34,7 @@ class PersonalDecorator < Draper::Decorator
   end
 
   def overallsize
-    object.overallsize.overall_size
+    object.overallsize ? object.overallsize.overall_size : ''
   end
 
   def photo_path

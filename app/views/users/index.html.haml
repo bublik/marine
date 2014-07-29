@@ -24,7 +24,7 @@
     %tr
       %td{id: dom_id(user)}
         %span.label.label-default{title: "u:#{user.id} c:#{user.crew_id}"}= user.crew_id ? 'C' : 'A'
-        = link_to(user.full_name, cv_user_path(user.uuid, original: true, contacts_only: true, vessel_type_id: params[:vessel_type_id], format: 'html'),  data:{toggle: 'modal', target: '#modal'})
+        = link_to(user.full_name, user.completed? ? cv_user_path(user.uuid, original: true, contacts_only: true, vessel_type_id: params[:vessel_type_id], format: 'html') : '#',  data:{toggle: 'modal', target: '#modal'})
       %td= user.year_old
       %td= user.languages
       %td= user.required_position
