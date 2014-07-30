@@ -174,6 +174,7 @@ class UsersController < ApplicationController
     end
 
     @hide_details = true if params[:original].blank?
+    @hide_details = false if user_signed_in? && current_user.user? && @user.id.eql?(current_user.id)
 
     @contact = @contact.decorate
     begin
