@@ -35,7 +35,7 @@ module ApplicationHelper
     liqpay.cnb_form({
                       amount: args[:amount],
                       currency: args[:currency],
-                      order_id: args[:order_id],
+                      #order_id: args[:order_id],
                       sandbox: secrets.sandbox_mode,
                       description: args[:description],
                       server_url: 'http://icrewing.com/orders/confirm',
