@@ -4,7 +4,7 @@ require 'sidekiq/web'
 Marine::Application.routes.draw do
 
   get '/orders/status/:order_id' => 'orders#status'
-  match '/orders/confirm' => 'orders#status', via: [:get, :post]
+  match '/orders/confirm/:order' => 'orders#status', via: [:get, :post]
   resources :orders
 
   constraints(Subdomain) do

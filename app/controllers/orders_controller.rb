@@ -23,9 +23,9 @@ class OrdersController < ApplicationController
   end
 
   def status
-    if params[:order_id] # #{user_id}-#{Time.now.to_i}-#{payment_type}
+    if params[:order] # #{user_id}-#{Time.now.to_i}-#{payment_type}
 
-      args = params[:order_id].split('-')
+      args = params[:order].split('-')
       user_id = args[0]
       uid = args[1]
       payment_type = args[2]

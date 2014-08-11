@@ -30,7 +30,7 @@
       <input type="hidden" name="type" value="buy" />
       <input type="hidden" name="sandbox" value="#{Rails.application.secrets.sandbox_mode}" />
       <input type="hidden" name="pay_way" value="card" />
-      <input type="hidden" name="server_url" value="http://icrewing.com/orders/confirm" />
+      <input type="hidden" name="server_url" value="http://icrewing.com/orders/confirm/#{"#{current_user.id}-#{Time.now.to_i}-send_cv"}" />
       <input type="hidden" name="return_url" value="http://icrewing.com/orders/status/#{"#{current_user.id}-#{Time.now.to_i}-send_cv"}" />
       <input type="hidden" name="language" value="ru" />
       <input type="submit" class="btn btn-success btn-lg" value="Pay for delivery"/>
