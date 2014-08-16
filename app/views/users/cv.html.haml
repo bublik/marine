@@ -11,5 +11,6 @@
 
 = render 'cv_user_contacts'
 = render 'cv_personal_documents', {documents: @documents}
-= render 'cv_certificates', {certificates: @certificates, langs: @langs}
+= render 'cv_certificates', {certificates: @medical_certificates, title: 'MEDICAL'}
+= render 'cv_certificates', {certificates: @certificates, title: 'CERTIFICATES'}
 = render 'cv_sea_services', {seaservices: @seaservices}

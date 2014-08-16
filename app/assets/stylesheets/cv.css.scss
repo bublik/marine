@@ -4,7 +4,7 @@
 
 @import "bootstrap";
 .cv {
-  font-size: 10px;
+  font-size: 9px;
   background: none;
   h4 {
     margin: 5px;
@@ -31,5 +31,11 @@
   .contact {
     font-size: 13px;
     font-weight: bold;
+  }
+  .table-bordered > thead {
+    border-top: 1px solid #aaa;
+  }
+  .table-bordered > thead > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > th, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > tfoot > tr > td {
+    border: 1px solid #aaa;
   }
 }

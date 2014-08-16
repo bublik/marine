@@ -1,5 +1,4 @@
 - next_of_kin_class = (defined?(@next_of_kin) || (current_user.contact && current_user.contact.id != @contact.id)) ? 'next_of_kin' : ''
-= next_of_kin_class
 = simple_form_for(@contact, remote: true, html: {format: :js, role: 'form', class: "registration #{next_of_kin_class}"}) do |f|
   - unless next_of_kin_class.present?
     %legend

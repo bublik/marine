@@ -182,7 +182,7 @@ class UsersController < ApplicationController
       @documents = @user.documents.decorate
       @seaservices = @user.seaservices.decorate
       @certificates = @user.certificates.joins(:cert).where("certs.category != 'documents'").decorate
-      @last_medical_certificate = @user.medical_certificates.last
+      @medical_certificates = @user.medical_certificates.decorate
       @langs = @user.langs.includes(:language)
 
       @user = @user.decorate

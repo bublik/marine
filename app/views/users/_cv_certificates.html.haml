@@ -1,4 +1,4 @@
-%h5.text-center CERTIFICATES
+%h5.text-center= title
 %table.table.table-bordered.table-condensed
   %thead
     %tr
@@ -17,10 +17,3 @@
         %td>
           = certificate.issuer
           = certificate.country
-    - langs.each do |lang|
-      %tr
-        %td
-          .row
-            .col-xs-8 Level of language
-            .col-xs-4= lang.language.name.upcase
-        %td{colspan: 4}= lang.level
