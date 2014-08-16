@@ -180,7 +180,7 @@ class UsersController < ApplicationController
     begin
       @personal = @user.personal.decorate
       @documents = @user.documents.decorate
-      @seaservices = @user.seaservices.last_years(5).decorate
+      @seaservices = @user.seaservices.decorate
       @certificates = @user.certificates.joins(:cert).where("certs.category != 'documents'").decorate
       @last_medical_certificate = @user.medical_certificates.last
       @langs = @user.langs.includes(:language)
@@ -194,7 +194,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html {
         if params[:contacts_only].present?
-          @seaservices = @user.seaservices.last_years(5)
+          @seaservices = @user.seaservices
           @seaservices = @seaservices.where(vessel_type_id: params[:vessel_type_id]) if params[:vessel_type_id].present?
           @seaservices = @seaservices.decorate
 
