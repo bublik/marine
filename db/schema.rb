@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140620114509) do
+ActiveRecord::Schema.define(version: 20140816121944) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20140620114509) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "show_on_wizard", default: false
+    t.integer  "position",       default: 0
   end
 
   create_table "citizenships", force: true do |t|

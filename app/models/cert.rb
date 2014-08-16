@@ -15,11 +15,15 @@ class Cert < ActiveRecord::Base
 
   validates_presence_of :name
   validates_inclusion_of :category, in: Cert::CATEGORIES
-
+  default_scope {order(:position)}
   scope :medical, -> { where(category: 'medical') }
   scope :traning, -> { where(category: 'traning') }
   scope :documents, -> { where(category: 'documents') }
   scope :by_category, ->(category) { where(category: category) }
-  scope :show_on_wizard, -> (plus_ids){ where('certs.show_on_wizard = true OR certs.id IN (?)', plus_ids) }
+  scope :show_on_wizard, -> (plus_ids) { where('certs.show_on_wizard = true OR certs.id IN (?)', plus_ids) }
+
+  before_create do
+    self.position = Cert.maximum(:position) + 1
+  end
 
 end
