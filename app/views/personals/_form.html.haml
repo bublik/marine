@@ -11,7 +11,8 @@ class: 'registration '}) do |f|
       = f.input :surname
       = f.input :name
       = f.input :middle_name
-      = f.input :pp_dob, as: :string, placeholder: 'dd-mm-yyyy', input_html:{autocomplete: 'off', class: 'datepicker'}
+      = f.input :pp_dob, as: :date
+      -#= f.input :pp_dob, as: :string, placeholder: 'dd-mm-yyyy', input_html:{autocomplete: 'off', class: 'datepicker'}
       = f.input :pp_pob
       = f.association :country
       = f.association :citizenship
@@ -33,3 +34,5 @@ class: 'registration '}) do |f|
 
   .text-right
     = f.button :submit, 'Next', class: 'btn btn-primary btn-lg btn-next'
+:css
+  .personal_pp_dob select.date {width: 15% !important; margin-right: 13px;}

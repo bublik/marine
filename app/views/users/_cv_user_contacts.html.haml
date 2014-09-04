@@ -1,9 +1,9 @@
 %table.table.table-bordered.table-condensed
   %tr
-    %td.head Last Name:
-    %td{colspan: 3}= @personal.surname
-    %td.head Rank:
-    %td= @personal.rank
+    %td.col-xs-2.head Last Name:
+    %td.col-xs-4{colspan: 3}= @personal.surname
+    %td.col-xs-2.head Rank:
+    %td.col-xs-4= @personal.rank
   %tr
     %td.head First Name:
     %td{colspan: 3}= @personal.name
@@ -19,33 +19,42 @@
     %td= @personal.pp_dob
     %td{colspan: 2}= @personal.pp_pob
     %td= @personal.country.name
-    %td.head Next of kin:
-    %td
-      %label= @hide_details ? '-' :  @user.next_of_kin_contact.next_of_kin
+    %td{rowspan: 4, colspan: 2, style: 'border: 2px solid; padding: 0 !important;'}
+      %table.table.table-bordered{style: 'margin: 0;'}
+        %tr
+          %td.col-xs-4.head Next of kin:
+          %td
+            %label= @hide_details ? '-' :  "#{@user.next_of_kin_contact.next_of_kin}  #{@user.next_of_kin_contact.name}"
+        %tr
+          %td.head Address
+          %td
+            %label= @user.next_of_kin_contact.decorate.cv_address(@hide_details)
+        %tr
+          %td.head Tel:
+          %td
+            %label= @user.next_of_kin_contact.decorate.phone(@hide_details)
+        %tr
+          %td.head Skype/Email
+          %td
+            %label= @user.next_of_kin_contact.decorate.skype(@hide_details)
+            %label= @user.next_of_kin_contact.decorate.email(@hide_details)
   %tr
     %td.head Address
     %td{colspan: 3}= @user_contact.cv_address(@hide_details)
-    %td.head Address
-    %td
-      %label= @user.next_of_kin_contact.decorate.cv_address(@hide_details)
+
   %tr
     %td.head Cell:
     %td= @user_contact.mphone(@hide_details)
     %td.head Tel:
     %td= @user_contact.phone(@hide_details)
-    %td.head Tel:
-    %td
-      %label= @user.next_of_kin_contact.decorate.phone(@hide_details)
+
   %tr
     %td.head Skype:
     %td= @user_contact.skype(@hide_details)
     %td.head Email:
     %td= @user_contact.email(@hide_details)
 
-    %td.head Skype/Email
-    %td
-      %label= @user.next_of_kin_contact.decorate.skype(@hide_details)
-      %label= @user.next_of_kin_contact.decorate.email(@hide_details)
+
   %tr
     %td.head Height/ Weight:
     %td

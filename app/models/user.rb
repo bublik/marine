@@ -104,6 +104,11 @@ class User < ActiveRecord::Base
     certificates.joins(:cert).where(certs: {category: 'documents'}).order(:from_date)
   end
 
+  def ordered_certificates
+    certificates.joins(:cert).where("certs.category NOT IN('documents', 'medical')").order('certs.position')
+  end
+
+
   def head_contact
     if self.crew_id.blank?
       # контакт первого админа если пользоватеть сам зарегался
