@@ -19,7 +19,7 @@ Marine::Application.routes.draw do
   root :to => "home#index"
   mount Sidekiq::Web, at: '/sidekiq'
 
-  get '/contacts' => 'home#contacts', as: :contacts
+  match '/feedback' => 'home#feedback', as: :feedback, via: [:get, :post]
 
   devise_for :users, :controllers => {:registrations => "registrations"}
 

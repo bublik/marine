@@ -7,6 +7,11 @@ class Notifications < ActionMailer::Base
     mail(to: @user.email)
   end
 
+  def feedback(contact)
+    @contact = contact
+    mail(to:   User.admin.contact.email)
+  end
+
   def thank_email(user)
     @user = user.decorate
     @contact = @user.head_contact.decorate

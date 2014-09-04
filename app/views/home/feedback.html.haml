@@ -1,0 +1,43 @@
+%section.content
+  .container
+    .row
+      .col-xs-offset-2
+        %h2 Feedback
+    .row
+      .col-xs-8.col-xs-offset-2
+        .well
+          = simple_form_for @contact, url: feedback_path do |f|
+            = f.error_notification
+            .row
+              .col-md-12
+                = f.input :name, label: 'Your Name'
+            .row
+              .col-md-12
+                = f.input :phone, label: 'Phone Number'
+            .row
+              .col-md-12
+                = f.input :email, required: true
+            .row
+              .col-md-12
+                = f.input :comments, as: :text, required: true
+            %br
+            .row
+              .col-md-8.col-md-offset-4
+                = f.button :submit, 'Send us', class: 'btn btn-success btn-lg'
+
+-#
+  %dl.address
+    %dt 8901 Marmora Road, Glasgow, D04 89GR.
+    %dd
+      %span> Freephone:
+      +1 800 559 6580
+    %dd
+      %span> Telephone:
+      +1 800 603 6035
+    %dd
+      %span> FAX:
+      +1 800 889 9898
+    %dd
+      %span.e-mail
+        E-mail:
+        %a.demo.color-1{:href => "#"} mail@demolink.org

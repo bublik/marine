@@ -24,6 +24,8 @@ class Contact < ActiveRecord::Base
   belongs_to :country
   belongs_to :user, inverse_of: :contact
 
+  attr_accessor :comments
+
   validates_presence_of :user
   validates :country_id, :city, :street, :mphone, presence: true
   validates_presence_of :email, if: :the_first_contact?
