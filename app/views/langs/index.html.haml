@@ -16,9 +16,18 @@
       = render partial: 'form', locals: {lang: lang}
 
 = simple_form_for(current_user, url: complete_users_path) do |f|
-  = f.input :accept_subscription, as: :boolean, label: false, hint: 'Send me news to email address.'
-  %p
-    I declare that the information given on this form is to the best of my knowledge and belief, true and complete and that I have not knowingly withheld information.
+  .row
+    .col-xs-6.col-xs-offset-1
+      %strong I agree terms below.
+  .row
+    .col-xs-1.col-xs-offset-1
+      = f.input :accept_subscription, as: :boolean, label: false
+  .row
+    .col-xs-10.col-xs-offset-1
+      I declare that the information given on this form is to the best of my knowledge and belief, true and complete and that I have not knowingly withheld information.
+      %br
+      By accepting this I fully consent with processing my personal data including sensitive personal data provided within online application form to Icrewing and their group of companies, subsidiaries and contracted 3rd parties which are legally authorised to process sensitive data on behalf of Icrewing Data base. Therefore I fully agree and give permission to Icrewing, and their group of companies, subsidiaries and 3rd parties which are legally authorized to act on behalf of Icrewing to contact me by means of communication and send me any type of information related to my personal data; previous, current and future employment by post, e-mail and mobile phone.
+
 
   .text-right
     = link_to('back', :back, class: 'btn btn-default btn-lg')

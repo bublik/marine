@@ -15,7 +15,14 @@
       %tr{class: category}
         %td{colspan: 2}
           %h4= t("certs.#{category}")
-        %td{colspan: 5, class: 'text-right'}= link_to(icon('plus-sign', 'Add') + ' New entry' , new_certificate_path(category: category),
+        %td{colspan: 5, class: 'text-right'}
+          - if category.eql?('medical')
+            If you have additional medical certificates or proof of vaccination, click
+          - if category.eql?('documents')
+            If you have additional Travel Documents, click
+          - if category.eql?('traning')
+            If you have any additional certificates, click
+          = link_to(icon('plus-sign', 'Add') + ' New entry' , new_certificate_path(category: category),
           remote: true, class: 'btn btn-success btn-xs')
 
       - Cert.by_category(category).show_on_wizard(@user_cert_ids).each do |cert|

@@ -1,8 +1,7 @@
 %section.content
   .container
-    .row
-      .col-xs-offset-2
-        %h2 Feedback
+    .text-center
+      %h2 Feedback
     .row
       .col-xs-8.col-xs-offset-2
         .well
@@ -22,8 +21,9 @@
                 = f.input :comments, as: :text, required: true
             %br
             .row
-              .col-md-8.col-md-offset-4
-                = f.button :submit, 'Send us', class: 'btn btn-success btn-lg'
+              .col-md-8.col-md-offset-3
+                &nbsp;
+                = f.button :submit, 'Send Us', class: 'btn btn-success btn-lg'
 
 -#
   %dl.address
