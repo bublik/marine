@@ -1,8 +1,19 @@
 -# navigation styled for Bootstrap 3.0
 %nav.navbar.navbar-default
   %ul.nav.navbar-nav.navbar-collapse
-    %li= link_to 'Home', root_path
-    %li= link_to 'Crewing', crewing_users_path
-    %li= link_to 'Seafarer', sailor_users_path
-    %li= link_to 'Vacancies', '#'
-    %li= link_to 'Contacts', feedback_path
+    - if I18n.locale.eql?(:ru)
+      %li= link_to 'Главная', root_path
+      %li= link_to 'Крюингам', crewing_users_path
+      %li= link_to 'Моряку', sailor_users_path
+      %li= link_to 'Вакансии', vacancies_path
+      - Page.menu.each do |page|
+        %li= link_to(page.title_ru, page)
+      %li= link_to 'Контакты', feedback_path
+    - else
+      %li= link_to 'Home', root_path
+      %li= link_to 'Crewing', crewing_users_path
+      %li= link_to 'Seafarer', sailor_users_path
+      %li= link_to 'Vacancies', vacancies_path
+      - Page.menu.each do |page|
+        %li= link_to(page.title, page)
+      %li= link_to 'Contacts', feedback_path

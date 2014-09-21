@@ -3,6 +3,7 @@ require 'sidekiq/web'
 
 Marine::Application.routes.draw do
 
+  mount Ckeditor::Engine => '/ckeditor'
   get '/orders/status/:order_id' => 'orders#status'
   match '/orders/confirm/:order' => 'orders#status', via: [:get, :post]
   resources :orders
@@ -20,6 +21,7 @@ Marine::Application.routes.draw do
   mount Sidekiq::Web, at: '/sidekiq'
 
   match '/feedback' => 'home#feedback', as: :feedback, via: [:get, :post]
+  match '/vacancies' => 'home#vacancies', as: :vacancies, via: [:get]
 
   devise_for :users, :controllers => {:registrations => "registrations"}
 
@@ -60,4 +62,7 @@ Marine::Application.routes.draw do
   resources :seaservices
   resources :langs
 
+  resources :pages, only: [:index, :new, :create, :edit]
+  resources :pages, path: "", except: [:index, :new, :create]
+  get '*id', to: 'pages#show'
 end

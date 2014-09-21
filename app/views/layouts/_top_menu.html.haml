@@ -18,6 +18,7 @@
             %li= link_to(icon('book') + ' Subscribers', agency_subscriptions_path)
             %li= link_to(icon('usd') + ' Orders', orders_path)
             %li.spliter
+            %li= link_to('Pages', pages_path)
             %li= link_to(icon('cog') + ' System Admin', root_url(subdomain: 'admin'))
 
 
@@ -29,3 +30,9 @@
         - else
           %li= link_to 'Login', new_user_session_path
           %li= link_to 'Sign up', new_user_registration_path
+        %li
+          = link_to_unless_current 'En', locale: 'en' do
+            = link_to('En', '#')
+        %li
+          = link_to_unless_current 'Ru', {locale: 'ru'} do
+            = link_to('Ru', '#')

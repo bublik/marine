@@ -9,6 +9,7 @@ Bundler.require(:default, Rails.env)
 module Marine
   class Application < Rails::Application
     config.middleware.use WickedPdf::Middleware
+    config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
 
     config.app_generators.scaffold_controller = :scaffold_controller
     config.generators do |g|

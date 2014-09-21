@@ -1,0 +1,22 @@
+- @page ||= Page.find_page(request.path)
+- if @page
+  - content_for :title do
+    = I18n.locale.eql?(:ru) ? @page.title_ru : @page.title
+  - content_for :description do
+    = @page.description
+  - content_for :keywords do
+    = @page.keywords
+
+  - if I18n.locale.eql?(:ru)
+    -#%h2= @page.title_ru
+    != @page.content_ru
+  - else
+    -#%h2= @page.title
+    != @page.content
+
+  - if user_signed_in? && current_user.admin?
+    .row
+      .col-xs-2
+        = link_to 'Edit', edit_page_path(@page), class: 'btn btn-info'
+- else
+  //No content for page #{request.path}

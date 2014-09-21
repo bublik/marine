@@ -1,0 +1,22 @@
+= javascript_include_tag 'ckeditor/ckeditor.js'
+
+= simple_form_for(@page, action: pages_path) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :title, placeholder: 'EN page title'
+    = f.input :title_ru, placeholder: 'RU page title'
+    = f.input :in_menu, hint: 'Enable to show in menu', disabled: @page.system
+    = f.input :position, hint: 'Please enter number for ordering in main menu'
+    = f.input :url, placeholder: 'readable-page-url', disabled: @page.system
+    = f.input :description, hint: 'Small description for page metainformation'
+    = f.input :keywords, hint: 'Place split words by comas (,)'
+
+    %div EN content
+    = f.cktext_area :content, :class => 'ckeditor'
+    %hr/
+    %div RU content
+    = f.cktext_area :content_ru, :class => 'ckeditor'
+  %br
+  .form-actions
+    = f.button :submit, class: 'btn btn-success'

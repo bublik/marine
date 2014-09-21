@@ -1,0 +1,27 @@
+%br/
+.row
+  .col-xs-4.col-xs-offset-8
+    = link_to 'New Page', new_page_path, class: 'btn btn-success btn-sm pull-right'
+%br/
+%table.table
+  %tr
+    %th Title
+    %th Url
+    %th Show in menu
+    %th
+    %th
+    %th
+
+  - @pages.each do |page|
+    %tr
+      %td
+        %div= link_to(page.title, page.url)
+        %div= link_to(page.title_ru, page.url+'?locale=ru')
+      %td= page.url
+      %td= page.in_menu ? 'Yes' : 'No'
+      %td
+        = link_to 'Show', page, target: '_blank', class: 'btn btn-xs btn-info'
+        = link_to 'Edit', edit_page_path(page), class: 'btn btn-xs btn-success'
+        = link_to 'Destroy', page, class: 'btn btn-xs btn-warning', :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+= paginate(@pages)

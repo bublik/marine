@@ -20,10 +20,12 @@ gem 'kaminari', github: 'amatsuda/kaminari'
 gem 'draper', '~> 1.3'
 gem 'uuid'
 
+gem 'ckeditor'
+
 gem 'mini_magick'
+gem 'carrierwave'
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
-gem 'carrierwave'
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'polyamorous', github: 'activerecord-hackery/polyamorous'
 gem 'ransack', github: 'activerecord-hackery/ransack', branch: "rails-4.1"

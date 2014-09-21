@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140816121944) do
+ActiveRecord::Schema.define(version: 20140921070328) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -85,6 +85,22 @@ ActiveRecord::Schema.define(version: 20140816121944) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "ckeditor_assets", force: true do |t|
+    t.string   "data_file_name",               null: false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    limit: 30
+    t.string   "type",              limit: 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
   create_table "contacts", force: true do |t|
     t.integer  "country_id"
@@ -170,6 +186,23 @@ ActiveRecord::Schema.define(version: 20140816121944) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "pages", force: true do |t|
+    t.string   "title"
+    t.string   "title_ru"
+    t.boolean  "in_menu",     default: false
+    t.integer  "position"
+    t.string   "url"
+    t.string   "description"
+    t.string   "keywords"
+    t.text     "content"
+    t.text     "content_ru"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "system",      default: false
+  end
+
+  add_index "pages", ["url"], name: "index_pages_on_url", unique: true, using: :btree
 
   create_table "personals", force: true do |t|
     t.datetime "available_from"
