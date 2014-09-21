@@ -1,25 +1,25 @@
 = render file: 'pages/show'
-%h1.text-center For crewing companies
-%p
-  &nbsp; The ICrewing database is open for cooperation with our partners from crewing agencies, shipping and maritime companies, and shipowners. In our database, you can easily find applications of different groups of seafarers or hire a full crew wanting to go out to sea. From the rank and file and command staff to the attendance crew and professionals of different fields. From a cadet, able seaman, motorist, mechanic, chief mechanic, electrician, boatswain, mate to a captain, as well as the attendance staff from the steward, cook to the welder and painter. All you need to do is to find the desired candidate for the vacancy and sign a contract.
-  We provide a package with information for crewing companies upon contacting us.
-
-
-%h3.text-center Intelligent Crew Management System
-%ul
-  %li
-    %h4 Crew Data Management
-    %p Crew Data Management allows maintaining seafarer database information up to date, all most important information on a seafarer, including basic personal information as well as sea going service, certificates, banking data, next of kin and most importantly copies of certificate files.
-  %li
-    %h4 Integrated Online Application form
-    %p New applications arrive along with notification message to your e-mail, so you don’t miss any candidate applying for a job.
-  %li
-    %h4 Advanced Search
-    %p Advanced search will enable you finding the most appropriate candidate for replacing existing crew onboard or filling in new vacancies.
+-#%h1.text-center For crewing companies
+-#%p
+-#  &nbsp; The ICrewing database is open for cooperation with our partners from crewing agencies, shipping and maritime companies, and shipowners. In our database, you can easily find applications of different groups of seafarers or hire a full crew wanting to go out to sea. From the rank and file and command staff to the attendance crew and professionals of different fields. From a cadet, able seaman, motorist, mechanic, chief mechanic, electrician, boatswain, mate to a captain, as well as the attendance staff from the steward, cook to the welder and painter. All you need to do is to find the desired candidate for the vacancy and sign a contract.
+-#  We provide a package with information for crewing companies upon contacting us.
+-#
+-#
+-#%h3.text-center Intelligent Crew Management System
+-#%ul
+-#  %li
+-#    %h4 Crew Data Management
+-#    %p Crew Data Management allows maintaining seafarer database information up to date, all most important information on a seafarer, including basic personal information as well as sea going service, certificates, banking data, next of kin and most importantly copies of certificate files.
+-#  %li
+-#    %h4 Integrated Online Application form
+-#    %p New applications arrive along with notification message to your e-mail, so you don’t miss any candidate applying for a job.
+-#  %li
+-#    %h4 Advanced Search
+-#    %p Advanced search will enable you finding the most appropriate candidate for replacing existing crew onboard or filling in new vacancies.
 
 %hr/
 
 - if @user.new_record?
   .well
-    %h4 Create own agency account now!
+    %h4= I18n.locale.eql?(:ru) ? 'Зарегистрируйте свое агенство уже сейчас!' : 'Create own agency account now!'
     = render 'crew_form'
