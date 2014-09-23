@@ -4,14 +4,14 @@ class: 'registration '}) do |f|
   = f.error_notification
   .row
     .col-md-8
-      = f.input :available_from, as: :string, placeholder: 'dd-mm-yyyy', input_html:{autocomplete: 'off', class: 'datepicker'}
+      = f.input :available_from, calendar_dates
       = f.association :rank
       = f.input :required_position
       = f.input :salary, label_method: :amount
       = f.input :surname
       = f.input :name
       = f.input :middle_name
-      = f.input :pp_dob, as: :date, start_year: Date.today.year - 65, end_year: Date.today.year - 15
+      = f.input :pp_dob, calendar_dates
       -#= f.input :pp_dob, as: :string, placeholder: 'dd-mm-yyyy', input_html:{autocomplete: 'off', class: 'datepicker'}
       = f.input :pp_pob
       = f.association :country
@@ -34,5 +34,3 @@ class: 'registration '}) do |f|
 
   .text-right
     = f.button :submit, 'Next', class: 'btn btn-primary btn-lg btn-next'
-:css
-  .personal_pp_dob select.date {width: 15% !important; margin-right: 13px;}

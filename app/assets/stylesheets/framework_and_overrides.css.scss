@@ -1,6 +1,11 @@
 // import the CSS framework
 @import "bootstrap";
 
+select.date {
+  width: 15% !important;
+  margin-right: 13px;
+}
+
 input[type="file"] {
   background: none;
   border: none;

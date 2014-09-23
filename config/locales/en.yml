@@ -56,7 +56,7 @@ en:
         vessel_engine_model: Engine model
         vessel_engine_power: Engine power
         rank: Rank
-        on_date: Sogned on
+        on_date: Signed on
         off_date: Signed off
         owner_name: Owner/Employer
         agent_name: Crewing company

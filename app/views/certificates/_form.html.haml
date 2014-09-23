@@ -5,9 +5,8 @@
       = f.association :cert, collection: @certs, prompt: '-Please select-'
       = f.association :country, hint: f.check_box(:is_flag) + ' Flag document', prompt: '-Please select-'
       = f.input :issuer
-      = f.input :from_date, as: :string,  placeholder: 'dd-mm-yyyy', input_html:{autocomplete: 'off', class: 'datepicker'}
-      = f.input :to_date, as: :string, placeholder: 'dd-mm-yyyy', input_html:{autocomplete: 'off', class: 'datepicker'},
-        hint: f.check_box(:is_unlimited) + ' Unlimited'
+      = f.input :from_date, calendar_dates
+      = f.input :to_date, calendar_dates.merge({hint: f.check_box(:is_unlimited) + ' Unlimited'})
       = f.input :licence_number
 
   .row
