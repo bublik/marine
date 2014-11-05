@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def calendar_dates
-    @dates ||= {as: :date, start_year: Date.today.year - 70, end_year: Date.today.year + 1}
+    @dates ||= {as: :date, start_year: Date.today.year - 70, end_year: Date.today.year + 6}
   end
 
   def icon(type, title = '')
