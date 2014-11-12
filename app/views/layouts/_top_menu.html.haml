@@ -16,10 +16,11 @@
           - if current_user.admin?
             %li= link_to(icon('flag') + ' Agencies', agencies_path)
             %li= link_to(icon('book') + ' Subscribers', agency_subscriptions_path)
+            %li= link_to(icon('flash') + ' Certificates', expired_certs_certificates_path)
             %li= link_to(icon('usd') + ' Orders', orders_path)
             %li.spliter
             %li= link_to('Pages', pages_path)
-            %li= link_to(icon('cog') + ' System Admin', root_url(subdomain: 'admin'))
+            %li= link_to(icon('cog') + ' Settings', root_url(subdomain: 'admin'))
 
 
       /right

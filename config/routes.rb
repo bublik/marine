@@ -58,11 +58,18 @@ Marine::Application.routes.draw do
 
   resources :personals
   resources :contacts
-  resources :certificates
+  resources :certificates do
+    collection do
+      get :expired_certs, as: :expired_certs
+    end
+  end
   resources :seaservices
   resources :langs
 
   resources :pages, only: [:index, :new, :create, :edit]
   resources :pages, path: "", except: [:index, :new, :create]
+  get '/rails/mailers' => "rails/mailers#index"
+  get '/rails/mailers/*path' => "rails/mailers#preview"
+
   get '*id', to: 'pages#show'
 end

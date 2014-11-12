@@ -200,7 +200,7 @@ class UsersController < ApplicationController
 
           render 'contacts_only', layout: false
         else
-          render layout: 'cv'
+          render layout: (params[:hide_layout] ? false : 'cv')
         end
       }
       format.pdf {

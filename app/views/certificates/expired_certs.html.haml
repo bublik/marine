@@ -1,0 +1,46 @@
+%br
+.panel.panel-default
+  .panel-heading
+    .row
+      .col-xs-2.col-md-2
+        %h4 Сертификаты
+      .col-xs-2.col-md-2= link_to('Просроченные', expired_certs_certificates_path(scope: 'expired'), class: 'btn btn-warning')
+      .col-xs-2.col-md-2= link_to('Закончатся 1-30 дней', expired_certs_certificates_path(scope: '30days'), class: 'btn btn-info')
+      .col-xs-2.col-md-2= link_to('Закончатся 30-60 дней', expired_certs_certificates_path(scope: '60days'), class: 'btn btn-primary')
+  .panel-body
+    %p
+
+      - @certificates.decorate.each do |certificate|
+        - @last_user ||= certificate.user_id
+        - if @last_user != certificate.user_id
+          %hr
+          - @last_user = certificate.user_id
+        .row
+          .col-xs-2= certificate.to_date
+          .col-xs-2
+            = certificate.cert
+            = certificate.issuer
+          .col-xs-2= certificate.country
+          .col-xs-2
+            = certificate.user.contact.phone
+            = certificate.user.contact.mphone
+          .col-xs-2
+            - user = certificate.user.decorate
+            = link_to(user.full_name, cv_user_path(user.uuid, original: true, hide_layout: true, format: 'html'),  data:{toggle: 'modal', target: '#modal'}, title: user.id)
+          .col-xs-2
+            = link_to(icon('print'), cv_user_path(user.uuid, original: true, format: 'html'), target: '_blank')
+
+
+
+= paginate(@certificates)
+
+#modal.modal.fade{tabindex: "-1", role: "dialog", aria: {hidden:"true"}}
+  %div{class: 'modal-dialog modal-lg'}
+    %div{class: 'modal-content p10 well'}
+      .modal-header
+      .modal-body
+
+:javascript
+  $(document).on('hidden.bs.modal', function (e) {
+    $(e.target).removeData('bs.modal');
+  });

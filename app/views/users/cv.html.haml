@@ -1,11 +1,12 @@
-.text-right Updated at: #{@user.cv_updated_at}
+.text-right
+  Updated at: #{@user.cv_updated_at}
 .h2.text-center
   APPLICATION FORM
 
 .row
-  .col-md-4.contact= render 'cv_contact', {contact: @contact}
-  .col-md-4
-  .col-md-4= @personal.photo
+  .col-xs-4.col-md-4.contact= render 'cv_contact', {contact: @contact}
+  .col-xs-4.col-md-4
+  .col-xs-4.col-md-4= @personal.photo
 .h4.text-center
   Required salary: #{@personal.required_salary}
 
