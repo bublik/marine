@@ -13,7 +13,7 @@ class CertificatesController < ApplicationController
   end
 
   def expired_certs
-    @certificates = Certificate.joins(:country, :user).includes(:cert, user: :contact).where('users.cv_updated_at IS NOT NULL').group(:user_id).order(:user_id, :to_date)
+    @certificates = Certificate.limited.joins(:country, :user).includes(:cert, user: :contact).where('users.cv_updated_at IS NOT NULL').group(:user_id).order(:user_id, :to_date)
     @certificates = @certificates.where('countries.name = ?', 'UKRAINE') if Rails.env.production?
 
     @certificates = @certificates.where('to_date < ?', Time.now) if ['', 'expired'].include?(params[:scope])

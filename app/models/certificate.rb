@@ -23,5 +23,6 @@ class Certificate < ActiveRecord::Base
 
   validates :country_id, :from_date, :cert_id, :user_id, :licence_number, presence: true
   validates :to_date, presence: true, unless: :is_unlimited
+  scope :limited, -> { where(is_unlimited: false) }
 
 end
