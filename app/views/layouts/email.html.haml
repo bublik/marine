@@ -2,32 +2,48 @@
 %html
   %head
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
-    %title= content_for?(:title) ? yield(:title) : 'Marine'
-    %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Marine'}"}
-  %body.cv
-    %main{:role => "main"}
-      .container.container-fluid
-        = yield
+    %title= content_for?(:title) ? yield(:title) : 'Icrewing'
+    %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Icrewing'}"}
+    = stylesheet_link_tag 'cv'
+  %body{style: 'background: #ececec;'}
+    %table{style: 'background: #fff; width: 700px; margin-left: auto; margin-right: auto'}
+      %tr
+        %td{style: 'background: #423c46; pading: 0 20px; text-align:center'}= image_tag(image_url('logo.png'), width: '95%')
+      %tr
+        %td= yield
+      %tr
+        %td{style: 'padding-top: 20px; text-align:center'}
 
-    %footer
-      Thanks for using our service.
+    %table{style: 'background: #ececec; width: 700px; text-align: center; font-size: 0.9em; margin-left: auto; margin-right: auto'}
+      %tr
+        %td
+          %div Please do not reply directly to this email.
+          %div You can reach us by sending message to #{mail_to('support@icrewing.com')}.
+          %div Get help from the Support Center
 
     :css
+      a, a:hover {color: #111; }
       main {
        marign: 30px;
       }
       p {
         margin: 10px;
       }
-      .btn-info {
+      td {
+       padding: 20px;
+      }
+      .btn:hover {
+        color: #ddd;
+      }
+      .btn {
         padding: 7px 10px;
         text-decoration: none;
         -webkit-border-radius: 5px;
         -moz-border-radius: 5px;
         border-radius: 5px;
         color: #FFF;
-        background-color: #39B3D7;
-        border-color: #269ABC;
+        background-color: #423c46;
+        border-color: #ccc;
       }
 
 

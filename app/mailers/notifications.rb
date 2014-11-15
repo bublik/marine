@@ -9,7 +9,7 @@ class Notifications < ActionMailer::Base
 
   def feedback(contact)
     @contact = contact
-    mail(to:   User.admin.contact.email)
+    mail(to: User.admin.contact.email)
   end
 
   def thank_email(user)
