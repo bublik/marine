@@ -22,6 +22,8 @@ gem 'uuid'
 
 gem 'ckeditor'
 
+gem 'non-stupid-digest-assets'
+
 gem 'mini_magick'
 gem 'carrierwave'
 gem 'wkhtmltopdf-binary'
