@@ -14,7 +14,7 @@ class HomeController < ApplicationController
       @contact.errors['email'] = "Email can't be blank." if @contact.email.blank?
 
       if  @contact.errors.blank?
-        Notifications.feedback(@contact)
+        Notifications.feedback(@contact).deliver
         redirect_to root_path, notice: 'Your message was sent!'
         return
       else
