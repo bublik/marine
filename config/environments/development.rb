@@ -39,7 +39,9 @@ Marine::Application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.delivery_method = :letter_opener
+
   config.action_dispatch.cookies_serializer = :hybrid
+  config.action_mailer.asset_host = 'http://localhost.dev:3000'
   #config.action_controller.asset_host = "http://localhost.dev:3000"
 
 end

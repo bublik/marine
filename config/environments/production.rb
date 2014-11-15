@@ -20,7 +20,7 @@ Marine::Application.configure do
   # config.action_dispatch.rack_cache = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
-  config.serve_static_assets = false
+  config.serve_static_assets = true
   config.action_dispatch.cookies_serializer = :hybrid
 
   # Compress JavaScripts and CSS.
@@ -31,7 +31,7 @@ Marine::Application.configure do
   config.assets.compile = false
 
   # Generate digests for assets URLs.
-  config.assets.digest = true
+  config.assets.digest = false
 
   # Version of your assets, change this if you want to expire all your assets.
   config.assets.version = '1.0'
@@ -84,8 +84,8 @@ Marine::Application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
-  config.action_controller.asset_host = 'icrewing.com'
 
+  config.action_mailer.asset_host = 'http://icrewing.com'
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false
 
