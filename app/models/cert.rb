@@ -23,7 +23,7 @@ class Cert < ActiveRecord::Base
   scope :show_on_wizard, -> (plus_ids) { where('certs.show_on_wizard = true OR certs.id IN (?)', plus_ids) }
 
   before_create do
-    self.position = Cert.maximum(:position) + 1
+    self.position = Cert.maximum(:position).to_i + 1
   end
 
 end
