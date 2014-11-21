@@ -1,6 +1,6 @@
 class CreateCerts < ActiveRecord::Migration
   def change
-    create_table :certs do |t|
+    create_table(:certs, force: true) do |t|
       t.string :name
       t.string :category
       t.integer :position, :integer, default: 0, blank: false
