@@ -3,7 +3,7 @@ class CreateCerts < ActiveRecord::Migration
     create_table :certs do |t|
       t.string :name
       t.string :category
-
+      t.integer :position, :integer, default: 0, blank: false
       t.timestamps
     end
     {'medical' => [
