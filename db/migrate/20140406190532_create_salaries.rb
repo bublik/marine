@@ -1,10 +1,5 @@
 class CreateSalaries < ActiveRecord::Migration
   def change
-    create_table :salaries do |t|
-      t.integer :amount
-
-      t.timestamps
-    end
-    drop_table :salaries
+    drop_table :salaries rescue nil
   end
 end
