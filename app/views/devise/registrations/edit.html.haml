@@ -3,8 +3,20 @@
 .row
   .col-xs-2
     %label Your Invitation URL
-  .col-xs-8
+  .col-xs-4{data: {toggle: "tooltip", placement: "top", title: (current_user.user? ? 'Send your CV form to crewing agencies for 5 points' : 'Invite to your private network.') }}
     = text_field_tag :url, sailor_users_url(token: resource.intivation_token), class: 'form-control', disabled: true
+    - if current_user.crewing?
+      %p.help-block Increase your network
+    - if current_user.user?
+      %p.help-block
+        Invite your friends and earn extra points
+  .col-xs-6 #{link_to('Invite colleagues', invite_users_path, class: 'btn btn-success')}
+- if current_user.user?
+  .row
+    .col-xs-2
+      %label Your points
+    .col-xs-4
+      %span.label.label-success{style: 'font-size: 1.1em'} #{resource.inviters.count + 1}
 
 %hr/
 - resource.build_contact unless resource.contact
@@ -12,7 +24,7 @@
   .row
     .col-md-8
       = display_base_errors resource
-      = f.input :name, :autofocus => true
+      = f.input :name, :autofocus => true, placeholder: 'enter your contact name'
       = f.input :email, :required => true
       = f.input :phone, :required => true
 

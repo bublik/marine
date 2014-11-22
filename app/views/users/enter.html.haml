@@ -6,9 +6,10 @@
         = simple_form_for(@user, :url => get_access_users_path, remote: true) do |f|
           %label Enter your e-mail address to proceed further
           = f.input :email, :autofocus => true, label: 'Email', placeholder: 'Email'
-          = f.input :crew_id, as: :hidden
+          = f.input :token, as: :hidden
           - if request.xhr?
             = f.input :email_confirmation, :autofocus => true, label: 'Email confirmation'
           .row
             .col-sm-4.col-sm-offset-3
               = f.button :submit, 'Submit', :class => 'btn-primary'
+              %div= link_to('go back to home', root_path)

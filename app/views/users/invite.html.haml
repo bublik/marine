@@ -1,0 +1,11 @@
+%br/
+%br/
+.row
+  .col-xs-8.col-xs-offset-2
+    .panel.panel-default
+      .panel-body
+        = simple_form_for(User.new, url: send_invitation_users_path) do |f|
+          = f.input :email, label: 'Invite your colleagues', placeholder: 'enter invitation email'
+          .row
+            .col-sm-3.col-xs-3.col-sm-offset-3.col-xs-offset-3
+              = f.button :submit, 'Send Invitation', class: 'btn btn-success'

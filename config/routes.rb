@@ -17,6 +17,10 @@ Marine::Application.routes.draw do
     ActiveAdmin.routes(self)
   end
 
+  # authenticated :user, ->(u) { u.user? } do
+  #   root to: 'registrations#edit', as: :user_root
+  # end
+
   root :to => "home#index"
   mount Sidekiq::Web, at: '/sidekiq'
 
@@ -43,7 +47,9 @@ Marine::Application.routes.draw do
     end
 
     collection do
-      get :enter, as: :sailor
+      get :invite
+      post :send_invitation
+      get '/enter(/:token)' => 'users#enter', as: :sailor
       post :get_access
       patch :complete
       get :finish

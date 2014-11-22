@@ -24,6 +24,10 @@ class NotificationsPreview < ActionMailer::Preview
     Notifications.new_crewing_created(User.admins.first, User.agencies.last)
   end
 
+  def invitation
+    Notifications.invitation(user, 'new_user@email.com')
+  end
+
   private
   def personal
     user.personal.decorate

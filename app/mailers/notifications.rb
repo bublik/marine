@@ -7,6 +7,11 @@ class Notifications < ActionMailer::Base
     mail(to: @user.email)
   end
 
+  def invitation(from_user, to_email)
+    @from_user = from_user.decorate
+    mail(to: to_email, subject: "#{@from_user.full_name} has invited You.")
+  end
+
   def feedback(contact)
     @contact = contact
     mail(to: User.admin.contact.email)

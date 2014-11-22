@@ -20,6 +20,11 @@
       %span.badge> 5
       = link_to('Language', langs_path)
       %span.chevron
+    - if current_user.completed?
+      %li{"data-target" => "#step5"}
+        %span.badge> 6
+        = link_to('Invite colleagues', edit_user_registration_path)
+        %span.chevron
   .actions
     - if session[:original_account_id].present?
       = link_to('Back to Management', management_path, class: 'btn btn-success')

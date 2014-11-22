@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def index
     logger.debug("current_user.crew_id #{current_user.crew_id}; User.admin.id #{User.admin.id}")
-    if params[:scope].eql?('all')# all this crew
+    if params[:scope].eql?('all') # all this crew
       @users = User.users
       unless current_user.admin?
         @users = @users.where(crew_id: current_user.parent_id || current_user.id).where('crew_id IS NOT NULL')
@@ -109,16 +109,6 @@ class UsersController < ApplicationController
     render 'crewing'
   end
 
-  def enter
-    if current_user
-      redirect_to(new_personal_path)
-      return
-    end
-
-    @user = User.new
-    @user.crew_id = User.find_by_uuid(params[:token]).id if params[:token].present?
-  end
-
   def complete
     @user = current_user
     if @user.update(user_params)
@@ -217,7 +207,14 @@ class UsersController < ApplicationController
                })
       }
     end
+  end
 
+  def enter
+    if current_user
+      redirect_to(new_personal_path)
+      return
+    end
+    @user = User.new(token: params[:token])
   end
 
   def get_access
@@ -230,8 +227,8 @@ class UsersController < ApplicationController
         sign_in @user
         render text: "window.location = '#{new_personal_path}';"
       else
-        logger.info(@user.errors.inspect)
         # нет мыла или подтверждение не совпадает
+        logger.info(@user.errors.full_messages.inspect)
       end
       return
     end
@@ -249,10 +246,25 @@ class UsersController < ApplicationController
     end
   end
 
+  def invite
+
+  end
+
+  def send_invitation
+    to = params[:user][:email]
+    flash_message = if to.match(/(.*)@(.*)/)
+      Notifications.invitation(current_user, to).deliver
+      {notice: "Your invitation already sent to #{to}!"}
+    else
+      {alert: 'Invalid email address.'}
+    end
+    redirect_to invite_users_path, flash_message
+  end
+
   private
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:name, :email, :email_confirmation, :phone, :company_name, :crew_id, :country_id, :accept_subscription)
+    params.require(:user).permit(:name, :email, :email_confirmation, :phone, :company_name, :token, :crew_id, :country_id, :accept_subscription)
   end
 
   def check_access

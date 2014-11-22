@@ -40,11 +40,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, # :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable
 
-  attr_accessor :create_by_email, :email_confirmation, :failed_attempts
+  attr_accessor :create_by_email, :email_confirmation, :failed_attempts, :token
 
   belongs_to :country
   belongs_to :agency, foreign_key: :crew_id, class_name: 'User'
   belongs_to :creator, foreign_key: :parent_id, class_name: 'User'
+  has_many :inviters, foreign_key: :invited_by, class_name: 'User'
 
   has_one :personal
   accepts_nested_attributes_for :personal
@@ -85,7 +86,7 @@ class User < ActiveRecord::Base
   after_update :send_verification_notification
 
   def create_uuid
-    self.uuid = UUID.new.generate if self.uuid.blank?
+    self.uuid = Devise.friendly_token.first(10) if self.uuid.blank?
   end
 
   def cv_updated!
@@ -93,7 +94,7 @@ class User < ActiveRecord::Base
   end
 
   def generate_token
-    self.authentication_token = Devise.friendly_token.first(12)
+    self.authentication_token = Devise.friendly_token.first(10)
   end
 
   def medical_certificates
@@ -120,15 +121,16 @@ class User < ActiveRecord::Base
   end
 
   def intivation_token
-    return self.uuid if crewing? || admin?
+    return "#{self.id}:#{self.uuid}" if crewing? || admin?
 
-    if self.crew_id.blank?
+    agency_uuid = if self.crew_id.blank?
       # контакт первого админа если пользоватеть сам зарегался
       User.admins.first.uuid
     else
       # Контакт агенства если пользователь зарегался из под агенства
       self.agency.uuid
     end
+    "#{self.id}:#{agency_uuid}"
   end
 
   def completed?
@@ -145,12 +147,19 @@ class User < ActiveRecord::Base
 
     logger.debug("#{email} #{email_confirmation }")
     password = Devise.friendly_token.first(6)
+
+    invited_by, token = param[:token].split(':')
+    crew_id = token && User.find_by_uuid(token).id
+
     user = User.new(email: email,
                     create_by_email: true,
                     email_confirmation: email_confirmation,
-                    crew_id: param[:crew_id],
+                    crew_id: crew_id,
+                    invited_by: invited_by,
                     password: password,
-                    password_confirmation: password)
+                    password_confirmation: password,
+                    token: param[:token]
+    )
     user.save
     user
   end
