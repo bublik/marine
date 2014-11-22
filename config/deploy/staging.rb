@@ -3,7 +3,7 @@ role :web, %w{deployer@188.226.245.139}
 role :db,  %w{deployer@188.226.245.139}
 
 set :application, 'marine'
-set :branch, 'master'
+set :branch, 'develop'
 set :deploy_to, "/home/deployer/staging/#{fetch(:application)}"
 
 # And/or per server (overrides global)
