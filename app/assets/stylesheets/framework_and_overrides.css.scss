@@ -41,6 +41,19 @@ img {
   font-size: inherit;
 }
 
+.navbar-default {
+  background-color: #49839b;
+  border-color: #435868;
+  opacity: 0.9;
+  filter: alpha(opacity=90);
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: #eee;
+}
+.navbar-default .navbar-nav > li > a:hover {
+  color: #fff;
+}
 // THESE ARE EXAMPLES YOU CAN MODIFY
 // create your own classes
 // to make views framework-neutral
@@ -64,8 +77,8 @@ img {
 
 main {
   @extend .container;
-  //  background-color: #eee;
-  padding-bottom: 80px;
+  padding-top: 50px;
+  padding-bottom: 40px;
   width: 100%;
 }
 

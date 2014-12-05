@@ -15,3 +15,14 @@
  *= stub cv
  *= require_self
  */
+
+body { background: #435868}
+header {
+  .img-bg {
+    background: #fff url(image-path('blue_ship.jpg')) no-repeat center center !important;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+}

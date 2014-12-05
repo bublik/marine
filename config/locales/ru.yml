@@ -1,0 +1,11 @@
+ru:
+  time:
+    formats:
+      default: "%d-%m-%Y"
+      short: "%b %d"
+      long: "%d/%m/%Y"
+  date:
+    formats:
+      default: "%d-%m-%Y"
+      short: "%b %d"
+      long: "%B %d, %Y"

@@ -10,11 +10,15 @@ class ApplicationController < ActionController::Base
   private
 
   def set_locale
-    I18n.locale = params[:locale] if params[:locale].present?
+    I18n.locale = params[:locale].present? ? params[:locale] : I18n.default_locale
   end
 
   def default_url_options(options = {})
-    {locale: I18n.locale}
+    unless user_signed_in?
+      {locale: I18n.locale}
+    else
+      {}
+    end
   end
 
   def check_admin
@@ -34,9 +38,7 @@ class ApplicationController < ActionController::Base
       check_certificates if controller_name.eql?('seaservices')
 
       if controller_name.eql?('langs')
-        check_contacts
-        check_personal
-        check_certificates
+        check_contacts && check_personal && check_certificates
       end
     end
   end
