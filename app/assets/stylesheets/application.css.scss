@@ -16,7 +16,10 @@
  *= require_self
  */
 
-body { background: #435868}
+.marine-color {
+  color: cadetblue;
+}
+body { background: #435868; color: #777}
 header {
   .img-bg {
     background: #fff url(image-path('blue_ship.jpg')) no-repeat center center !important;

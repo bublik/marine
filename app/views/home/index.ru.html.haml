@@ -1,7 +1,59 @@
 %hr
-= render file: 'pages/show'
+-#= render file: 'pages/show'
 
 .row
+  .col-xs-5
+
+    .p10.info
+      %h3.text-center.marine-color Морякам
+      %ul.list-unstyled.lead.p10
+        %li #{icon('ok text-success')} &nbsp; Регистрация в базе 800 агенств
+        %li #{icon('ok text-success')} &nbsp; Новые вакансии
+        %li #{icon('ok text-success')} &nbsp; Наличие публичного профиля
+        %li #{icon('ok text-success')} &nbsp; Рассылка анкеты по агенствам
+        %li #{icon('ok text-success')} &nbsp; Напоминание о годности документов
+        %li #{icon('ok text-success')} &nbsp; Система рекомендаций
+      %div.text-center= link_to('Войти', sailor_users_path, class: 'btn btn-lg btn-success')
+  .col-xs-5.col-xs-offset-1
+    .p10.info
+      %h3.text-center.marine-color Агенствам
+      %ul.list-unstyled.lead.p10
+        %li #{icon('ok text-success')} &nbsp; Интерфейс управления контактами
+        %li #{icon('ok text-success')} &nbsp; Поиск в своей и публичной базе
+        %li #{icon('ok text-success')} &nbsp; Партнерская программа
+        %li #{icon('ok text-success')} &nbsp; Стандартизация CV анкет
+        %li #{icon('ok text-success')} &nbsp; Обмен анкетами
+        %li #{icon('ok text-success')} &nbsp; Управление менеджерами
+      %div.text-center= link_to('Регистрация', crewing_users_path, class: 'btn btn-lg btn-success')
+%hr
+%h2.text-center.marine-color Регистрация и пользование бесплатно
+%hr
+%br
+#carousel-example-generic.carousel.slide{'data-ride' => 'carousel'}
+
+  %ol.carousel-indicators
+    %li{data:{'target' => '#carousel-example-generic', 'slide-to' => '0'}}
+    %li{data:{'target' => '#carousel-example-generic', 'slide-to' => '1'}}
+    %li{data:{'target' => '#carousel-example-generic', 'slide-to' => '2'}}
+  .carousel-inner{'role' => 'listbox'}
+    .item.active #{image_tag('examples/user_profile.png')}
+    .item #{image_tag('examples/seafarers_list.png')}
+    .item #{image_tag('examples/manages_list.png')}
+
+  = link_to('#carousel-example-generic', class: 'left carousel-control', role: "button", 'data-slide' => "prev") do
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+
+  = link_to('#carousel-example-generic', class: 'right carousel-control', role: "button", 'data-slide' => "next") do
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+
+%p.text-center
+  %br
+  %br
+  = link_to('Задать вопрос', feedback_path, class: 'btn btn-lg btn-success')
+
+-#.row
   .col-xs-10.col-xs-offset-1
     %h3.text-center
       ICrewing is a universal platform to search for a job as a sailor and employment assistance for commanders in the best shipping companies in different parts of the world. It is also the largest database to search for sailors for crewing companies and agencies for open positions.

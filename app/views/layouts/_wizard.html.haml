@@ -27,7 +27,7 @@
         %span.chevron
   .actions
     - if session[:original_account_id].present?
-      = link_to('Back to Management', management_path, class: 'btn btn-success')
+      = link_to('Management', management_path, class: 'btn btn-success')
     - if user_signed_in?
       = link_to 'Logout', destroy_user_session_path, method: 'delete', class: 'btn btn-warning'
 .step-content
