@@ -10,7 +10,7 @@
     - if current_user.user?
       %p.help-block
         Invite your friends and earn extra points
-  .col-xs-6= link_to('Invite colleagues', invite_users_path, class: 'btn btn-success')
+  .col-xs-6= link_to('Invite colleagues', invite_users_url, class: 'btn btn-success')
 - if current_user.user?
   .row
     .col-xs-2
@@ -55,4 +55,3 @@
   .row
     .col-md-3.col-md-offset-2
       = f.button :submit, 'Update', :class => 'btn-primary'
-
