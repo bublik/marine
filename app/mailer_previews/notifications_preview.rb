@@ -38,6 +38,6 @@ class NotificationsPreview < ActionMailer::Preview
   end
 
   def user
-    user = User.find(12) || User.find_by(:email, 'rebisall@gmail.com') || User.last
+    User.users.find_by_id(12) || User.users.find_by(:email, 'rebisall@gmail.com') || User.users.last
   end
 end
