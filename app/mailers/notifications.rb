@@ -1,5 +1,7 @@
 class Notifications < ActionMailer::Base
-  default from: "noreply@icrewing.com"
+  default from: "iCrewing <noreply@icrewing.com>"
+  add_template_helper(ApplicationHelper)
+
   layout 'email'
 
   def access_link(user)
@@ -38,7 +40,7 @@ class Notifications < ActionMailer::Base
     )
     attachments[@personal.pdf_file_name_with_extension] = pdf
 
-    #store STATIC PDF document
+    #store STATIC PDF document and send this for agencies when user paid
     File.open(@personal.pdf_file_name_full_path, 'wb') do |file|
       file << pdf
     end
@@ -48,8 +50,9 @@ class Notifications < ActionMailer::Base
 
   def new_user_cv(agency_subscription, personal)
     @agency = agency_subscription
+    @personal = personal
     attachments[personal.pdf_file_name_with_extension] = File.read(personal.pdf_file_name_full_path)
-    mail(to: agency_subscription.email, subject: 'New CV.')
+    mail(to: agency_subscription.email, subject: "#{@personal.full_name} #{@personal.rank}")
   end
 
   def crewing_credentials(user)

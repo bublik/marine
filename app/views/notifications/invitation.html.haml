@@ -1,4 +1,4 @@
 %h4 #{@from_user.full_name} has requested that you join Icrewing.
 %div To join the #{@from_user.full_name} Icrewing network click on the button below.
-%p= link_to('Accept invitation', sailor_users_url(token: @from_user.intivation_token), class: 'btn')
+%p= link_to('Accept invitation', sailor_users_url(token: @from_user.intivation_token),style: email_btn_style)
 %div  If you have any questions about why you are receiving this message please contact #{@from_user.full_name} directly.
