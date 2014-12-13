@@ -195,7 +195,7 @@ class UsersController < ApplicationController
       }
       format.pdf {
         render({
-                 pdf: "#{@personal.pdf_file_name}.pdf",
+                 pdf: "#{@personal.pdf_file_name}",
                  layout: 'layouts/cv.pdf.haml',
                  disable_javascript: true,
                  show_as_html: params[:debug].present?,

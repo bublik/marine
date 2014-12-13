@@ -1,5 +1,24 @@
 %h2 Dear #{@agency.name}
+%h5 New Seafarer CV has been registered!
 
-%p
-  %div New Seafarer CV added to database!
-  %div Please see attached PDF document for more information.
+%p{style: 'margin-top: 15px;'}
+  %div
+    %label{style: 'width: 110px'} Name:
+    #{@personal.full_name}
+  %div
+    %label{style: 'width: 110px'} Rank:
+    #{@personal.rank}
+  %div
+    %label{style: 'width: 110px'} Required Position:
+    #{@personal.required_position}
+  %div
+    %label{style: 'width: 110px'} Salary:
+    #{@personal.salary}
+  %div
+    %label{style: 'width: 110px'} Phone:
+    #{@personal.phone}
+  %div
+    %label{style: 'width: 110px'} Mobile phone:
+    #{@personal.mphone}
+
+%div{style: 'font-style: italic'} Please see PDF document for more information.

@@ -1,6 +1,18 @@
 class PersonalDecorator < Draper::Decorator
   delegate_all
 
+  def full_name
+    "#{object.surname} #{object.name}"
+  end
+
+  def phone
+    object.user.contact ? object.user.contact.phone : '-'
+  end
+
+  def mphone
+    object.user.contact ? object.user.contact.mphone : '-'
+  end
+
   def rank
     object.rank.name
   end
