@@ -47,4 +47,10 @@ module ApplicationHelper
                     })
   end
 
+  def email_btn_style
+    "padding: 9px 15px; text-align: center; vertical-align: middle;
+    text-decoration: none; -webkit-border-radius: 5px; -moz-border-radius: 5px;
+    border-radius: 5px; color: #FFF; background-color: #423C46;
+    border-color: #CCC; margin-bottom: 0px; font-weight: normal;"
+  end
 end

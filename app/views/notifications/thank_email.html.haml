@@ -9,14 +9,15 @@
 %p
   You may access your personal profile to update personal data at any time.
   If you think you missed something or want to do a final polish, you are more than welcome to do so.
-= link_to('UPDATE PERSONAL DATA', sailor_users_url(user_email: @user.email, user_token: @user.authentication_token), class: 'btn')
+= link_to('UPDATE PERSONAL DATA', sailor_users_url(user_email: @user.email, user_token: @user.authentication_token), style: email_btn_style)
 
 %h3 Access to your CV
 %p
   You may download CV in next formats:
   %div
-    = link_to('HTML version', cv_user_url(@user.uuid, format: 'html'), class: 'btn')
-    = link_to('PDF version', cv_user_url(@user.uuid, format: 'pdf'), class: 'btn')
+    = link_to('HTML version', cv_user_url(@user.uuid, format: 'html'), style: email_btn_style)
+    = link_to('PDF version', cv_user_url(@user.uuid, format: 'pdf'), style: email_btn_style)
 %hr/
 %h3 Build own professional network.
-%p= link_to('Invite colleagues', invite_users_url, class: 'btn')
+
+%p= link_to('Invite colleagues', invite_users_path, style: email_btn_style)
