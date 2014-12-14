@@ -1,11 +1,30 @@
+$brand-primary: #8E7D76;
+$state-info-text: #544349;
+
 // import the CSS framework
 @import "bootstrap";
 
 select.date {
   width: 15% !important;
   margin-right: 13px;
+  display: inline-block;
 }
-
+select.date25 {
+  width: 25% !important;
+}
+.left {
+  dt {
+    text-align: left;
+  }
+}
+li.reset:before {
+  content: none !important;
+}
+li.reset {
+  select {
+    margin-top: -5px;
+  }
+}
 input[type="file"] {
   background: none;
   border: none;
@@ -114,7 +133,7 @@ section {
 }
 
 .checkbox {
-  .bolean {
+  .boolean {
     width: 20px;
   }
 }
@@ -463,4 +482,32 @@ section {
 .btn-default[disabled] .btn-default.active {
   background-color: #fff;
   border-color: #fff;
+}
+
+.block {
+  padding: 15px;
+  margin: 20px 0;
+  border: 1px solid #EEE;
+  border-left-width: 5px;
+  border-radius: 3px;
+}
+
+.block-primary {
+  border-left-color: $brand-primary;
+}
+
+.block-success {
+  border-left-color: $brand-success;
+}
+
+.block-info {
+  border-left-color: $brand-info;
+}
+
+.block-warning {
+  border-left-color: $brand-warning;
+}
+
+.block-danger {
+  border-left-color: $brand-danger;
 }

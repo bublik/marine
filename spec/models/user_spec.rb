@@ -33,6 +33,7 @@
 #  locked_at              :datetime
 #  unlock_token           :string(255)
 #  crew_id                :integer
+#  invited_by             :integer
 #
 
 require 'spec_helper'

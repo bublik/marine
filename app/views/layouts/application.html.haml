@@ -25,12 +25,13 @@
     %main.content{:role => "main"}
       .container.container-fluid
         = render 'layouts/messages'
-        - if Rails.env.development? && !user_signed_in?
+        -# if Rails.env.development? && !user_signed_in?
           .row
             .col-xs-3
               = link_to('user affiliate link test1@gg.com','http://localhost.dev:3000/users/enter/55:VTiy85G-ex?locale=en')
             .col-xs-3
               = link_to('manager affiliate link', 'http://localhost.dev:3000/users/enter/31:YtB1SrhdZz?locale=en')
+        - if devise_controller?
           .row
             .col-md-3
               admin@gg.com

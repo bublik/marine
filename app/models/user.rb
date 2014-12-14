@@ -1,4 +1,6 @@
-# == Schema Information # # Table name: users
+# == Schema Information
+#
+# Table name: users
 #
 #  id                     :integer          not null, primary key
 #  email                  :string(255)      default(""), not null
@@ -31,6 +33,7 @@
 #  locked_at              :datetime
 #  unlock_token           :string(255)
 #  crew_id                :integer
+#  invited_by             :integer
 #
 
 class User < ActiveRecord::Base
@@ -60,6 +63,9 @@ class User < ActiveRecord::Base
   has_many :seaservices
   has_many :langs
   has_many :languages, through: :langs
+
+  has_many :user_vacancies
+  has_many :vacancies, through: :user_vacancies
 
   has_many :managers, -> { where(role: 'manager') }, foreign_key: :parent_id, class_name: 'User'
   has_many :orders

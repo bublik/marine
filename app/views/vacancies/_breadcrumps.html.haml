@@ -1,0 +1,11 @@
+%ol.breadcrumb.space-top-xs.space-bottom-xs
+  %li= link_to('Vacancies', vacancies_path, title: 'All vacancies')
+  - if user_signed_in?
+    - if current_user.user?
+      %li= link_to('My requests', vacancies_path(filter: 'my_requests'))
+  - if @rank
+    %li= link_to(@rank.name, vacancies_path(rank_id: @rank.id), title: @rank.name)
+  - if @vacancy
+    %li= link_to(@vacancy.rank, vacancies_path(rank_id: @vacancy.rank_id), title: @vacancy.rank)
+    %li.active{title: @vacancy.name}= @vacancy.name
+  %li.reset.pull-right= select_tag :rank_id, options_from_collection_for_select(Rank.all, 'id', 'name', selected: params[:rank_id]), id: 'switch_rank', class: 'select optional form-control', data: {url: vacancies_url(locale: nil)}

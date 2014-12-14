@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+  def admin_or_manager
+    user_signed_in? && (current_user.admin? || current_user.manager?)
+  end
+
   def calendar_dates
     @dates ||= {as: :date, start_year: Date.today.year - 70, end_year: Date.today.year + 15}
   end
