@@ -1,0 +1,71 @@
+= render 'vacancies/breadcrumps'
+
+%h3.text-info= @vacancy.name
+.row
+  .col-xs-9
+    %h5
+      Salary #{@vacancy.salary} for #{@vacancy.term_in_month} month, from #{@vacancy.from_date}
+      - if user_signed_in?
+        - if @vacancy.can_edit?(current_user)
+          %span.pull-right
+            = link_to 'Edit', edit_vacancy_path(@vacancy), class: 'btn btn-xs btn-info'
+            = link_to 'Destroy', @vacancy, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-xs btn-warning'
+      - else
+        .alert.alert-warning
+          #{link_to('Sign in', sailor_users_path)} to your account to apply for the vacancy.
+    = content_tag_for(:div, @vacancy) do
+      %div
+        %label.text-info Published: #{@vacancy.created_at.to_date}
+      .col-xs-6
+        %h4 Demands
+        %dl.dl-horizontal.left
+          %dt Country
+          %dd{'data-toggle' => 'tooltip', 'title' => 'Country Of Citizenship'}= @vacancy.country
+          %dt Language
+          %dd{'data-toggle' => 'tooltip', 'title' => 'required language'}= @vacancy.language
+        %div
+          %em= @vacancy.require_description
+      .col-xs-6
+        %h4.text-info Ship information
+        %dl.dl-horizontal.left
+          %dt Ship
+          %dd= @vacancy.ship
+          %dt Engine
+          %dd= @vacancy.ship_motor
+          %dt Nationality
+          %dd= @vacancy.nationality
+          %dt Ship owner country
+          %dd= @vacancy.shipowner_country
+
+      -#.col-xs-4
+        %h4.text-info Contact #{@vacancy.crew_name}
+        %div #{icon('phone')} #{@vacancy.crew_mphone}
+        %div #{icon('envelope')} #{@vacancy.crew_email}
+      .col-xs-12
+        - if user_signed_in?
+          - if current_user.user?
+            .text-center
+              - if @sent_request
+                %strong.text-success You already sent request.
+              - else
+                = link_to('Send request', send_request_vacancy_path(@vacancy), method: :post, class: 'btn btn-success btn-lg')
+          - if current_user.manager?
+            %h3.text-primary Job seekers
+            - @vacancy.object.users.decorate.each do |user|
+              = div_for(user, class: 'row block block-info') do
+                .col-xs-3
+                  = user.full_name
+                  .text-muted= user.languages
+                .col-xs-2{'data-toggle' => 'tooltip', 'title' => 'Salary'} #{user.salary} USD
+                .col-xs-2{'data-toggle' => 'tooltip', 'title' => 'CV updated'}= user.cv_updated_at
+                .col-xs-3= link_to('Show details', '#', {'data-toggle' => 'tooltip', 'title' => 'Contact to support'})
+
+  .col-xs-3{style: 'border-left: 1px solid #eee'}
+    - unless @related_vacancies.blank?
+      %h3.text-info Related vacancies
+      %hr
+      - @related_vacancies.each do |vacancy|
+        = div_for(vacancy) do
+          %h4= vacancy.link
+          = vacancy.salary_with_times
+          %hr

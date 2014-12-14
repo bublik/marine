@@ -33,6 +33,7 @@
 #  locked_at              :datetime
 #  unlock_token           :string(255)
 #  crew_id                :integer
+#  invited_by             :integer
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl

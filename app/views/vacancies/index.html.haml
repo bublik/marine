@@ -1,0 +1,32 @@
+= render 'vacancies/breadcrumps'
+-#%h3.text-info
+  Vacancies
+- if admin_or_manager
+  = link_to('Add new', new_vacancy_path, class: 'btn btn-success pull-right space-bottom-xs')
+
+%table.table.table-hover
+  %tr
+    %th.col-xs-3 Position
+    %th.col-xs-2 Salary
+    %th.col-xs-1 Duration
+    %th.col-xs-1 From
+    %th.col-xs-5 Demands
+
+  - @vacancies.decorate.each do |vacancy|
+    = content_tag_for(:tr, vacancy, class: 'vacancy-row', data: {url: vacancy_url(vacancy, anchor: vacancy.dom_id)}) do
+      %td
+        %h5.text-primary= vacancy.link
+      %td #{vacancy.salary}
+      %td #{vacancy.term_in_month} month
+      %td #{vacancy.from_date}
+      %td
+        - if user_signed_in? && vacancy.can_edit?(current_user)
+          .pull-right.actions
+            = link_to 'Edit', edit_vacancy_path(vacancy), class: 'btn btn-xs btn-info'
+            = link_to 'Destroy', vacancy, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-xs btn-warning'
+        %strong{'data-toggle' => 'tooltip', 'title' => 'Country Of Citizenship'}= vacancy.country
+        %span{'data-toggle' => 'tooltip', 'title' => 'required language'}= vacancy.language
+        %div
+          %em= vacancy.require_description
+
+= paginate @vacancies
