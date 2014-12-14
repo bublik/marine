@@ -14,16 +14,20 @@ class ApplicationController < ActionController::Base
   end
 
   def default_url_options(options = {})
-    {locale: I18n.locale}
+    user_signed_in? ? options : options.merge({locale: I18n.locale})
+  end
+
+  def check_admin_or_manager
+    (current_user && (current_user.admin? || current_user.manager?)) || permission_deny
   end
 
   def check_admin
-    if current_user && current_user.admin?
-      return true
-    else
-      redirect_to(root_path, alert: 'You dont have permissions to this area!')
-      return false
-    end
+    (current_user && current_user.admin?) || permission_deny
+  end
+
+  def permission_deny
+    redirect_to(root_path, alert: 'You dont have permissions to this area!')
+    false
   end
 
   def check_steps

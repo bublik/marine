@@ -18,6 +18,7 @@
 #  user_id     :integer          not null
 #  next_of_kin :string(255)
 #  name        :string(255)
+#  logo        :string(255)
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl

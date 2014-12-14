@@ -5,7 +5,7 @@ en:
     models:
       personal:
         one: "Personal data"
-        other: "Personal datas"
+        other: "Personals data"
       contact:
         one: Contact
         other: Contacts
@@ -17,7 +17,7 @@ en:
         phone: User phone
       personal:
         rank: Rank applied for
-        salary: Salary
+        salary: Salary in USD
         surname: Surname/Family name (as in Passport)
         name: First Name only
         middle_name: Middle name
@@ -60,6 +60,11 @@ en:
         off_date: Signed off
         owner_name: Owner/Employer
         agent_name: Crewing company
+      vacancy:
+        country: 'Citizenship'
+        language: 'Language'
+        require_description: 'Description'
+        ship_motor: 'Engine'
   helpers:
     submit:
       create: "Save"

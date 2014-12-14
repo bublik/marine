@@ -11,5 +11,6 @@
 class Rank < ActiveRecord::Base
   has_many :personals
   validates_presence_of :name
+  default_scope -> { order(:name) }
 
 end

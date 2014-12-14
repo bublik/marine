@@ -8,6 +8,7 @@
 #  created_at     :datetime
 #  updated_at     :datetime
 #  show_on_wizard :boolean          default(FALSE)
+#  position       :integer          default(0)
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl

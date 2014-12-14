@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: agency_subscriptions
+#
+#  id         :integer          not null, primary key
+#  email      :string(255)
+#  name       :string(255)
+#  is_active  :boolean          default(TRUE)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class AgencySubscription < ActiveRecord::Base
   validates_uniqueness_of :email
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create
