@@ -1,6 +1,5 @@
 class Notifications < ActionMailer::Base
-  default from: "iCrewing <noreply@icrewing.com>"
-
+  default from: "ICrewing <noreply@icrewing.com>"
   add_template_helper(ApplicationHelper)
   layout 'email'
 
