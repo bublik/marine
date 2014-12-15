@@ -1,11 +1,12 @@
-%h2 Dear client,
+%h2 Welcome to ICrewing!
 
 %p
-  Please click on the button below to access your personal profile with iCrewing.
-  Update personal data
-
+  %div Your email is your identifier to access your CV.
+  %div To continue with your application, please follow this link.
+%br/
+%p= link_to('UPDATE PERSONAL DATA', sailor_users_url(user_email: @user.email, user_token: @user.authentication_token), style: email_btn_style)
+%br/
 %p
-  You may access your personal profile to update personal data at any time.
-  If you think you missed something or want to do a final polish, you are more than welcome to do so.
-%p
-  = link_to('UPDATE PERSONAL DATA', sailor_users_url(user_email: @user.email, user_token: @user.authentication_token), style: email_btn_style)
+  %div You can change or add your personal data at any time. When you fill in your application you can send out your CV to the database of the crewing agencies and shipowners throughout the ICrewing pool.
+  %div As a reminder, please fill in your application correctly.
+  %div Please be advised, that the submission of your application does not guarantee a job placement.

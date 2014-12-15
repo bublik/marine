@@ -1,22 +1,21 @@
 %h2 Dear #{@user.full_name}
 
 %p
-  %div Thank your for submitting your application with iCrewing.
-  %div It has beed successfully received and will be reviewed by one one of our staff in due course.
-  %div Please note that submitting an application doesn't guarantee you an employment.
+  %div Thank you for filling in your personal application form.
+  %div Your application has been downloaded successfully. It will be revised by the crewing inspector and then it will be available for viewing by the crewing agencies and shipowners from the ICrewing pool.
 
 %h3 Update personal data
 %p
-  You may access your personal profile to update personal data at any time.
-  If you think you missed something or want to do a final polish, you are more than welcome to do so.
+  You can change your personal information on the application at any time.
+  As a reminder, you can always send out your CV throughout the database of the crewing agencies and shipowners at any time.
 = link_to('UPDATE PERSONAL DATA', sailor_users_url(user_email: @user.email, user_token: @user.authentication_token), style: email_btn_style)
 
 %h3 Access to your CV
 %p
-  You may download CV in next formats:
+  You can also download your CV in PDF format and send it in HTML version. Please be advised, that submission of your application does not guarantee a job placement.
   %div
     = link_to('HTML version', cv_user_url(@user.uuid, format: 'html'), style: email_btn_style)
     = link_to('PDF version', cv_user_url(@user.uuid, format: 'pdf'), style: email_btn_style)
-%hr/
-%h3 Build own professional network.
-%p= link_to('Invite colleagues', invite_users_path, style: email_btn_style)
+-#%hr/
+  %h3 Build own professional network.
+  %p= link_to('Invite colleagues', invite_users_path, style: email_btn_style)
