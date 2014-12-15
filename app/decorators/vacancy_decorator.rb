@@ -10,7 +10,7 @@ class VacancyDecorator < Draper::Decorator
   end
 
   def name
-    "#{rank} on #{vessel_type}"
+    rank
   end
 
   def rank
