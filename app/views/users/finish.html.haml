@@ -25,7 +25,7 @@
       <form method="POST" accept-charset="utf-8" action="https://www.liqpay.com/api/pay" >
       <input type="hidden" name="public_key" value="#{Rails.application.secrets.liqpay_public_key}" />
       <input type="hidden" name="amount" value="#{Rails.application.secrets.cv_price}" />
-      <input type="hidden" name="currency" value="UAH" />
+      <input type="hidden" name="currency" value="#{Rails.application.secrets.cv_currency || 'UAH'}" />
       <input type="hidden" name="description" value="Send my CV : #{current_user.decorate.full_name} (#{current_user.email} / #{current_user.id})" />
       <input type="hidden" name="type" value="buy" />
       <input type="hidden" name="sandbox" value="#{Rails.application.secrets.sandbox_mode}" />
