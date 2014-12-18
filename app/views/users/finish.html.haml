@@ -25,13 +25,13 @@
       <form method="POST" accept-charset="utf-8" action="https://www.liqpay.com/api/pay" >
       <input type="hidden" name="public_key" value="#{Rails.application.secrets.liqpay_public_key}" />
       <input type="hidden" name="amount" value="#{Rails.application.secrets.cv_price}" />
-      <input type="hidden" name="currency" value="UAH" />
-      <input type="hidden" name="description" value="Send my CV User[#{current_user.id}]: #{current_user.decorate.full_name} (#{current_user.email})" />
+      <input type="hidden" name="currency" value="#{Rails.application.secrets.cv_currency || 'UAH'}" />
+      <input type="hidden" name="description" value="Send my CV : #{current_user.decorate.full_name} (#{current_user.email} / #{current_user.id})" />
       <input type="hidden" name="type" value="buy" />
       <input type="hidden" name="sandbox" value="#{Rails.application.secrets.sandbox_mode}" />
       <input type="hidden" name="pay_way" value="card" />
-      <input type="hidden" name="server_url" value="http://icrewing.com/orders/confirm/#{"#{current_user.id}-#{Time.now.to_i}-send_cv"}" />
-      <input type="hidden" name="return_url" value="http://icrewing.com/orders/status/#{"#{current_user.id}-#{Time.now.to_i}-send_cv"}" />
+      <input type="hidden" name="server_url" value="http:/#{request.host}/orders/confirm/#{"#{current_user.id}-#{Time.now.to_i}-send_cv"}" />
+      <input type="hidden" name="return_url" value="http://#{request.host}/orders/status/#{"#{current_user.id}-#{Time.now.to_i}-send_cv"}" />
       <input type="hidden" name="language" value="ru" />
       <input type="submit" class="btn btn-success btn-lg" value="Pay for delivery"/>
       </form>
