@@ -1,0 +1,4 @@
+.send_email
+  .h3 Пожалуйста, проверьте вашу почту #{@user.email}, чтобы обновить или изменить Ваши личные данные.
+  %div Нажмите ниже, чтобы получить доступ к вашей личной учетной записи снова.
+  %div #{@user.name} #{button_tag('Отправить повторно', onclick: "$('#new_user').submit()", data: {disable_with: 'отправка...'}, class: 'btn btn-warning btn-sm')}
