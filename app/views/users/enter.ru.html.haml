@@ -15,4 +15,10 @@
                 %li - введите пожалуйста свой емейл для регистрации своего резюме
                 %li - если вы уже зарегестрированны введите ваш емейл для продложения
               = f.button :submit, 'Войти', :class => 'btn-primary'
-              %div= link_to('на главную', root_path)
+              = link_to('Как это работает?', '#', onclick: "$('#carousel-example-generic').removeClass('hidden');", class: 'btn btn-success')
+              .clearfix
+              = link_to('вернуться на главную', root_path)
+  .row
+    .col-xs-offset-2.col-xs-8
+      %br/
+      = render partial: 'users/registration_slide'
