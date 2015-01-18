@@ -3,9 +3,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def update
     @user = User.find(current_user.id)
-   puts '999'
     successfully_updated = if needs_password?(@user, params)
-      puts '100'
       @user.update_with_password(devise_parameter_sanitizer.sanitize(:account_update))
     else
       # remove the virtual current_password attribute
@@ -36,10 +34,10 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def update_sanitized_params
-    devise_parameter_sanitizer.for(:sign_up) {|u|
-      u.permit(:name, :email,  :password, :password_confirmation)
+    devise_parameter_sanitizer.for(:sign_up) { |u|
+      u.permit(:name, :email, :password, :password_confirmation)
     }
-    devise_parameter_sanitizer.for(:account_update) {|u|
+    devise_parameter_sanitizer.for(:account_update) { |u|
       u.permit(:name, :email, :phone, :company_name, :password, :password_confirmation, :current_password,
                contact_attributes: [:id, :logo, :country_id, :region, :city, :street, :postal_code, :phone, :mphone, :email, :skype])
     }

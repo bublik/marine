@@ -1,0 +1,34 @@
+#carousel-example-generic.hidden.carousel.slide{'data-ride' => 'carousel'}
+  %ol.carousel-indicators
+    %li{data:{'target' => '#carousel-example-generic', 'slide-to' => '0'}}
+    %li{data:{'target' => '#carousel-example-generic', 'slide-to' => '1'}}
+    %li{data:{'target' => '#carousel-example-generic', 'slide-to' => '2'}}
+  .carousel-inner{'role' => 'listbox'}
+    .item.active
+      #{image_tag('registration/sign_in.png')}
+      .carousel-caption
+        %h4 Введите свой емейл и получите письмо с ссылкой для заполнения/редактирования анкеты моряка
+    .item
+      #{image_tag('registration/email_link.png')}
+      .carousel-caption
+        %h4 Перейдите на сайт нажатием на ссылку<br/> 'UPDATE PERSONAL DATA'
+    .item
+      #{image_tag('registration/change_profile.png')}
+      .carousel-caption
+        %h4 Заполняйте корректно и максимально полно форму моряка, если какие либо данные вы не можете заполнить пропустите и вернитесь позже.
+
+  = link_to('#carousel-example-generic', class: 'left carousel-control', role: "button", 'data-slide' => "prev") do
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+
+  = link_to('#carousel-example-generic', class: 'right carousel-control', role: "button", 'data-slide' => "next") do
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+:css
+  .carousel-caption {
+    background: #474747;
+    text-shadow: none;
+    border: 2px solid #A8A8A8;
+    left: 15%;
+    right: 15%;
+  }

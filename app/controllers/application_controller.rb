@@ -33,6 +33,8 @@ class ApplicationController < ActionController::Base
   def check_steps
     # for authorized users
     if user_signed_in? && current_user.user?
+      user_signed_in?
+      I18n.locale = :en
       check_contacts if controller_name.eql?('certificates')
       check_personal if controller_name.eql?('contacts')
       check_certificates if controller_name.eql?('seaservices')

@@ -10,6 +10,6 @@
           - if request.xhr?
             = f.input :email_confirmation, :autofocus => true, label: 'Email confirmation'
           .row
-            .col-sm-4.col-sm-offset-3
+            .col-xs-offset-3.col-xs-6.col-sm-9.col-sm-offset-3
               = f.button :submit, 'Submit', :class => 'btn-primary'
               %div= link_to('go back to home', root_path)

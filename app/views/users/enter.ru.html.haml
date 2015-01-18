@@ -1,0 +1,24 @@
+.center-abs
+  .row
+    .col-md-6.col-md-offset-3
+      %h3.text-center iCrewing
+      .enter
+        = simple_form_for(@user, :url => get_access_users_path, remote: true) do |f|
+          %label Введите Ваш Емейл адрес для заполнения формы моряка
+          = f.input :email, :autofocus => true, label: 'Email', placeholder: 'ваш@email'
+          = f.input :token, as: :hidden
+          - if request.xhr?
+            = f.input :email_confirmation, :autofocus => true, label: 'Email повторите'
+          .row
+            .col-xs-offset-3.col-xs-6.col-sm-9.col-sm-offset-3
+              %ul.text-muted.list-inline
+                %li - введите пожалуйста свой емейл для регистрации своего резюме
+                %li - если вы уже зарегестрированны введите ваш емейл для продложения
+              = f.button :submit, 'Войти', :class => 'btn-primary'
+              = link_to('Как это работает?', '#', onclick: "$('#carousel-example-generic').removeClass('hidden');", class: 'btn btn-success')
+              .clearfix
+              = link_to('вернуться на главную', root_path)
+  .row
+    .col-xs-offset-2.col-xs-8
+      %br/
+      = render partial: 'users/registration_slide'
